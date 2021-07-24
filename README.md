@@ -19,23 +19,15 @@ pipenv install  # install required dependencies with Pipfile (or Pipfile.lock, i
 gh_token: '<your_personal_token>'
 ```
 
-# Usage
+## Usage
+Here we use [invoke](https://docs.pyinvoke.org/) as our task management tool
 
-### Test Github API
-Save the HTTP resopnse and the parsed data into yaml files
 ```bash
-python repo_info.py
+inv -l  # show all tasks
+inv spec  # run test script
+inv quality.flake8  # examine code style
+inv quality.radon  # measure code metric
+inv quality.all  # run all code quality checking tasks
+inv quality  # same as `inv quality.all`
+inv vcr.wipe  # delete cassette fixtures (test stubs generated with vcrpy)
 ```
-It'll generate following files under `spec/fixtures`
-
-* `gh_response.yml` - the original HTTP resopnse <br>
-    Note that this file contains your request header, which includes your personal token.<br>
-    **DO NOT** put this file to the public.
-* `gh_results.yml` - parsed results from HTTP response
-
-### Testing
-```bash
-pytest -v spec/repo_spec.py  # run testing script
-```
-
-This should fail one test (we use cache, so there's no opportunity to raise exception).

@@ -7,6 +7,11 @@ name = "pypi"
 requests = "*"
 pyyaml = "*"
 pytest = "*"
+pytest-recording = "*"
+pytest-cov = "*"
+flake8 = "*"
+radon = "*"
+invoke = "*"
 
 [dev-packages]
 

@@ -1,58 +1,48 @@
-import yaml
-import os
-import sys
-import pytest
-
-WORKDIR = os.path.dirname(os.path.dirname(__file__))
-sys.path.append(WORKDIR)
-
-from lib.github_api import GithubAPI
-from lib.contributor import Contributor
+from .spec_helper import *
 
 
-USERNAME = "allenai"
-REPO_NAME = "science-parse"
-
-with open(os.path.join(WORKDIR, "config/secrets.yml")) as f:
-    CONFIG = yaml.safe_load(f)
-
-GH_TOKEN = CONFIG['gh_token']
-
-with open(os.path.join(WORKDIR, "spec/fixtures/gh_results.yml")) as f:
-    CORRECT = yaml.safe_load(f)
-
-with open(os.path.join(WORKDIR, "spec/fixtures/gh_response.yml")) as f:
-    RESPONSE = yaml.load(f, Loader=yaml.Loader)
+@pytest.fixture(scope="module")
+def vcr_config():
+    return {
+        "record_mode": "once",
+        "cassette_library_dir": os.path.join(WORKDIR, CASSETTES_FOLDER),
+        "path_transformer": vcr.VCR.ensure_suffix(".yml"),
+        "filter_headers": ["authorization"]   # filter sensitive information (GitHub API token) from HTTP response
+    }
 
 
-# Repo information
-def test_repo():
+@pytest.mark.vcr
+class TestGithubAPI:
 
-    # HAPPY: should provide correct repo attributes
-    repo = GithubAPI(GH_TOKEN, cache=RESPONSE).repo(USERNAME, REPO_NAME)
-    assert repo.size == CORRECT["size"]
-    assert repo.git_url == CORRECT["git_url"]
+    def test_repo(self):
+        # HAPPY: should provide correct repo attributes
+        repo = GithubAPI(GH_TOKEN).repo(USERNAME, REPO_NAME)
+        assert repo.size == CORRECT["size"]
+        assert repo.git_url == CORRECT["git_url"]
 
-    # SAD: should raise exception on incorrect repo
-    with pytest.raises(GithubAPI.Errors.NotFound):
-        GithubAPI(GH_TOKEN, cache=RESPONSE).repo("allenai", "foobar")
+        # SAD: should raise exception on incorrect repo
+        with pytest.raises(Errors.NotFound):
+            GithubAPI(GH_TOKEN).repo("allenai", "foobar")
 
+        # SAD: should raise exception when unauthorized
+        with pytest.raises(Errors.Unauthorized):
+            GithubAPI("BAD_TOKEN").repo("allenai", "foobar")
 
-# Contributor information
-def test_contributors():
-    repo = GithubAPI(GH_TOKEN, cache=RESPONSE).repo(USERNAME, REPO_NAME)
+    # Contributor information
+    def test_contributors(self):
+        repo = GithubAPI(GH_TOKEN).repo(USERNAME, REPO_NAME)
 
-    # HAPPY: should recognize owner
-    assert isinstance(repo.owner, Contributor)
+        # HAPPY: should recognize owner
+        assert isinstance(repo.owner, Contributor)
 
-    # HAPPY: should identify owner
-    assert repo.owner.username is not None
-    assert repo.owner.username == CORRECT["owner"]["login"]
+        # HAPPY: should identify owner
+        assert repo.owner.username is not None
+        assert repo.owner.username == CORRECT["owner"]["login"]
 
-    # HAPPY: should identify contributors
-    contributors = repo.contributors
-    assert len(contributors) == len(CORRECT['contributors'])
+        # HAPPY: should identify contributors
+        contributors = repo.contributors
+        assert len(contributors) == len(CORRECT['contributors'])
 
-    usernames = list(map(lambda c: c.username, contributors))
-    correct_usernames = list(map(lambda c: c["login"], CORRECT["contributors"]))
-    assert usernames == correct_usernames
+        usernames = list(map(lambda c: c.username, contributors))
+        correct_usernames = list(map(lambda c: c["login"], CORRECT["contributors"]))
+        assert usernames == correct_usernames
