@@ -43,7 +43,6 @@ class GithubAPI:
         }
 
         result = requests.get(url, headers=headers)
-        print(result.status_code)
         
         if self._successful(result):
             return result

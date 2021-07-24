@@ -29,18 +29,24 @@ with open(os.path.join(WORKDIR, "spec/fixtures/gh_response.yml")) as f:
 def test_repo():
 
     # HAPPY: should provide correct repo attributes
-    repo = GithubAPI(GH_TOKEN, cache=RESPONSE).repo(USERNAME, REPO_NAME)
+    repo = GithubAPI(GH_TOKEN).repo(USERNAME, REPO_NAME)
+    # repo = GithubAPI(GH_TOKEN, cache=RESPONSE).repo(USERNAME, REPO_NAME)
     assert repo.size == CORRECT["size"]
     assert repo.git_url == CORRECT["git_url"]
 
     # SAD: should raise exception on incorrect repo
     with pytest.raises(GithubAPI.Errors.NotFound):
-        GithubAPI(GH_TOKEN, cache=RESPONSE).repo("allenai", "foobar")
+        GithubAPI(GH_TOKEN).repo("allenai", "foobar")
+
+    # SAD: should raise exception when unauthorized
+    with pytest.raises(GithubAPI.Errors.Unauthorized):
+        GithubAPI("BAD_TOKEN").repo("allenai", "foobar")
 
 
 # Contributor information
 def test_contributors():
-    repo = GithubAPI(GH_TOKEN, cache=RESPONSE).repo(USERNAME, REPO_NAME)
+    repo = GithubAPI(GH_TOKEN).repo(USERNAME, REPO_NAME)
+    # repo = GithubAPI(GH_TOKEN, cache=RESPONSE).repo(USERNAME, REPO_NAME)
 
     # HAPPY: should recognize owner
     assert isinstance(repo.owner, Contributor)

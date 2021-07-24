@@ -38,4 +38,4 @@ It'll generate following files under `spec/fixtures`
 pytest -v spec/repo_spec.py  # run testing script
 ```
 
-This should fail one test (we use cache, so there's no opportunity to raise exception).
+This should pass both tests.
