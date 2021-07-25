@@ -7,17 +7,17 @@ from .contributor import Contributor
 
 class Errors:
     # Not allowed to access resource
-    class NotFound(Exception): pass
+    class NotFound(Exception):
+        pass
+
     # Requested resource not found
-    class Unauthorized(Exception): pass
+    class Unauthorized(Exception):
+        pass
 
 
 # Encapsulates API response success and errors
 class _Response:
-    HTTP_ERROR = {
-        401: Errors.Unauthorized,
-        404: Errors.NotFound
-    }
+    HTTP_ERROR = {401: Errors.Unauthorized, 404: Errors.NotFound}
 
     def __init__(self, response):
         self.response = response
@@ -33,7 +33,6 @@ class _Response:
 
 # Library for Github Web API
 class GithubAPI:
-
     def __init__(self, token: str):
         self.gh_token = token
 
@@ -44,7 +43,9 @@ class GithubAPI:
 
     def contributors(self, contributors_url: str) -> List[Contributor]:
         contributors_data = self._call_gh_url(contributors_url).json()
-        contributors_data = list(map(lambda account_data: Contributor(account_data), contributors_data))
+        contributors_data = list(
+            map(lambda account_data: Contributor(account_data), contributors_data)
+        )
         return contributors_data
 
     def _gh_api_path(self, path: str) -> str:
@@ -53,7 +54,7 @@ class GithubAPI:
     def _call_gh_url(self, url: str) -> requests.models.Response:
         headers = {
             "Accept": "application/vnd.github.v3+json",
-            "Authorization": f"token {self.gh_token}"
+            "Authorization": f"token {self.gh_token}",
         }
 
         response = requests.get(url, headers=headers)

@@ -1,9 +1,9 @@
 from invoke import task
 
 
-@task
-def spec(c, CODE="lib/"):
+@task(help={"code": "Name of the python script or pacakge to measure the test coverage. Default: 'lib/'"})
+def spec(c, code="lib/"):
     """
     run tests
     """
-    c.run(f"pytest --cov={CODE} -v spec/repo_spec.py", pty=True)
+    c.run(f"pytest --cov={code} -v spec/repo_spec.py", pty=True)

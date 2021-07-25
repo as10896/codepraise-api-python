@@ -16,7 +16,7 @@ REPO_NAME = "science-parse"
 with open(os.path.join(WORKDIR, "config/secrets.yml")) as f:
     CONFIG = yaml.safe_load(f)
 
-GH_TOKEN = CONFIG['gh_token']
+GH_TOKEN = CONFIG["gh_token"]
 
 with open(os.path.join(WORKDIR, "spec/fixtures/gh_results.yml")) as f:
     CORRECT = yaml.safe_load(f)

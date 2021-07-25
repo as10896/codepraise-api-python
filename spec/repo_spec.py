@@ -7,13 +7,14 @@ def vcr_config():
         "record_mode": "once",
         "cassette_library_dir": os.path.join(WORKDIR, CASSETTES_FOLDER),
         "path_transformer": vcr.VCR.ensure_suffix(".yml"),
-        "filter_headers": ["authorization"]   # filter sensitive information (GitHub API token) from HTTP response
+        "filter_headers": [
+            "authorization"
+        ],  # filter sensitive information (GitHub API token) from HTTP response
     }
 
 
 @pytest.mark.vcr
 class TestGithubAPI:
-
     def test_repo(self):
         # HAPPY: should provide correct repo attributes
         repo = GithubAPI(GH_TOKEN).repo(USERNAME, REPO_NAME)
@@ -41,7 +42,7 @@ class TestGithubAPI:
 
         # HAPPY: should identify contributors
         contributors = repo.contributors
-        assert len(contributors) == len(CORRECT['contributors'])
+        assert len(contributors) == len(CORRECT["contributors"])
 
         usernames = list(map(lambda c: c.username, contributors))
         correct_usernames = list(map(lambda c: c["login"], CORRECT["contributors"]))

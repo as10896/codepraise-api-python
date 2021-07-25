@@ -26,5 +26,7 @@ class Repo:
     @property
     def contributors(self) -> List[Contributor]:
         if not hasattr(self, "_contributors"):
-            self._contributors = self._data_source.contributors(self._repo["contributors_url"])
+            self._contributors = self._data_source.contributors(
+                self._repo["contributors_url"]
+            )
         return self._contributors
