@@ -1,0 +1,103 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.26.0
+    method: GET
+    uri: https://api.github.com/repos/allenai/science-parse
+  response:
+    body:
+      string: !!binary |
+        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
+        nvKRdHL1/B+nwuM5IhgAAA==
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, Deprecation,
+        Sunset
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Content-Encoding:
+      - gzip
+      Content-Security-Policy:
+      - default-src 'none'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Mon, 26 Jul 2021 06:52:35 GMT
+      ETag:
+      - W/"34acbab602c52e6f0133c1a562471a5e293de3c3fe2757b089018bb20cad9e18"
+      Last-Modified:
+      - Sun, 25 Jul 2021 08:07:58 GMT
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Server:
+      - GitHub.com
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding, Accept, X-Requested-With
+      X-Accepted-OAuth-Scopes:
+      - repo
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - deny
+      X-GitHub-Media-Type:
+      - github.v3; format=json
+      X-GitHub-Request-Id:
+      - E0D4:15CF:38A08:49D36:60FE5BB2
+      X-OAuth-Scopes:
+      - public_repo, read:user, user:email
+      X-RateLimit-Limit:
+      - '5000'
+      X-RateLimit-Remaining:
+      - '4985'
+      X-RateLimit-Reset:
+      - '1627282904'
+      X-RateLimit-Resource:
+      - core
+      X-RateLimit-Used:
+      - '15'
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

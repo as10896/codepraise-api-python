@@ -1,23 +1,27 @@
 from .spec_helper import *
 
 
+vcr = VCR(
+    record_mode="once",
+    path_transformer=VCR.ensure_suffix(".yml"),
+    cassette_library_dir=os.path.join(WORKDIR, CASSETTES_FOLDER),
+    filter_headers=[
+        "authorization"
+    ],  # filter sensitive information (GitHub API token) from HTTP response
+    match_on=["method", "uri", "headers"],
+)
+
+
 @pytest.fixture(scope="module")
-def vcr_config():
-    return {
-        "record_mode": "once",
-        "cassette_library_dir": os.path.join(WORKDIR, CASSETTES_FOLDER),
-        "path_transformer": vcr.VCR.ensure_suffix(".yml"),
-        "filter_headers": [
-            "authorization"
-        ],  # filter sensitive information (GitHub API token) from HTTP response
-    }
+@vcr.use_cassette("github_api.correct_repo.yml")
+def repo():
+    return GithubAPI(GH_TOKEN).repo(USERNAME, REPO_NAME)
 
 
-@pytest.mark.vcr
 class TestGithubAPI:
-    def test_repo(self):
+    @vcr.use_cassette("github_api.test_repo.yml")
+    def test_repo(self, repo):
         # HAPPY: should provide correct repo attributes
-        repo = GithubAPI(GH_TOKEN).repo(USERNAME, REPO_NAME)
         assert repo.size == CORRECT["size"]
         assert repo.git_url == CORRECT["git_url"]
 
@@ -27,11 +31,11 @@ class TestGithubAPI:
 
         # SAD: should raise exception when unauthorized
         with pytest.raises(Errors.Unauthorized):
-            GithubAPI("BAD_TOKEN").repo("allenai", "foobar")
+            GithubAPI("BAD_TOKEN").repo(USERNAME, REPO_NAME)
 
     # Contributor information
-    def test_contributors(self):
-        repo = GithubAPI(GH_TOKEN).repo(USERNAME, REPO_NAME)
+    @vcr.use_cassette("github_api.test_contributors.yml")
+    def test_contributors(self, repo):
 
         # HAPPY: should recognize owner
         assert isinstance(repo.owner, Contributor)

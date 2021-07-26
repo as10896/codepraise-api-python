@@ -2,7 +2,7 @@ import yaml
 import os
 import sys
 import pytest
-import vcr
+from vcr import VCR
 
 WORKDIR = os.path.dirname(os.path.dirname(__file__))
 sys.path.append(WORKDIR)
