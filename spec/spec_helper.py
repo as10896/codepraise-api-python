@@ -2,13 +2,16 @@ import yaml
 import os
 import sys
 import pytest
-import vcr
+from vcr import VCR
 
 WORKDIR = os.path.dirname(os.path.dirname(__file__))
 sys.path.append(WORKDIR)
 
-from lib.github_api import GithubAPI, Errors
-from lib.contributor import Contributor
+
+from lib.github.api import API
+from lib.github.mappers.repo_mapper import RepoMapper
+from lib.entities.contributor import Contributor
+
 
 USERNAME = "allenai"
 REPO_NAME = "science-parse"

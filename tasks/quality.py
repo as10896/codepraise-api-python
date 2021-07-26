@@ -35,5 +35,3 @@ def reformat(c, code="."):
     reformat your code using the black code style
     """
     c.run(f"black {code}", pty=True)
-
-

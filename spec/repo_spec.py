@@ -1,46 +1,60 @@
 from .spec_helper import *
 
 
+vcr = VCR(
+    record_mode="once",
+    path_transformer=VCR.ensure_suffix(".yml"),
+    cassette_library_dir=os.path.join(WORKDIR, CASSETTES_FOLDER),
+    filter_headers=["authorization"],
+    match_on=["method", "uri", "headers"],
+)
+
+
 @pytest.fixture(scope="module")
-def vcr_config():
-    return {
-        "record_mode": "once",
-        "cassette_library_dir": os.path.join(WORKDIR, CASSETTES_FOLDER),
-        "path_transformer": vcr.VCR.ensure_suffix(".yml"),
-        "filter_headers": [
-            "authorization"
-        ],  # filter sensitive information (GitHub API token) from HTTP response
-    }
+@vcr.use_cassette("github_api.correct_repo.yml")
+def repo():
+    api = API(GH_TOKEN)
+    repo_mapper = RepoMapper(api)
+    return repo_mapper.load(USERNAME, REPO_NAME)
 
 
-@pytest.mark.vcr
-class TestGithubAPI:
-    def test_repo(self):
-        # HAPPY: should provide correct repo attributes
-        repo = GithubAPI(GH_TOKEN).repo(USERNAME, REPO_NAME)
+class TestRepo:
+
+    # HAPPY: should provide correct repo attributes
+    def test_correct_repo(self, repo):
         assert repo.size == CORRECT["size"]
         assert repo.git_url == CORRECT["git_url"]
 
-        # SAD: should raise exception on incorrect repo
-        with pytest.raises(Errors.NotFound):
-            GithubAPI(GH_TOKEN).repo("allenai", "foobar")
+    # SAD: should raise exception on incorrect repo
+    @vcr.use_cassette("github_api.incorrect_repo.yml")
+    def test_incorrect_repo(self):
+        api = API(GH_TOKEN)
+        repo_mapper = RepoMapper(api)
+        with pytest.raises(API.Errors.NotFound):
+            repo = repo_mapper.load(USERNAME, "SAD_REPO_NAME")
 
-        # SAD: should raise exception when unauthorized
-        with pytest.raises(Errors.Unauthorized):
-            GithubAPI("BAD_TOKEN").repo("allenai", "foobar")
+    # SAD: should raise exception when unauthorized
+    @vcr.use_cassette("github_api.invalid_token.yml")
+    def test_invalid_token(self):
+        api = API("SAD_TOKEN")
+        repo_mapper = RepoMapper(api)
+        with pytest.raises(API.Errors.Unauthorized):
+            repo = repo_mapper.load(USERNAME, REPO_NAME)
 
-    # Contributor information
-    def test_contributors(self):
-        repo = GithubAPI(GH_TOKEN).repo(USERNAME, REPO_NAME)
 
-        # HAPPY: should recognize owner
+class TestContributor:
+
+    # HAPPY: should recognize owner
+    def test_owner_class(self, repo):
         assert isinstance(repo.owner, Contributor)
 
-        # HAPPY: should identify owner
+    # HAPPY: should identify owner
+    def test_owner_info(self, repo):
         assert repo.owner.username is not None
         assert repo.owner.username == CORRECT["owner"]["login"]
 
-        # HAPPY: should identify contributors
+    # HAPPY: should identify contributors
+    def test_contributors(self, repo):
         contributors = repo.contributors
         assert len(contributors) == len(CORRECT["contributors"])
 

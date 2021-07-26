@@ -7,12 +7,13 @@ name = "pypi"
 requests = "*"
 pyyaml = "*"
 pytest = "*"
-pytest-recording = "*"
+vcrpy = "*"
 pytest-cov = "*"
 flake8 = "*"
 radon = "*"
 invoke = "*"
 black = "*"
+pydantic = "*"
 
 [dev-packages]
 
