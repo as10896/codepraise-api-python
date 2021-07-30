@@ -15,10 +15,9 @@ pipenv install  # install required dependencies with Pipfile (or Pipfile.lock, i
 
 ### Create GitHub API personal access token
 1. Generate token [here](https://github.com/settings/tokens)
-2. Create `config/secrets.yml` with the generated token
-```yaml
----
-gh_token: '<your_personal_token>'
+2. Create `config/.env` with the generated token
+```shell
+gh_token='<your_personal_token>'
 ```
 
 ## Usage
@@ -27,11 +26,12 @@ Here we use [invoke](https://docs.pyinvoke.org/) as our task management tool
 ```bash
 inv -l  # show all tasks
 inv [task] -h  # show task help message
-inv spec  # run test script
+inv api.run  # rerun fastapi server
+inv spec  # run all test scripts
 inv quality.style  # examine coding style with flake8
 inv quality.metric  # measure code metric with radon
 inv quality.all  # run all quality tasks (style + metric)
 inv quality.reformat  # reformat your code using the black code style
 inv quality  # same as `inv quality.all`
-inv vcr.wipe  # delete cassette fixtures (test stubs generated with vcrpy)
+inv rmvcr  # delete cassette fixtures (test stubs generated with vcrpy)
 ```

@@ -6,7 +6,7 @@ from ...entities.repo import Repo
 from ...entities.contributor import Contributor
 
 
-# Repository object for Github's git repos
+# Data Mapper object for Github's git repos
 class RepoMapper:
     def __init__(self, gateway: API):
         self._gateway = gateway

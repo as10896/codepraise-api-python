@@ -55,6 +55,7 @@ class _Response:
 if __name__ == "__main__":
     import os
     import yaml
+
     WORKDIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
     with open(os.path.join(WORKDIR, "config/secrets.yml")) as f:
         CONFIG = yaml.safe_load(f)

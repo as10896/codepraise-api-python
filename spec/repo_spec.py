@@ -1,15 +1,6 @@
 from .spec_helper import *
 
 
-vcr = VCR(
-    record_mode="once",
-    path_transformer=VCR.ensure_suffix(".yml"),
-    cassette_library_dir=os.path.join(WORKDIR, CASSETTES_FOLDER),
-    filter_headers=["authorization"],
-    match_on=["method", "uri", "headers"],
-)
-
-
 @pytest.fixture(scope="module")
 @vcr.use_cassette("github_api.correct_repo.yml")
 def repo():

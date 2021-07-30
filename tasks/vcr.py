@@ -2,7 +2,7 @@ from invoke import task, UnexpectedExit
 
 
 @task
-def wipe(c):
+def rmvcr(c):
     """
     delete cassette fixtures
     """

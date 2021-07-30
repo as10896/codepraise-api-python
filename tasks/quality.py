@@ -1,7 +1,11 @@
 from invoke import task
 
 
-@task(help={"code": "Name of the python script or pacakge to measure code metric. Default: 'lib/'"})
+@task(
+    help={
+        "code": "Name of the python script or pacakge to measure code metric. Default: 'lib/'"
+    }
+)
 def metric(c, code="lib/"):
     """
     measure code metric with radon
@@ -11,7 +15,11 @@ def metric(c, code="lib/"):
     print("\n")
 
 
-@task(help={"code": "Name of the python script or pacakge to examine coding style. Default: '.'"})
+@task(
+    help={
+        "code": "Name of the python script or pacakge to examine coding style. Default: '.'"
+    }
+)
 def style(c, code="."):
     """
     examine coding style with flake8
