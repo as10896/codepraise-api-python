@@ -1,4 +1,4 @@
-from invoke import task, UnexpectedExit
+from invoke import task
 
 
 @task
@@ -6,8 +6,8 @@ def rmvcr(c):
     """
     delete cassette fixtures
     """
-    try:
-        c.run("rm spec/fixtures/cassettes/*.yml")
+    result = c.run("rm spec/fixtures/cassettes/*.yml", hide=True, warn=True)
+    if result.ok:
         print("Cassettes deleted")
-    except UnexpectedExit:
+    else:
         print("No cassettes found")

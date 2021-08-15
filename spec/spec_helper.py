@@ -1,3 +1,8 @@
+import os
+
+os.environ["ENV"] = "test"
+
+
 from .test_load_all import *
 
 import yaml
@@ -9,8 +14,7 @@ USERNAME = "allenai"
 REPO_NAME = "science-parse"
 API_VER = "/api/v0.1"
 
-CONFIG = config.get_settings(mode="test")
-GH_TOKEN = CONFIG.gh_token
+CONFIG = get_settings()
 
 with open(os.path.join(WORKDIR, "spec/fixtures/gh_results.yml")) as f:
     CORRECT = yaml.safe_load(f)

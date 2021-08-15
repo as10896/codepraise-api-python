@@ -6,19 +6,22 @@ name = "pypi"
 [packages]
 requests = "*"
 pyyaml = "*"
+pydantic = "*"
+fastapi = "*"
+uvicorn = {extras = ["standard"], version = "*"}
+python-dotenv = "*"
+invoke = "*"
+sqlalchemy = "*"
+alembic = "*"
+
+[dev-packages]
 pytest = "*"
 vcrpy = "*"
 pytest-cov = "*"
 flake8 = "*"
 radon = "*"
-invoke = "*"
 black = "*"
-pydantic = "*"
-fastapi = "*"
-uvicorn = {extras = ["standard"], version = "*"}
-python-dotenv = "*"
-
-[dev-packages]
+ipython = "*"
 
 [requires]
 python_version = "3.9"

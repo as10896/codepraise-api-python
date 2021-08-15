@@ -9,33 +9,37 @@ class Settings(BaseSettings):
 
 class Test(Settings):
     environment = "test"
+    db_filename: str
 
     class Config:
-        env_file = "config/.env"
+        env_file = "config/env/.env"
         env_file_encoding = "utf-8"
+        secrets_dir = "config/secrets/test"
 
 
 class Development(Settings):
     environment = "development"
+    db_filename: str
 
     class Config:
-        env_file = "config/dev.env"
+        env_file = "config/env/.env.dev"
         env_file_encoding = "utf-8"
+        secrets_dir = "config/secrets/dev"
 
 
 class Production(Settings):
     environment = "production"
+    database_url: str
 
     class Config:
-        env_file = "config/prod.env"
+        env_file = "config/env/.env.prod"
         env_file_encoding = "utf-8"
+        secrets_dir = "config/secrets/prod"
 
 
 @lru_cache()
-def get_settings(mode="test"):
+def get_settings(mode: str = None, **kwargs) -> Settings:
     env = mode if mode else os.getenv("ENV", "test")
-    return {
-        "test": Test,
-        "development": Development,
-        "production": Production,
-    }.get(env)()
+    return {"test": Test, "development": Development, "production": Production,}.get(
+        env
+    )(**kwargs)

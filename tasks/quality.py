@@ -3,10 +3,10 @@ from invoke import task
 
 @task(
     help={
-        "code": "Name of the python script or pacakge to measure code metric. Default: 'lib/'"
+        "code": "Name of the python script or pacakge to measure code metric. Default: '.'"
     }
 )
-def metric(c, code="lib/"):
+def metric(c, code="."):
     """
     measure code metric with radon
     """
@@ -29,12 +29,19 @@ def style(c, code="."):
     print("\n")
 
 
-@task(post=[style, metric], default=True)
-def all(c):
+@task(
+    default=True,
+    help={
+        "code": "Name of the python script or pacakge to run quality tasks. Default: '.'"
+    },
+)
+def all(c, code="."):
     """
     run all quality tasks (style + metric)
     """
     print("Run all quality tests...\n")
+    style(c, code)
+    metric(c, code)
 
 
 @task(help={"code": "Name of the python script or pacakge to reformat. Default: '.'"})

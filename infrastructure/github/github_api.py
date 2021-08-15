@@ -19,7 +19,7 @@ class API:
         repo_req_url = self._gh_api_path(f"{username}/{repo_name}")
         return self._call_gh_url(repo_req_url).json()
 
-    def contributors_data(self, contributors_url: str) -> dict:
+    def collaborators_data(self, contributors_url: str) -> dict:
         return self._call_gh_url(contributors_url).json()
 
     def _gh_api_path(self, path: str) -> str:
@@ -50,20 +50,3 @@ class _Response:
         if self.successful():
             return self.response
         raise self.HTTP_ERROR[self.response.status_code]
-
-
-if __name__ == "__main__":
-    import os
-    import yaml
-
-    WORKDIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-    with open(os.path.join(WORKDIR, "config/secrets.yml")) as f:
-        CONFIG = yaml.safe_load(f)
-    api = API(token=CONFIG["gh_token"])
-    r = api.repo_data("as10896", "LessErrors")
-    print(r["git_url"])
-    try:
-        r = api.repo_data("as10896", "foobar")
-        print(r["git_url"])
-    except API.Errors.NotFound:
-        print("Repo Not Found")

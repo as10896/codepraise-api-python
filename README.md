@@ -10,15 +10,13 @@ Here we use [Pipenv](https://pipenv.pypa.io/en/latest/) to create our virtual en
 pip install pipenv  # install pipenv
 pipenv --three  # create Python 3 virtualenv under current directory
 pipenv shell  # activate the virtualenv of the current directory
-pipenv install  # install required dependencies with Pipfile (or Pipfile.lock, if any)
+pipenv install --dev  # install required dependencies with Pipfile (or Pipfile.lock, if any)
 ```
 
 ### Create GitHub API personal access token
 1. Generate token [here](https://github.com/settings/tokens)
-2. Create `config/.env` with the generated token
-```shell
-gh_token='<your_personal_token>'
-```
+2. Create `gh_token` under `config/secrets/<env>/` with the generated token
+
 
 ## Usage
 Here we use [invoke](https://docs.pyinvoke.org/) as our task management tool
@@ -26,8 +24,14 @@ Here we use [invoke](https://docs.pyinvoke.org/) as our task management tool
 ```bash
 inv -l  # show all tasks
 inv [task] -h  # show task help message
-inv api.run  # rerun fastapi server
+inv console  # run console
 inv spec  # run all test scripts
+inv api.run -m [mode] -p [port]  # rerun FastAPI server
+inv db.drop -e [env]  # drop all db tables
+inv db.migrate -e [env]  # run db schema migrations
+inv db.reset -e [env]  # reset all database tables (drop + migrate)
+inv db.wipe -e [env]  # delete dev or test sqlite file
+inv db.revision  # generate migration script with Alembic (autogeneration with the latest SQLAlchemy models)
 inv quality.style  # examine coding style with flake8
 inv quality.metric  # measure code metric with radon
 inv quality.all  # run all quality tasks (style + metric)
