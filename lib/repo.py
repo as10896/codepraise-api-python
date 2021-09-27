@@ -1,11 +1,12 @@
 from typing import List
 
 from . import github_api
+
 from .contributor import Contributor
 
 
 class Repo:
-    def __init__(self, repo_data: dict, data_source: github_api.GithubAPI):
+    def __init__(self, repo_data: dict, data_source: github_api.GithubAPI):  # probably work in Python v3.10+
         self._repo = repo_data
         self._data_source = data_source
 

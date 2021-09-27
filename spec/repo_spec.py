@@ -6,7 +6,7 @@ vcr = VCR(
     path_transformer=VCR.ensure_suffix(".yml"),
     cassette_library_dir=os.path.join(WORKDIR, CASSETTES_FOLDER),
     filter_headers=[
-        "authorization"
+        ("authorization", "<GITHUB_TOKEN>")
     ],  # filter sensitive information (GitHub API token) from HTTP response
     match_on=["method", "uri", "headers"],
 )

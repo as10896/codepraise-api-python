@@ -10,6 +10,8 @@ interactions:
       - keep-alive
       User-Agent:
       - python-requests/2.26.0
+      authorization:
+      - <GITHUB_TOKEN>
     method: GET
     uri: https://api.github.com/repos/allenai/science-parse/contributors
   response:
@@ -54,11 +56,11 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Mon, 26 Jul 2021 06:52:36 GMT
+      - Mon, 27 Sep 2021 14:41:59 GMT
       ETag:
       - W/"bb1c730c02d23915d692878c63c2a7b0b398ee52e6845f82923d5c85ae5959dc"
       Last-Modified:
-      - Sun, 25 Jul 2021 08:07:58 GMT
+      - Mon, 27 Sep 2021 07:14:26 GMT
       Referrer-Policy:
       - origin-when-cross-origin, strict-origin-when-cross-origin
       Server:
@@ -79,19 +81,19 @@ interactions:
       X-GitHub-Media-Type:
       - github.v3; format=json
       X-GitHub-Request-Id:
-      - E0D7:15D0:C92C2:DB224:60FE5BB4
+      - CFB2:0620:536DFB:618563:6151D837
       X-OAuth-Scopes:
       - public_repo, read:user, user:email
       X-RateLimit-Limit:
       - '5000'
       X-RateLimit-Remaining:
-      - '4983'
+      - '4992'
       X-RateLimit-Reset:
-      - '1627282904'
+      - '1632754948'
       X-RateLimit-Resource:
       - core
       X-RateLimit-Used:
-      - '17'
+      - '8'
       X-XSS-Protection:
       - '0'
     status:

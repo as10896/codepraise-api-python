@@ -10,6 +10,8 @@ interactions:
       - keep-alive
       User-Agent:
       - python-requests/2.26.0
+      authorization:
+      - <GITHUB_TOKEN>
     method: GET
     uri: https://api.github.com/repos/allenai/foobar
   response:
@@ -32,7 +34,7 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Mon, 26 Jul 2021 06:52:35 GMT
+      - Mon, 27 Sep 2021 14:41:58 GMT
       Referrer-Policy:
       - origin-when-cross-origin, strict-origin-when-cross-origin
       Server:
@@ -52,19 +54,19 @@ interactions:
       X-GitHub-Media-Type:
       - github.v3; format=json
       X-GitHub-Request-Id:
-      - E0D5:43E4:D288F:E46AF:60FE5BB3
+      - CFB0:781F:250BFF:2A2196:6151D836
       X-OAuth-Scopes:
       - public_repo, read:user, user:email
       X-RateLimit-Limit:
       - '5000'
       X-RateLimit-Remaining:
-      - '4984'
+      - '4993'
       X-RateLimit-Reset:
-      - '1627282904'
+      - '1632754948'
       X-RateLimit-Resource:
       - core
       X-RateLimit-Used:
-      - '16'
+      - '7'
       X-XSS-Protection:
       - '0'
     status:
@@ -81,8 +83,10 @@ interactions:
       - keep-alive
       User-Agent:
       - python-requests/2.26.0
+      authorization:
+      - <GITHUB_TOKEN>
     method: GET
-    uri: https://api.github.com/repos/allenai/foobar
+    uri: https://api.github.com/repos/allenai/science-parse
   response:
     body:
       string: '{"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}'
@@ -101,7 +105,7 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Mon, 26 Jul 2021 06:52:35 GMT
+      - Mon, 27 Sep 2021 14:41:58 GMT
       Referrer-Policy:
       - origin-when-cross-origin, strict-origin-when-cross-origin
       Server:
@@ -117,13 +121,13 @@ interactions:
       X-GitHub-Media-Type:
       - github.v3; format=json
       X-GitHub-Request-Id:
-      - E0D6:43E4:D28A5:E46C9:60FE5BB3
+      - CFB1:7881:641B3E:73BBE1:6151D836
       X-RateLimit-Limit:
       - '60'
       X-RateLimit-Remaining:
       - '56'
       X-RateLimit-Reset:
-      - '1627282905'
+      - '1632754104'
       X-RateLimit-Resource:
       - core
       X-RateLimit-Used:
