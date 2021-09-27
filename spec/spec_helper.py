@@ -21,6 +21,6 @@ vcr = VCR(
     record_mode="once",
     path_transformer=VCR.ensure_suffix(".yml"),
     cassette_library_dir=os.path.join(WORKDIR, CASSETTES_FOLDER),
-    filter_headers=["authorization"],
+    filter_headers=[("authorization", "<GITHUB_TOKEN>")],
     match_on=["method", "uri", "headers"],
 )

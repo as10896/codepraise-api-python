@@ -33,9 +33,9 @@ class Production(Settings):
 
 @lru_cache()
 def get_settings(mode="test"):
-    env = os.getenv("ENV", mode)
+    env = mode if mode else os.getenv("ENV", "test")
     return {
-        "test": Test(),
-        "development": Development(),
-        "production": Production(),
-    }.get(env)
+        "test": Test,
+        "development": Development,
+        "production": Production,
+    }.get(env)()

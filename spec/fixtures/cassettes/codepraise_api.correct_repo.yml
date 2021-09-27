@@ -10,36 +10,38 @@ interactions:
       - keep-alive
       User-Agent:
       - python-requests/2.26.0
+      authorization:
+      - <GITHUB_TOKEN>
     method: GET
     uri: https://api.github.com/repos/allenai/science-parse
   response:
     body:
       string: !!binary |
-        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
-        PVVF0vHF83/PTZ2QIhgAAA==
+        H4sIAAAAAAAAA+1YXW/bNhT9K4afNiy2ZDd2agNBV6BrsWJZus3BirwYtERbTCRSICm7iZD/vkNS
+        X3YGOY5e85DYpngODy95r+69eZ+F/fn5yB+NJ/7orM9FSJdmqH/16bfddfw1Dr7MHsn3v7cBv/ev
+        Fh9/XN3d7K7+urzsYzJJKGaqgFEe0EFKpKIYXmdxvCyekTimnDDvcE4q2ZZooNckVvSsL3acyv48
+        78diwzhICyDojJrJdHoxnU0O9D1c388ebsefM/I9jcIv8XZ1dzP+8y4YXy9ujD6CJYhcZjIGYaR1
+        quae5wbVcMN0lK0yRWUguKZcDwOReJlXLPVhe3kOio0sSKxNMHBAlrKCyKHBprxaeqST+GB5t6yd
+        Xc9bizgWO2APtbbQexXImNwSML45nQCg3BM6ojAU5D+ZTTOlT5JiAblnPnB5DIWC4SUNT5FTQCDG
+        3IWn3JM0FZYrW6lAslQzwU+StQcEkZAbwtkjOZkIQAW8EXSSAAsAkG5xv05COkTuWT8JHowZJA0o
+        28Kmp7MdQEGmH1LjutcNixhLM02XJEyMB1rHfDqD37zgDj/z75BWR4Zl/nERovfNRIiejROqZ0OC
+        ZmsWYCTF5e/9xHjv26fPvbWQyc89wsOepDqTXPVwPZMeniotswBDNLSThtCMz/sqjLR6pz2N0uue
+        KTY8R46ohQDeCDjk3NOHDiwGnXv4X7hRAL8mKyGJFseCQ5u4PZrca/40N0tTknQQbeGgiYToYkEL
+        Bw1TKqMvuuRtW7Ysyiv9iGfJygW3l3hPG7HDQydRim04pR0sV1HkXhl7V5LwIOpCWjLknvtmT5hs
+        Osg0aJCsYrHqwII3n2cpck9FxL1n9LKbMsNpGPYoJV13lGkYKkotO52xlWgoKkK86DSOu4PGksHL
+        C0vGhG8ysunCWVHgpM2reEMejyYkbX5Sc4DQpFiSrbKuYaxmMSpdXgC/7mLKmqSmtKlGe+7SuvVG
+        wmI3nyTs2Ou/ja8g2LvknUnNvTwkNr+PZyrHpBqG3KsjrgvoBffrrVpE9FJjc4Uig+9wDUoGL/8l
+        JToy0QkLIVOhrxdcEHj5iiCTGg6HeUSJzY4TKjv5qsODiMggQk74eo15yWDSKaJt1r02EkNk4bEg
+        YQebVhSgc4f3ep0O3zzzFFVmB3EW3uRLWEyVFrxLDK05msxc2Cz3JWVHm2vt0eQfFEPNfYYa8gy3
+        VLOA4d6iljNnh5SRdrGNw2MLqO9d5RFTXOEO1pbUMeSeKw9DmsbioWOsaZAYd5UUDYVwSTQKjrE/
+        mgz894PRbOGfz/1383P/FnOyNGzOGY8G/mwwvlj4F/PR+Xw8NXPSTEUNmtlg5A/8i8VoOp9M5uOR
+        mYLQWdxkfENL4XlNv19dmBYBYEpFNezXGjT/3yZJAQpiXMkDv3npetvDd9gxIERGIqEpMgnX7VDs
+        Ed8uLvzZ+72sIBAZh53Px+/O+juikbDiHdwcLLMJ0HxFB8UQE7V0Xtyfo4pDz8eMpFLc0UCrqoIz
+        g3XgaMzcsXu2hzTpTgVz1VuhYDpDiGVSiqL3w+HrVaxEH6foOYVMkVVM6wGRUl5oLDczAlXMAsrR
+        2UJ3CpUZdkRSgh0PxkMf+yoaXR/tWO8PN7fnnqk0/OG6ae5xAWmtUovVUKjurdLoywXTxZf47vbf
+        yePt4vfLPmp0XCCxWxobIAKURnIV6dwYo7Gx/txsqTyz4ghDuiZZrJeuYMAOE6I0+nHwBioTnJrp
+        vJj9N3sDsDFhXOOvsqjxneoHEj57jwprm4DrpEGwpkm6dFdbi3tqGn5YrNmfeesFtr8sTb1YNzPe
+        eoGms9vWLX3rBRad+C69QE71DkGmDI4mtDSLsDL8Tp/+AwSJFvFXGAAA
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -57,11 +59,11 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 30 Jul 2021 16:09:24 GMT
+      - Mon, 27 Sep 2021 15:14:55 GMT
       ETag:
-      - W/"34c9a70d74c084bb4a7cb47bcc1ae6e64d3ca39541ce1eee9886d2496dbef3a9"
+      - W/"4b6596c4591869e0b336c8a643aac69ac816d9ed22c18b0cbf5a516b952240d6"
       Last-Modified:
-      - Tue, 27 Jul 2021 13:01:18 GMT
+      - Mon, 27 Sep 2021 07:14:26 GMT
       Referrer-Policy:
       - origin-when-cross-origin, strict-origin-when-cross-origin
       Server:
@@ -82,19 +84,19 @@ interactions:
       X-GitHub-Media-Type:
       - github.v3; format=json
       X-GitHub-Request-Id:
-      - D035:1326:90309D:A1C52B:61042434
+      - D4EF:7881:64D96D:74960B:6151DFEF
       X-OAuth-Scopes:
       - public_repo, read:user, user:email
       X-RateLimit-Limit:
       - '5000'
       X-RateLimit-Remaining:
-      - '4996'
+      - '4992'
       X-RateLimit-Reset:
-      - '1627664671'
+      - '1632758549'
       X-RateLimit-Resource:
       - core
       X-RateLimit-Used:
-      - '4'
+      - '8'
       X-XSS-Protection:
       - '0'
     status:
@@ -111,6 +113,8 @@ interactions:
       - keep-alive
       User-Agent:
       - python-requests/2.26.0
+      authorization:
+      - <GITHUB_TOKEN>
     method: GET
     uri: https://api.github.com/repos/allenai/science-parse/contributors
   response:
@@ -155,11 +159,11 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 30 Jul 2021 16:09:24 GMT
+      - Mon, 27 Sep 2021 15:14:56 GMT
       ETag:
       - W/"bb1c730c02d23915d692878c63c2a7b0b398ee52e6845f82923d5c85ae5959dc"
       Last-Modified:
-      - Tue, 27 Jul 2021 13:01:18 GMT
+      - Mon, 27 Sep 2021 07:14:26 GMT
       Referrer-Policy:
       - origin-when-cross-origin, strict-origin-when-cross-origin
       Server:
@@ -180,19 +184,19 @@ interactions:
       X-GitHub-Media-Type:
       - github.v3; format=json
       X-GitHub-Request-Id:
-      - D037:73EA:8A0014:9B9248:61042434
+      - D4F0:6D16:90A5F:A4C2F:6151DFF0
       X-OAuth-Scopes:
       - public_repo, read:user, user:email
       X-RateLimit-Limit:
       - '5000'
       X-RateLimit-Remaining:
-      - '4995'
+      - '4991'
       X-RateLimit-Reset:
-      - '1627664671'
+      - '1632758549'
       X-RateLimit-Resource:
       - core
       X-RateLimit-Used:
-      - '5'
+      - '9'
       X-XSS-Protection:
       - '0'
     status:
