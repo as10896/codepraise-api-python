@@ -1,0 +1,205 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.26.0
+      authorization:
+      - <GITHUB_TOKEN>
+    method: GET
+    uri: https://api.github.com/repos/allenai/science-parse
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, Deprecation,
+        Sunset
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Content-Encoding:
+      - gzip
+      Content-Security-Policy:
+      - default-src 'none'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 05 Oct 2021 09:59:58 GMT
+      ETag:
+      - W/"1c9b00a5ca59d5eb3a83cf022581aa59f7740a610b703c081671d55c86627c91"
+      Last-Modified:
+      - Tue, 05 Oct 2021 08:18:37 GMT
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Server:
+      - GitHub.com
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding, Accept, X-Requested-With
+      X-Accepted-OAuth-Scopes:
+      - repo
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - deny
+      X-GitHub-Media-Type:
+      - github.v3; format=json
+      X-GitHub-Request-Id:
+      - E907:316E:3C1B:1EAB6:615C221E
+      X-OAuth-Scopes:
+      - public_repo, read:user, user:email
+      X-RateLimit-Limit:
+      - '5000'
+      X-RateLimit-Remaining:
+      - '4999'
+      X-RateLimit-Reset:
+      - '1633431598'
+      X-RateLimit-Resource:
+      - core
+      X-RateLimit-Used:
+      - '1'
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.26.0
+      authorization:
+      - <GITHUB_TOKEN>
+    method: GET
+    uri: https://api.github.com/repos/allenai/science-parse/contributors
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA63aX2viShgG8O+S6+7mnxotlEOhvehFXArdw1mWQ4kx1bE2kUnUVel330lmMpkJ
+        annnnYvSIvM8vo3+yCT6++SsiwXJnVtnTuj7gjo3Dpk7t5PAG4XjGycv5tlr/YATPzyP/v1vuk5X
+        74f44dfxx/3dHVuc7JIqoa9bumZrllW1KW9dlz9Yfl+QarmdbcuMpkVeZXn1PS0+3K3L2//Z3Q1Y
+        w4KKjuZp2AO9rg0RPTzMykpXzrqsPta9J+dP2iyWy96K9brYs2R/0MvlrsywkfjfJF+A8yxzcotq
+        mbFjxEb/rP9hUlaQQZr1J7f+xV6KuqFkh5xmc8AwIsFG2edsipNLs03RVG1nZUrJpiJFDhlKy7Ge
+        gi6SnBwTaA/LlSxejwN5+mY9y2U79q6CBHng5G4o2SXpoT4ENEszsmOHE1zWS7Ku6rDJ2Lv4J3up
+        64NLquw1mX/Uvt6SdZndODUESmbb5jg5t9Fk/HmjGEzn9Qt0YNlaw2A4DIb+BYbP/vTlyY9fFsYM
+        RT3GYTfvFxK7hTCLIofQqDegPLZVOJFti0WTslLVbKSybQK7bIMGMtuoJZvdJJprA52+p+lMPopy
+        dcgXQqc/ZqfI0QWdj4PpKmY/5jpFPUKnMu91ncpCkM42Z66z14DRKatQOmWLPZ1dJVanbILqlEG4
+        Thm1o1OZBK/TU8+dCSXJIBA2Q9+PvPPb1/hP/JLu2TqjrWtTjDHZTvmFyHYZzGOTQmhU8yiLvAgn
+        kXdYdCgK0Qp5D9ggjxkI5EFL/topsPpC7dTILkeSej9e71oDbxhE5+097dmeNTS11xQj7LVDXqfX
+        rgLJa0Lm8NQ4xh3vQbHjFfbUiT4sOl4DNcdTcHI8Z0dcOwMW3EQ92dHVpr6fIcSNvCjwLpD7tZ8e
+        Gbu9+d0a3o5xJ4f9Qp5cB7PHYwh9WgHKn2jCCRQlFg22jWiFogjsUOQMJIqkJYtyDqzGSNXIW/eJ
+        4DgMRsGl3efPw3T1FMaIm6e8HcFRmfa6R2UhCGSbMxfZa8CQlFUok7LFHsquEqtSNkFZyiDcpYza
+        galMgpU5UmWmS0rKNBy1t2wGozAYX7gwfPTYLZvDj4d74xuqPq9H2FTmvW5TWQiy2ebMbfYaMDZl
+        FcqmbLFns6vE2pRNUJsyCLcpo3ZsKpNgbQ60PWwxZx91vJO8+8AjjEaR5/vnLx7jcLpK9/HLo7FP
+        UY/wSfWZrxvtLQY5VbPmVs+0YLxqdSizWpM9t3ot1q7WBvWrheGGtbgdx72JrFqezcqKrMsiFyfa
+        aDKYeOGFS9J0OH1438fH1BiyqEdAVge+rlhdCSIsg+Z++xUYvF0XSm5XY4+t0ok121VBwXZJuNYu
+        a4eqOotVp/U3YmjyVgmmg3HEvotz/nT7PJge2Vd9EFeqvB2BVJn2ulFlIYhomzMX2mvAAJVVKJ+y
+        xR7PrhKrUzZBccog3KaM2qGpTIKVGai74TxZF1tKsm8JaT/EDMIw8ILownb46RizG7vxKv1j/HmK
+        6EcI7U19XWlvMUiqmjXXeqYFI1arQ6nVmuzJ1WuxerU2qGAtDFesxe1I7k2E1ex//v8XD+yx+k4r
+        AAA=
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, Deprecation,
+        Sunset
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Content-Encoding:
+      - gzip
+      Content-Security-Policy:
+      - default-src 'none'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Tue, 05 Oct 2021 09:59:59 GMT
+      ETag:
+      - W/"bb1c730c02d23915d692878c63c2a7b0b398ee52e6845f82923d5c85ae5959dc"
+      Last-Modified:
+      - Tue, 05 Oct 2021 08:18:37 GMT
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Server:
+      - GitHub.com
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      - Accept-Encoding, Accept, X-Requested-With
+      X-Accepted-OAuth-Scopes:
+      - ''
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - deny
+      X-GitHub-Media-Type:
+      - github.v3; format=json
+      X-GitHub-Request-Id:
+      - E908:1057:22F325:33D80B:615C221E
+      X-OAuth-Scopes:
+      - public_repo, read:user, user:email
+      X-RateLimit-Limit:
+      - '5000'
+      X-RateLimit-Remaining:
+      - '4998'
+      X-RateLimit-Reset:
+      - '1633431598'
+      X-RateLimit-Resource:
+      - core
+      X-RateLimit-Used:
+      - '2'
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

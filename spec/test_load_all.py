@@ -16,13 +16,14 @@ from infrastructure import (
 )  # necessary for SQLAlchemy to initialize relationships properly
 
 
+if os.getenv("ENV") == "test":
+    from config.environment import engine, Base
+
+    Base.metadata.create_all(bind=engine)
+
+
 # The following lines will be executed in console mode (`$ inv console`)
 if __name__ == "__main__":
-
-    if os.getenv("ENV") == "test":
-        from config.environment import engine, Base
-
-        Base.metadata.create_all(bind=engine)
 
     from config.environment import SessionLocal
 

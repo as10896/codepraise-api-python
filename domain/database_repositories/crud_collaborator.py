@@ -24,10 +24,10 @@ class CRUDCollaborator:
     def find_or_create(
         cls, db: Session, entity: entities.Collaborator
     ) -> entities.Collaborator:
-        return cls.find_username(db, entity.username) or cls.create_from(db, entity)
+        return cls.find_username(db, entity.username) or cls.create(db, entity)
 
     @classmethod
-    def create_from(
+    def create(
         cls, db: Session, entity: entities.Collaborator
     ) -> entities.Collaborator:
         db_collaborator = database.orm.CollaboratorORM(

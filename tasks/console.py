@@ -1,7 +1,11 @@
 from invoke import task
 
 
-@task
+@task(
+    help={
+        "mode": "Environment of the console mode to run. ['test'|'development'|'production'] [default: 'test']"
+    }
+)
 def console(c, mode="test"):
     """
     run console

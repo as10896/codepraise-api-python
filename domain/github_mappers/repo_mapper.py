@@ -13,7 +13,7 @@ class RepoMapper:
         self._gateway_class = gateway_class
         self._gateway = self._gateway_class(self._config.gh_token)
 
-    def load(self, owner_name: str, repo_name: str) -> entities.Repo:
+    def find(self, owner_name: str, repo_name: str) -> entities.Repo:
         data = self._gateway.repo_data(owner_name, repo_name)
         return self._build_entity(data)
 

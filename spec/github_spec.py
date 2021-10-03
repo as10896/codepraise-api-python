@@ -2,10 +2,10 @@ from .spec_helper import *
 
 
 @pytest.fixture(scope="module")
-@vcr.use_cassette("github_api.correct_repo.yml")
+@vcr.use_cassette("github_api/correct_repo.yml")
 def repo():
     repo_mapper = github_mappers.RepoMapper(CONFIG)
-    return repo_mapper.load(USERNAME, REPO_NAME)
+    return repo_mapper.find(USERNAME, REPO_NAME)
 
 
 class TestRepo:
@@ -16,19 +16,19 @@ class TestRepo:
         assert repo.git_url == CORRECT["git_url"]
 
     # SAD: should raise exception on incorrect repo
-    @vcr.use_cassette("github_api.incorrect_repo.yml")
+    @vcr.use_cassette("github_api/incorrect_repo.yml")
     def test_incorrect_repo(self):
         repo_mapper = github_mappers.RepoMapper(CONFIG)
         with pytest.raises(github.API.Errors.NotFound):
-            repo = repo_mapper.load(USERNAME, "SAD_REPO_NAME")
+            repo = repo_mapper.find(USERNAME, "SAD_REPO_NAME")
 
     # SAD: should raise exception when unauthorized
-    @vcr.use_cassette("github_api.invalid_token.yml")
+    @vcr.use_cassette("github_api/invalid_token.yml")
     def test_invalid_token(self):
         SAD_CONFIG = get_settings(gh_token="sad_token")
         repo_mapper = github_mappers.RepoMapper(SAD_CONFIG)
         with pytest.raises(github.API.Errors.Unauthorized):
-            repo = repo_mapper.load(USERNAME, REPO_NAME)
+            repo = repo_mapper.find(USERNAME, REPO_NAME)
 
 
 class TestContributor:

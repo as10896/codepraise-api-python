@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, List
 from sqlalchemy.orm import Session
 
 from .crud_collaborator import CRUDCollaborator
@@ -28,6 +28,10 @@ class CRUDRepo:
         return cls.rebuild_entity(db_repo)
 
     @classmethod
+    def find(cls, db: Session, entity: entities.Repo) -> Optional[entities.Repo]:
+        return cls.find_origin_id(db, entity.origin_id)
+
+    @classmethod
     def find_id(cls, db: Session, id: int) -> Optional[entities.Repo]:
         db_record = db.query(database.orm.RepoORM).filter_by(id=id).first()
         return cls.rebuild_entity(db_record)
@@ -40,11 +44,15 @@ class CRUDRepo:
         return cls.rebuild_entity(db_record)
 
     @classmethod
-    def find_or_create(cls, db: Session, entity: entities.Repo) -> entities.Repo:
-        return cls.find_origin_id(db, entity.origin_id) or cls.create_from(db, entity)
+    def all(cls, db: Session) -> List[entities.Repo]:
+        db_record = db.query(database.orm.RepoORM).all()
+        return list(map(lambda db_repo: cls.rebuild_entity(db_repo), db_record))
 
     @classmethod
-    def create_from(cls, db: Session, entity: entities.Repo) -> entities.Repo:
+    def create(cls, db: Session, entity: entities.Repo) -> entities.Repo:
+        if cls.find(db, entity):
+            raise Exception("Repo already exists")
+
         new_owner = CRUDCollaborator.find_or_create(db, entity.owner)
         db_owner = (
             db.query(database.orm.CollaboratorORM).filter_by(id=new_owner.id).first()

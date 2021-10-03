@@ -13,6 +13,7 @@ python-dotenv = "*"
 invoke = "*"
 sqlalchemy = "*"
 alembic = "*"
+returns = "*"
 
 [dev-packages]
 pytest = "*"

@@ -11,4 +11,4 @@ def run(c, mode="development", port=8000):
     """
     rerun fastapi server
     """
-    c.run(f"ENV={mode} uvicorn app:app --reload --port {port}", pty=True)
+    c.run(f"ENV={mode} uvicorn application.app:app --reload --port {port}", pty=True)
