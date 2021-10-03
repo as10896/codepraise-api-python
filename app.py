@@ -17,7 +17,7 @@ def read_root():
 
 
 @app.get("/api/v0.1/repo/{ownername}/{reponame}")
-def repo_info(ownername: str, reponame: str, db: Session = Depends(get_db)):
+def find_database_repo(ownername: str, reponame: str, db: Session = Depends(get_db)):
     repo = repository.For[entities.Repo].find_full_name(db, ownername, reponame)
     if not repo:
         raise HTTPException(status_code=404, detail={"error": "Repository not found"})
@@ -25,7 +25,7 @@ def repo_info(ownername: str, reponame: str, db: Session = Depends(get_db)):
 
 
 @app.post("/api/v0.1/repo/{ownername}/{reponame}")
-def repo_info(
+def load_from_github(
     ownername: str, reponame: str, response: Response, db: Session = Depends(get_db)
 ):
     try:
