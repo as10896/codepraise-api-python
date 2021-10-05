@@ -16,8 +16,8 @@ class CollaboratorORM(Base, ORMReprMixin):
     username = Column(String, unique=True, nullable=False)
     email = Column(String)
 
-    created_at = Column(DateTime, default=datetime.now())
-    updated_at = Column(DateTime, default=datetime.now())
+    created_at = Column(DateTime, default=datetime.now)
+    updated_at = Column(DateTime, default=datetime.now, onupdate=datetime.now)
 
     owned_repos = relationship("RepoORM", back_populates="owner")
     contributed_repos = relationship(

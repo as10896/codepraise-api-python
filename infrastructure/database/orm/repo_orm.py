@@ -18,8 +18,8 @@ class RepoORM(Base, ORMReprMixin):
     size = Column(Integer)
     git_url = Column(String)
 
-    created_at = Column(DateTime, default=datetime.now())
-    updated_at = Column(DateTime, default=datetime.now())
+    created_at = Column(DateTime, default=datetime.now)
+    updated_at = Column(DateTime, default=datetime.now, onupdate=datetime.now)
 
     owner = relationship("CollaboratorORM", back_populates="owned_repos")
     contributors = relationship(
