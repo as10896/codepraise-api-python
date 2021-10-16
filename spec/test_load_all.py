@@ -11,6 +11,7 @@ from domain import github_mappers
 from domain import database_repositories as repository
 
 from infrastructure import github
+from infrastructure import gitrepo
 from infrastructure import (
     database,
 )  # necessary for SQLAlchemy to initialize relationships properly

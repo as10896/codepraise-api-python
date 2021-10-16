@@ -10,6 +10,7 @@ class Settings(BaseSettings):
 class Test(Settings):
     environment = "test"
     db_filename: str
+    repostore_path: str
 
     class Config:
         env_file = "config/env/.env"
@@ -20,6 +21,7 @@ class Test(Settings):
 class Development(Settings):
     environment = "development"
     db_filename: str
+    repostore_path: str
 
     class Config:
         env_file = "config/env/.env.dev"
