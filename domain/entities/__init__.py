@@ -1,3 +1,3 @@
 from .collaborator import Collaborator
 from .repo import Repo
-from .blame_summary import BlameSummary
+from .blame_summary import FolderSummary

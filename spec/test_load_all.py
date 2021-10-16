@@ -7,6 +7,7 @@ sys.path.append(WORKDIR)
 from config import get_settings
 
 from domain import entities
+from domain import blame_reporter
 from domain import github_mappers
 from domain import database_repositories as repository
 

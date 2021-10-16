@@ -1,1 +1,1 @@
-from .blame_report import Report
+from .blame_report import Summary

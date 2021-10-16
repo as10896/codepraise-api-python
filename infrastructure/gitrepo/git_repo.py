@@ -43,6 +43,8 @@ class LocalRepo:
     def __init__(self, remote: RemoteRepo, repostore_path: str):
         self._remote = remote
         self._repo_path = "/".join([repostore_path, self._remote.unique_id])
+        if not self.exists:
+            self.clone_remote()
 
     def clone_remote(self) -> None:
         self._remote.local_clone(self._repo_path)

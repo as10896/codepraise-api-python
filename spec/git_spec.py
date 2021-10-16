@@ -2,16 +2,30 @@ from .spec_helper import *
 
 
 @pytest.fixture
-def local_repo():
-    git_url = "git://github.com/allenai/science-parse.git"
-    origin = gitrepo.RemoteRepo(git_url)
-    _local_repo = gitrepo.LocalRepo(origin, CONFIG.repostore_path)
-    if not _local_repo.exists:
-        _local_repo.clone_remote()
-    return _local_repo
+@vcr.use_cassette("codepraise_api/preload_github_correct_repo.yml")
+def repo():
+    from config.environment import SessionLocal
+    from application.services import LoadFromGithub
+
+    db = SessionLocal()
+    db.query(database.orm.CollaboratorORM).delete()
+    db.query(database.orm.RepoORM).delete()
+    db.query(database.orm.repos_contributors).delete()
+    db.commit()
+
+    LoadFromGithub()(db=db, config=CONFIG, ownername=USERNAME, reponame=REPO_NAME)
+    _repo = repository.CRUDRepo.find_full_name(db, USERNAME, REPO_NAME)
+    db.close()
+
+    return _repo
 
 
 # HAPPY: should get blame summary for a remote repo
-def test_git_commands_mapper_and_gateway(local_repo):
-    report = entities.BlameSummary(local_repo)
-    report.summarize_folder("")
+def test_git_commands_mapper_and_gateway(repo):
+    summary = blame_reporter.Summary(repo)
+    full_repo_summary = summary.for_folder("")
+    assert len(full_repo_summary.contributions) == 10
+
+    first_collab = full_repo_summary.contributions["<me@aria42.com>"]
+    assert first_collab["count"] == 21162
+    assert first_collab["name"] == "aria42"
