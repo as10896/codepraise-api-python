@@ -22,6 +22,7 @@ pytest-cov = "*"
 flake8 = "*"
 radon = "*"
 black = "*"
+regex = "==2021.09.30"
 ipython = "*"
 
 [requires]
