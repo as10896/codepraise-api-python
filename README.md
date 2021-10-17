@@ -26,6 +26,7 @@ inv -l  # show all tasks
 inv [task] -h  # show task help message
 inv console  # run console
 inv spec  # run all test scripts
+inv spec.type  # check type with mypy
 inv api.run -m [mode] -p [port]  # rerun FastAPI server
 inv db.drop -e [env]  # drop all db tables
 inv db.migrate -e [env]  # run db schema migrations

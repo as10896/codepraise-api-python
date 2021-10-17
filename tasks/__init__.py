@@ -8,4 +8,4 @@ from . import console
 from . import db
 
 
-ns = Collection(spec.spec, quality, vcr.rmvcr, api, console.console, db)
+ns = Collection(spec, quality, vcr.rmvcr, api, console.console, db)

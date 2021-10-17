@@ -24,6 +24,7 @@ radon = "*"
 black = "*"
 regex = "==2021.09.30"
 ipython = "*"
+mypy = "*"
 
 [requires]
 python_version = "3.9"
