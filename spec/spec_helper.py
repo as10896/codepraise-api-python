@@ -10,8 +10,8 @@ import pytest
 from vcr import VCR
 
 
-USERNAME = "allenai"
-REPO_NAME = "science-parse"
+USERNAME = "as10896"
+REPO_NAME = "SOA_FlipFlap"
 API_VER = "/api/v0.1"
 
 CONFIG = get_settings()

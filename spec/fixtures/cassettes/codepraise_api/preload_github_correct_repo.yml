@@ -13,35 +13,33 @@ interactions:
       authorization:
       - <GITHUB_TOKEN>
     method: GET
-    uri: https://api.github.com/repos/allenai/science-parse
+    uri: https://api.github.com/repos/as10896/SOA_FlipFlap
   response:
     body:
       string: !!binary |
-        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
+        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
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -59,11 +57,11 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Tue, 05 Oct 2021 10:00:02 GMT
+      - Sun, 17 Oct 2021 12:59:58 GMT
       ETag:
-      - W/"1c9b00a5ca59d5eb3a83cf022581aa59f7740a610b703c081671d55c86627c91"
+      - W/"8b4d79e7bb48db66dd2ffe31a95abe1e03b574cb6cb35f662fbd69612aa3f209"
       Last-Modified:
-      - Tue, 05 Oct 2021 08:18:37 GMT
+      - Fri, 29 Sep 2017 16:00:29 GMT
       Referrer-Policy:
       - origin-when-cross-origin, strict-origin-when-cross-origin
       Server:
@@ -84,19 +82,19 @@ interactions:
       X-GitHub-Media-Type:
       - github.v3; format=json
       X-GitHub-Request-Id:
-      - E90E:1D8E:223ED5:32C808:615C2221
+      - CCD0:5F88:312B5:4CC32:616C1E4E
       X-OAuth-Scopes:
       - public_repo, read:user, user:email
       X-RateLimit-Limit:
       - '5000'
       X-RateLimit-Remaining:
-      - '4992'
+      - '4977'
       X-RateLimit-Reset:
-      - '1633431598'
+      - '1634477474'
       X-RateLimit-Resource:
       - core
       X-RateLimit-Used:
-      - '8'
+      - '23'
       X-XSS-Protection:
       - '0'
     status:
@@ -116,32 +114,21 @@ interactions:
       authorization:
       - <GITHUB_TOKEN>
     method: GET
-    uri: https://api.github.com/repos/allenai/science-parse/contributors
+    uri: https://api.github.com/repos/as10896/SOA_FlipFlap/contributors
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA63aX2viShgG8O+S6+7mnxotlEOhvehFXArdw1mWQ4kx1bE2kUnUVel330lmMpkJ
-        annnnYvSIvM8vo3+yCT6++SsiwXJnVtnTuj7gjo3Dpk7t5PAG4XjGycv5tlr/YATPzyP/v1vuk5X
-        74f44dfxx/3dHVuc7JIqoa9bumZrllW1KW9dlz9Yfl+QarmdbcuMpkVeZXn1PS0+3K3L2//Z3Q1Y
-        w4KKjuZp2AO9rg0RPTzMykpXzrqsPta9J+dP2iyWy96K9brYs2R/0MvlrsywkfjfJF+A8yxzcotq
-        mbFjxEb/rP9hUlaQQZr1J7f+xV6KuqFkh5xmc8AwIsFG2edsipNLs03RVG1nZUrJpiJFDhlKy7Ge
-        gi6SnBwTaA/LlSxejwN5+mY9y2U79q6CBHng5G4o2SXpoT4ENEszsmOHE1zWS7Ku6rDJ2Lv4J3up
-        64NLquw1mX/Uvt6SdZndODUESmbb5jg5t9Fk/HmjGEzn9Qt0YNlaw2A4DIb+BYbP/vTlyY9fFsYM
-        RT3GYTfvFxK7hTCLIofQqDegPLZVOJFti0WTslLVbKSybQK7bIMGMtuoJZvdJJprA52+p+lMPopy
-        dcgXQqc/ZqfI0QWdj4PpKmY/5jpFPUKnMu91ncpCkM42Z66z14DRKatQOmWLPZ1dJVanbILqlEG4
-        Thm1o1OZBK/TU8+dCSXJIBA2Q9+PvPPb1/hP/JLu2TqjrWtTjDHZTvmFyHYZzGOTQmhU8yiLvAgn
-        kXdYdCgK0Qp5D9ggjxkI5EFL/topsPpC7dTILkeSej9e71oDbxhE5+097dmeNTS11xQj7LVDXqfX
-        rgLJa0Lm8NQ4xh3vQbHjFfbUiT4sOl4DNcdTcHI8Z0dcOwMW3EQ92dHVpr6fIcSNvCjwLpD7tZ8e
-        Gbu9+d0a3o5xJ4f9Qp5cB7PHYwh9WgHKn2jCCRQlFg22jWiFogjsUOQMJIqkJYtyDqzGSNXIW/eJ
-        4DgMRsGl3efPw3T1FMaIm6e8HcFRmfa6R2UhCGSbMxfZa8CQlFUok7LFHsquEqtSNkFZyiDcpYza
-        galMgpU5UmWmS0rKNBy1t2wGozAYX7gwfPTYLZvDj4d74xuqPq9H2FTmvW5TWQiy2ebMbfYaMDZl
-        FcqmbLFns6vE2pRNUJsyCLcpo3ZsKpNgbQ60PWwxZx91vJO8+8AjjEaR5/vnLx7jcLpK9/HLo7FP
-        UY/wSfWZrxvtLQY5VbPmVs+0YLxqdSizWpM9t3ot1q7WBvWrheGGtbgdx72JrFqezcqKrMsiFyfa
-        aDKYeOGFS9J0OH1438fH1BiyqEdAVge+rlhdCSIsg+Z++xUYvF0XSm5XY4+t0ok121VBwXZJuNYu
-        a4eqOotVp/U3YmjyVgmmg3HEvotz/nT7PJge2Vd9EFeqvB2BVJn2ulFlIYhomzMX2mvAAJVVKJ+y
-        xR7PrhKrUzZBccog3KaM2qGpTIKVGai74TxZF1tKsm8JaT/EDMIw8ILownb46RizG7vxKv1j/HmK
-        6EcI7U19XWlvMUiqmjXXeqYFI1arQ6nVmuzJ1WuxerU2qGAtDFesxe1I7k2E1ex//v8XD+yx+k4r
-        AAA=
+        H4sIAAAAAAAAA62VW2vbMBiG/4uvQ+U0zhHKGHiXSSm0Y2GMoNiqrdaxjCQnZKH/fZ8Pig8sAUm+
+        Siy+99Fr2Q/+fXESFtHUWTmC5Ycz5vjsjBwaOqvx8nE2d72Rk7KQ7IoVZ+2/zH7+2iTBx4/p+mM7
+        gesnmMZHLDHf5TyBmVjKTKwQqhbFQ0RlnO9zQXjAUklS+RCwA8pRjf92fPIAEfEaUu4DCz1YRmtQ
+        lQaaQO3CsTwkvQLVxuV8e/KdJQk7Qb7f9+4W6BqDbtV/mkYmCIhdEJMxgQOD2/gqbp4KqVmnjFxQ
+        8QOPpoAIeASchHqV6hAUOqXQ5YI4yVhJy/ci4DSTlKWa1TpRQDEe4ZT+xQYoiAogFKU0S5QRiJIj
+        vHGa2SpzQRmnRxyci+PgJCD0CKdrwuuFASfPGYHX/A2ef3HWVJIdDg+Fhe84EWTkFKpwus/LM3NW
+        j+7XqBE1OMcilydIlpq63mw5nt/Q9LTxt9P1a2CuaYW30LSpe1/SZk5L0TpmLmgXYKOnIlnJqSDD
+        qXkltp02EVOBdLVUOX0pVXIYJZseHZtNhGz7iMXYXSxnysc5XC2WyxtCTtav371n/3MK42bfzZpv
+        YWRT+L6RzZyWkXXM3MguwMZIRbIyUkGGM/JKtDVSgXSNVDl9I1VyGCObHrZGjttGCslSErEknHpX
+        Ld3FzPO8m9/JZ3/rbvyXibGWNd9Cy17r+272hrUEbWfNLf0PxUbVDs7K1w5pOGm7WFtzOzRdfTth
+        fYc78WFE7jWyt/nPP6oO1tmaDgAA
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -159,11 +146,11 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Tue, 05 Oct 2021 10:00:02 GMT
+      - Sun, 17 Oct 2021 12:59:59 GMT
       ETag:
-      - W/"bb1c730c02d23915d692878c63c2a7b0b398ee52e6845f82923d5c85ae5959dc"
+      - W/"99684f35c4e03eb9dbfce99529873219980572b818bae7725c08242fbcd5fd72"
       Last-Modified:
-      - Tue, 05 Oct 2021 08:18:37 GMT
+      - Fri, 29 Sep 2017 16:00:29 GMT
       Referrer-Policy:
       - origin-when-cross-origin, strict-origin-when-cross-origin
       Server:
@@ -184,19 +171,19 @@ interactions:
       X-GitHub-Media-Type:
       - github.v3; format=json
       X-GitHub-Request-Id:
-      - E90F:1D8F:7E4AF3:8F4D3C:615C2222
+      - CCD1:5F89:E7EA2:104406:616C1E4F
       X-OAuth-Scopes:
       - public_repo, read:user, user:email
       X-RateLimit-Limit:
       - '5000'
       X-RateLimit-Remaining:
-      - '4991'
+      - '4976'
       X-RateLimit-Reset:
-      - '1633431598'
+      - '1634477474'
       X-RateLimit-Resource:
       - core
       X-RateLimit-Used:
-      - '9'
+      - '24'
       X-XSS-Protection:
       - '0'
     status:

@@ -13,7 +13,7 @@ interactions:
       authorization:
       - <GITHUB_TOKEN>
     method: GET
-    uri: https://api.github.com/repos/allenai/SAD_REPO_NAME
+    uri: https://api.github.com/repos/as10896/SAD_REPO_NAME
   response:
     body:
       string: !!binary |
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Tue, 05 Oct 2021 10:00:04 GMT
+      - Sun, 17 Oct 2021 13:00:00 GMT
       Referrer-Policy:
       - origin-when-cross-origin, strict-origin-when-cross-origin
       Server:
@@ -54,19 +54,19 @@ interactions:
       X-GitHub-Media-Type:
       - github.v3; format=json
       X-GitHub-Request-Id:
-      - E912:4923:F85AE3:1164C24:615C2224
+      - CCD4:0861:D1032:ED656:616C1E50
       X-OAuth-Scopes:
       - public_repo, read:user, user:email
       X-RateLimit-Limit:
       - '5000'
       X-RateLimit-Remaining:
-      - '4988'
+      - '4973'
       X-RateLimit-Reset:
-      - '1633431598'
+      - '1634477474'
       X-RateLimit-Resource:
       - core
       X-RateLimit-Used:
-      - '12'
+      - '27'
       X-XSS-Protection:
       - '0'
     status:

@@ -24,8 +24,8 @@ def repo():
 def test_git_commands_mapper_and_gateway(repo):
     summary = blame_reporter.Summary(repo)
     full_repo_summary = summary.for_folder("")
-    assert len(full_repo_summary.contributions) == 10
+    assert len(full_repo_summary.contributions) == 3
 
-    first_collab = full_repo_summary.contributions["<me@aria42.com>"]
-    assert first_collab["count"] == 21162
-    assert first_collab["name"] == "aria42"
+    first_collab = full_repo_summary.contributions["<soumya.ray@gmail.com>"]
+    assert first_collab["count"] == 433
+    assert first_collab["name"] == "Soumya Ray"

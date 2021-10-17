@@ -13,7 +13,7 @@ interactions:
       authorization:
       - <GITHUB_TOKEN>
     method: GET
-    uri: https://api.github.com/repos/allenai/science-parse
+    uri: https://api.github.com/repos/as10896/SOA_FlipFlap
   response:
     body:
       string: '{"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}'
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Tue, 05 Oct 2021 10:00:04 GMT
+      - Sun, 17 Oct 2021 13:00:01 GMT
       Referrer-Policy:
       - origin-when-cross-origin, strict-origin-when-cross-origin
       Server:
@@ -48,17 +48,17 @@ interactions:
       X-GitHub-Media-Type:
       - github.v3; format=json
       X-GitHub-Request-Id:
-      - E913:1058:7F6B2E:90C8B9:615C2224
+      - CCD5:0860:449C3:603AA:616C1E51
       X-RateLimit-Limit:
       - '60'
       X-RateLimit-Remaining:
-      - '59'
+      - '58'
       X-RateLimit-Reset:
-      - '1633431604'
+      - '1634478128'
       X-RateLimit-Resource:
       - core
       X-RateLimit-Used:
-      - '1'
+      - '2'
       X-XSS-Protection:
       - '0'
     status:
