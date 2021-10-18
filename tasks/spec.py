@@ -5,7 +5,7 @@ from invoke import task
     default=True,
     help={
         "code": "Name of the python script or pacakge to measure the test coverage. Default: '.'"
-    }
+    },
 )
 def spec(c, code="."):
     """

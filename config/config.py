@@ -5,12 +5,12 @@ from pydantic import BaseSettings
 
 class Settings(BaseSettings):
     gh_token: str
+    repostore_path: str
 
 
 class Test(Settings):
     environment = "test"
     db_filename: str
-    repostore_path: str
 
     class Config:
         env_file = "config/env/.env"
@@ -21,7 +21,6 @@ class Test(Settings):
 class Development(Settings):
     environment = "development"
     db_filename: str
-    repostore_path: str
 
     class Config:
         env_file = "config/env/.env.dev"

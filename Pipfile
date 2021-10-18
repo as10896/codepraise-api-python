@@ -10,10 +10,13 @@ pydantic = "*"
 fastapi = "*"
 uvicorn = {extras = ["standard"], version = "*"}
 python-dotenv = "*"
-invoke = "*"
+invoke = "*"  # to run migrations in production
 sqlalchemy = "*"
 alembic = "*"
+ipython = "*"  # to run console in production
 returns = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 pytest = "*"
@@ -22,8 +25,7 @@ pytest-cov = "*"
 flake8 = "*"
 radon = "*"
 black = "*"
-regex = "==2021.09.30"
-ipython = "*"
+regex = "==2021.09.30"  # to fix the library validation error of `black`
 mypy = "*"
 
 [requires]

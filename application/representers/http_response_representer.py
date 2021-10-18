@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, ClassVar
+from typing import Any, Dict, ClassVar
 from pydantic import BaseModel
 
 
@@ -22,8 +22,8 @@ class HttpResponseRepresenter(BaseModel):
         return self._HTTP_CODE[self.code]
 
     @property
-    def http_message(self) -> Dict[str, List[Any]]:
-        return {self._msg_or_error: [self.message]}
+    def http_message(self) -> Dict[str, Any]:
+        return {self._msg_or_error: self.message}
 
     @property
     def _http_success(self) -> bool:
