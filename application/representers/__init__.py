@@ -1,2 +1,3 @@
 from .repo_representer import RepoRepresenter
+from .repos_representer import ReposRepresenter
 from .http_response_representer import HttpResponseRepresenter

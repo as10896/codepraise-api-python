@@ -1,4 +1,4 @@
-from typing import Dict, Any
+from typing import Dict, Any, List
 from fastapi import FastAPI, Depends
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
@@ -10,10 +10,11 @@ from config import get_settings
 from config.environment import get_db
 
 from domain import entities
+from domain import database_repositories as repository
 from domain.values import ServiceResult
 
 from .services import LoadFromGithub, FindDatabaseRepo
-from .representers import RepoRepresenter, HttpResponseRepresenter
+from .representers import RepoRepresenter, ReposRepresenter, HttpResponseRepresenter
 
 
 config = get_settings()
@@ -23,6 +24,12 @@ app = FastAPI()
 @app.get("/")
 def read_root():
     return {"message": f"CodePraise API v0.1 up in {config.environment} mode"}
+
+
+@app.get("/api/v0.1/repo/", response_model=ReposRepresenter)
+def find_all_database_repos(db: Session = Depends(get_db)):
+    repos: List[entities.Repo] = repository.For[entities.Repo].all(db)
+    return {"repos": repos}
 
 
 @app.get("/api/v0.1/repo/{ownername}/{reponame}")

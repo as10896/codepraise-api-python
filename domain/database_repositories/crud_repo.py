@@ -9,6 +9,11 @@ from infrastructure import database
 
 class CRUDRepo:
     @classmethod
+    def all(cls, db: Session) -> List[entities.Repo]:
+        db_record = db.query(database.orm.RepoORM).all()
+        return list(map(lambda db_repo: cls.rebuild_entity(db_repo), db_record))
+
+    @classmethod
     def find_full_name(
         cls, db: Session, ownername: str, reponame: str
     ) -> Optional[entities.Repo]:
@@ -42,11 +47,6 @@ class CRUDRepo:
             db.query(database.orm.RepoORM).filter_by(origin_id=origin_id).first()
         )
         return cls.rebuild_entity(db_record)
-
-    @classmethod
-    def all(cls, db: Session) -> List[entities.Repo]:
-        db_record = db.query(database.orm.RepoORM).all()
-        return list(map(lambda db_repo: cls.rebuild_entity(db_repo), db_record))
 
     @classmethod
     def create(cls, db: Session, entity: entities.Repo) -> entities.Repo:
