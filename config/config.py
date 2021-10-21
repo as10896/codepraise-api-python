@@ -40,7 +40,7 @@ class Production(Settings):
 
 @lru_cache()
 def get_settings(mode: str = None, **kwargs) -> Settings:
-    env = mode if mode else os.getenv("ENV", "test")
+    env = mode if mode else os.getenv("ENV", "development")
     return {"test": Test, "development": Development, "production": Production,}.get(
         env
     )(**kwargs)

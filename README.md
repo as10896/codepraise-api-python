@@ -27,7 +27,9 @@ inv [task] -h  # show task help message
 inv console  # run console
 inv spec  # run all test scripts
 inv spec.type  # check type with mypy
-inv api.run -m [mode] -p [port]  # rerun FastAPI server
+inv api.run -m [mode] -p [port]  # run FastAPI server with specified settings (add `-r` or `--reload` to use auto-reload)
+inv api.run.dev -p [port]  # rerun FastAPI server in development environment
+inv api.run.test -p [port]  # run FastAPI server in test environment
 inv db.drop -e [env]  # drop all db tables
 inv db.migrate -e [env]  # run db schema migrations
 inv db.reset -e [env]  # reset all database tables (drop + migrate)
