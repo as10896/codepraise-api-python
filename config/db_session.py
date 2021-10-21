@@ -8,15 +8,15 @@ from .config import Settings, get_settings
 def get_db_url(config: Settings = get_settings()) -> str:
 
     if config.environment in ["test", "development"]:
-        DATABASE_URL = f"sqlite:///{config.db_filename}"
+        DATABASE_URL = f"sqlite:///{config.DB_FILENAME}"
 
     elif config.environment == "production":
         # Will first look for the DATABASE_URL environment variable
-        # If not found, then look for the `config/secrets/prod/database_url`
+        # If not found, then look for the `config/secrets/prod/DATABASE_URL`
 
         # Note: don't specify if you're using Heroku Postgres
         # cause Heroku has its own DATABASE_URL environment variable
-        DATABASE_URL = config.database_url
+        DATABASE_URL = config.DATABASE_URL
 
         # SQLAlchemy 1.4.x has removed support for the "postgres://" URI scheme, which is used by Heroku Postgres
         # replace it with "postgresql://" to maintain compatibility

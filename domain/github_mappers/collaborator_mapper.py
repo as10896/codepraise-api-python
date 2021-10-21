@@ -9,7 +9,7 @@ from infrastructure import github
 class CollaboratorMapper:
     def __init__(self, config: Settings, gateway_class: Type[github.API] = github.API):
         self._config = config
-        self._gateway = gateway_class(self._config.gh_token)
+        self._gateway = gateway_class(self._config.GH_TOKEN)
 
     def load_several(self, url: str) -> List[entities.Collaborator]:
         contribs_data = self._gateway.collaborators_data(url)

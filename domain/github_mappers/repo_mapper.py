@@ -11,7 +11,7 @@ class RepoMapper:
     def __init__(self, config: Settings, gateway_class: Type[github.API] = github.API):
         self._config = config
         self._gateway_class = gateway_class
-        self._gateway = self._gateway_class(self._config.gh_token)
+        self._gateway = self._gateway_class(self._config.GH_TOKEN)
 
     def find(self, owner_name: str, repo_name: str) -> entities.Repo:
         data = self._gateway.repo_data(owner_name, repo_name)

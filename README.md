@@ -15,7 +15,7 @@ pipenv install --dev  # install required dependencies with Pipfile (or Pipfile.l
 
 ### Create GitHub API personal access token
 1. Generate token [here](https://github.com/settings/tokens)
-2. Create `gh_token` under `config/secrets/<env>/` with the generated token
+2. Create `GH_TOKEN` under `config/secrets/<env>/` with the generated token
 
 
 ## Usage

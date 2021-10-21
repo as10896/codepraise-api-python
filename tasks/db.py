@@ -94,8 +94,8 @@ def wipe(c, env="test"):
         print("Cannot wipe production database!")
         return
 
-    result = c.run(f"rm {config.db_filename}", hide=True, warn=True)
+    result = c.run(f"rm {config.DB_FILENAME}", hide=True, warn=True)
     if result.ok:
-        print(f"Deleted #{config.db_filename}")
+        print(f"Deleted #{config.DB_FILENAME}")
     else:
         print("No database file found")

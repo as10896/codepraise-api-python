@@ -12,7 +12,7 @@ class Summary:
 
     def __init__(self, repo: entities.Repo, config: Settings = get_settings()):
         origin = gitrepo.RemoteRepo(repo.git_url)
-        self._local = gitrepo.LocalRepo(origin, config.repostore_path)
+        self._local = gitrepo.LocalRepo(origin, config.REPOSTORE_PATH)
         self._blame_reports = Report(self._local)
 
     def for_folder(self, folder_name: str) -> entities.FolderSummary:

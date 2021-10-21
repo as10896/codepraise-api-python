@@ -25,7 +25,7 @@ class TestRepo:
     # SAD: should raise exception when unauthorized
     @vcr.use_cassette("github_api/invalid_token.yml")
     def test_invalid_token(self):
-        SAD_CONFIG = get_settings(gh_token="sad_token")
+        SAD_CONFIG = get_settings(GH_TOKEN="sad_token")
         repo_mapper = github_mappers.RepoMapper(SAD_CONFIG)
         with pytest.raises(github.API.Errors.Unauthorized):
             repo = repo_mapper.find(USERNAME, REPO_NAME)

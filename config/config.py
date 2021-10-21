@@ -4,13 +4,13 @@ from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):
-    gh_token: str
-    repostore_path: str
+    GH_TOKEN: str
+    REPOSTORE_PATH: str
 
 
 class Test(Settings):
     environment = "test"
-    db_filename: str
+    DB_FILENAME: str
 
     class Config:
         env_file = "config/env/.env"
@@ -20,7 +20,7 @@ class Test(Settings):
 
 class Development(Settings):
     environment = "development"
-    db_filename: str
+    DB_FILENAME: str
 
     class Config:
         env_file = "config/env/.env.dev"
@@ -30,7 +30,7 @@ class Development(Settings):
 
 class Production(Settings):
     environment = "production"
-    database_url: str
+    DATABASE_URL: str
 
     class Config:
         env_file = "config/env/.env.prod"
