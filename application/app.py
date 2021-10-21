@@ -9,6 +9,8 @@ from returns.pipeline import is_successful
 from config import get_settings
 from config.environment import get_db
 
+from infrastructure import database
+
 from domain import entities
 from domain import database_repositories as repository
 from domain.values import ServiceResult
@@ -30,6 +32,26 @@ def read_root():
 def find_all_database_repos(db: Session = Depends(get_db)):
     repos: List[entities.Repo] = repository.For[entities.Repo].all(db)
     return {"repos": repos}
+
+
+@app.delete("/api/v0.1/repo/")
+def delete_all_database_repos(db: Session = Depends(get_db)):
+    if config.environment in ["test", "development"]:
+        db.query(database.orm.CollaboratorORM).delete()
+        db.query(database.orm.RepoORM).delete()
+        db.query(database.orm.repos_contributors).delete()
+        db.commit()
+        result = ServiceResult("ok", "deleted")
+
+    elif config.environment == "production":
+        result = ServiceResult("forbidden", "not allowed")
+
+    http_response: HttpResponseRepresenter = HttpResponseRepresenter.parse_obj(
+        result.dict()
+    )
+    return JSONResponse(
+        status_code=http_response.http_code, content=http_response.http_message
+    )
 
 
 @app.get("/api/v0.1/repo/{ownername}/{reponame}")
