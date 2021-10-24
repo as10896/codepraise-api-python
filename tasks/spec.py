@@ -11,7 +11,7 @@ def spec(c, code="."):
     """
     run tests
     """
-    c.run(f"pytest --cov={code} -s -v spec/*_spec.py", pty=True)
+    c.run(f"pytest -s -v spec/*_spec.py --cov={code} --cov-report=xml", pty=True)
 
 
 @task(
