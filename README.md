@@ -10,9 +10,9 @@ Here we use [Pipenv](https://pipenv.pypa.io/en/latest/) to create our virtual en
 
 ```bash
 pip install pipenv  # install pipenv
-pipenv --three  # create Python 3 virtualenv under current directory
+pipenv --python 3.9  # create Python 3.9 virtualenv under current directory
 pipenv shell  # activate the virtualenv of the current directory
-pipenv install --dev  # install required dependencies with Pipfile (or Pipfile.lock, if any)
+pipenv install --dev  # install required dependencies with Pipfile
 ```
 
 ### Create GitHub API personal access token
