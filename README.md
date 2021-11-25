@@ -28,7 +28,6 @@ inv -l  # show all tasks
 inv [task] -h  # show task help message
 inv console  # run console
 inv spec  # run all test scripts
-inv spec.type  # check type with mypy
 inv api.run -m [mode] -p [port]  # run FastAPI server with specified settings (add `-r` or `--reload` to use auto-reload)
 inv api.run.dev -p [port]  # rerun FastAPI server in development environment
 inv api.run.test -p [port]  # run FastAPI server in test environment
@@ -41,6 +40,7 @@ inv quality.style  # examine coding style with flake8
 inv quality.metric  # measure code metric with radon
 inv quality.all  # run all quality tasks (style + metric)
 inv quality.reformat  # reformat your code using the black code style
+inv quality.typecheck  # check type with mypy
 inv quality  # same as `inv quality.all`
 inv rmvcr  # delete cassette fixtures (test stubs generated with vcrpy)
 ```

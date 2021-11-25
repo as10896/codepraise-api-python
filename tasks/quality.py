@@ -50,3 +50,15 @@ def reformat(c, code="."):
     reformat your code using the black code style
     """
     c.run(f"black {code}", pty=True)
+
+
+@task(
+    help={
+        "code": "Name of the python script or package to check type with mypy. Default: '.'"
+    }
+)
+def typecheck(c, code="."):
+    """
+    type checking with mypy
+    """
+    c.run(f"mypy {code} --config-file mypy.ini", pty=True)
