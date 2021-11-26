@@ -2,7 +2,7 @@ from typing import List, Optional, ClassVar
 from pydantic import BaseModel, StrictInt, StrictStr
 
 from .collaborator import Collaborator
-from .blame_summary import FolderSummary
+from .folder_summary import FolderSummary
 
 
 # Domain entity object for any git repos
@@ -20,12 +20,15 @@ class Repo(BaseModel):
     class Config:
         orm_mode = True
 
+    class Errors:
+        class TooLargeToSummarize(Exception):
+            pass
+
     @property
-    def summarizable(self) -> bool:
-        self.size < self._MAX_SIZE
+    def too_large(self) -> bool:
+        self.size > self._MAX_SIZE
 
-    def folder_summary(self, folder_name: str) -> Optional[FolderSummary]:
-        from ..blame_reporter import Summary
-
-        if self.summarizable:
-            return Summary(self).for_folder(folder_name)
+    def folder_summary(self, folder_name: str) -> FolderSummary:
+        if self.too_large:
+            raise self.Errors.TooLargeToSummarize
+        return FolderSummary(self.git_url, folder_name)

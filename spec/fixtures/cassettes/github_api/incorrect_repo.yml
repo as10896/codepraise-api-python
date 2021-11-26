@@ -13,7 +13,7 @@ interactions:
       authorization:
       - <GITHUB_TOKEN>
     method: GET
-    uri: https://api.github.com/repos/as10896/SAD_REPO_NAME
+    uri: https://api.github.com/repos/ThxSeafood/SAD_REPO_NAME
   response:
     body:
       string: !!binary |
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Sun, 17 Oct 2021 13:00:00 GMT
+      - Fri, 26 Nov 2021 04:19:06 GMT
       Referrer-Policy:
       - origin-when-cross-origin, strict-origin-when-cross-origin
       Server:
@@ -54,19 +54,19 @@ interactions:
       X-GitHub-Media-Type:
       - github.v3; format=json
       X-GitHub-Request-Id:
-      - CCD4:0861:D1032:ED656:616C1E50
+      - CEC6:6FE8:1E5ADC:2C7519:61A0603A
       X-OAuth-Scopes:
       - public_repo, read:user, user:email
       X-RateLimit-Limit:
       - '5000'
       X-RateLimit-Remaining:
-      - '4973'
+      - '4932'
       X-RateLimit-Reset:
-      - '1634477474'
+      - '1637902409'
       X-RateLimit-Resource:
       - core
       X-RateLimit-Used:
-      - '27'
+      - '68'
       X-XSS-Protection:
       - '0'
     status:

@@ -13,7 +13,7 @@ interactions:
       authorization:
       - <GITHUB_TOKEN>
     method: GET
-    uri: https://api.github.com/repos/as10896/SOA_FlipFlap
+    uri: https://api.github.com/repos/ThxSeafood/thxseafood-app
   response:
     body:
       string: '{"message":"Bad credentials","documentation_url":"https://docs.github.com/rest"}'
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Sun, 17 Oct 2021 13:00:01 GMT
+      - Fri, 26 Nov 2021 04:19:07 GMT
       Referrer-Policy:
       - origin-when-cross-origin, strict-origin-when-cross-origin
       Server:
@@ -48,17 +48,17 @@ interactions:
       X-GitHub-Media-Type:
       - github.v3; format=json
       X-GitHub-Request-Id:
-      - CCD5:0860:449C3:603AA:616C1E51
+      - CEC7:6FE9:6BEAC2:7A6D25:61A0603B
       X-RateLimit-Limit:
       - '60'
       X-RateLimit-Remaining:
-      - '58'
+      - '59'
       X-RateLimit-Reset:
-      - '1634478128'
+      - '1637903947'
       X-RateLimit-Resource:
       - core
       X-RateLimit-Used:
-      - '2'
+      - '1'
       X-XSS-Protection:
       - '0'
     status:

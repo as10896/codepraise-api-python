@@ -1,1 +1,1 @@
-from .blame_report import Summary
+from .blame_report import Reporter

@@ -10,4 +10,7 @@ def spec(c, code="."):
     """
     run tests
     """
-    c.run(f"pytest -s -v spec/*_spec.py --cov={code} --cov-report=xml --cov-config=.coveragerc", pty=True)
+    c.run(
+        f"pytest -s -v spec/*_spec.py --cov={code} --cov-report=xml --cov-config=.coveragerc",
+        pty=True,
+    )

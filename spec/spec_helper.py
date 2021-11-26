@@ -10,8 +10,8 @@ import pytest
 from vcr import VCR
 
 
-USERNAME = "as10896"
-REPO_NAME = "SOA_FlipFlap"
+USERNAME = "ThxSeafood"
+REPO_NAME = "thxseafood-app"
 API_VER = "/api/v0.1"
 
 CONFIG = get_settings()
