@@ -22,7 +22,7 @@ def repo() -> entities.Repo:
 
 # HAPPY: should get blame summary for entire repo
 def test_blame_summary_for_entire_repo(repo: entities.Repo):
-    summary = repo.folder_summary("")
+    summary = blame_reporter.Summary(repo).for_folder("")
 
     assert len(summary.subfolders) == 6
     assert len(summary.base_files) == 2
@@ -32,22 +32,20 @@ def test_blame_summary_for_entire_repo(repo: entities.Repo):
 
 # HAPPY: should get accurate blame summary for specific folder
 def test_blame_summary_for_specific_folder(repo: entities.Repo):
-    summary = repo.folder_summary("application")
-    folder_summary = summary.subfolders
-    files_summary = summary.base_files
+    summary = blame_reporter.Summary(repo).for_folder("application")
 
-    assert len(folder_summary) == 5
-    assert folder_summary["views"]["<as10896@gmail.com>"] == {
+    assert len(summary.subfolders) == 5
+    assert summary.subfolders["views"]["<as10896@gmail.com>"] == {
         "name": "as10896",
         "count": 197,
     }
-    assert folder_summary["views"]["<kenlyx1124@g.ncu.edu.tw>"] == {
+    assert summary.subfolders["views"]["<kenlyx1124@g.ncu.edu.tw>"] == {
         "name": "kenlyx",
         "count": 47,
     }
 
-    assert len(files_summary) == 1
-    assert files_summary["init.rb"]["<as10896@gmail.com>"] == {
+    assert len(summary.base_files) == 1
+    assert summary.base_files["init.rb"]["<as10896@gmail.com>"] == {
         "name": "as10896",
         "count": 6,
     }

@@ -5,6 +5,7 @@ from returns.pipeline import is_successful
 
 from config.environment import get_db
 from domain import entities
+from domain.blame_reporter import Summary
 from ..services import FindDatabaseRepo
 from ..representers import FolderSummaryRepresenter
 
@@ -30,11 +31,11 @@ def find_repo(
     status_code=200,
 )
 def summary_for_entire_repo(repo: entities.Repo = Depends(find_repo)):
-    summary: entities.FolderSummary = repo.folder_summary("")
+    folder_summary: entities.FolderSummary = Summary(repo).for_folder("")
     return {
-        "folder_name": summary.folder_name,
-        "subfolders": summary.subfolders,
-        "base_files": summary.base_files,
+        "folder_name": folder_summary.folder_name,
+        "subfolders": folder_summary.subfolders,
+        "base_files": folder_summary.base_files,
     }
 
 
@@ -44,9 +45,9 @@ def summary_for_entire_repo(repo: entities.Repo = Depends(find_repo)):
     status_code=200,
 )
 def summary_for_specific_folder(folder: str, repo: entities.Repo = Depends(find_repo)):
-    summary: entities.FolderSummary = repo.folder_summary(folder)
+    folder_summary: entities.FolderSummary = Summary(repo).for_folder(folder)
     return {
-        "folder_name": summary.folder_name,
-        "subfolders": summary.subfolders,
-        "base_files": summary.base_files,
+        "folder_name": folder_summary.folder_name,
+        "subfolders": folder_summary.subfolders,
+        "base_files": folder_summary.base_files,
     }

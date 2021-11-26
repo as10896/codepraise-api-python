@@ -3,12 +3,13 @@ from typing import List, Dict, Union
 from infrastructure import gitrepo
 from config import Settings, get_settings
 from .porcelain_parser import Porcelain
+from ..entities import Repo
 
 
 # Git blame parsing and reporting services
 class Reporter:
-    def __init__(self, git_url: str, config: Settings = get_settings()):
-        origin = gitrepo.RemoteRepo(git_url)
+    def __init__(self, repo: Repo, config: Settings = get_settings()):
+        origin = gitrepo.RemoteRepo(repo.git_url)
         self._local = gitrepo.LocalRepo(origin, config.REPOSTORE_PATH)
 
     def folder_report(

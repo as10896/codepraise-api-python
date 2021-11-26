@@ -3,16 +3,17 @@ from typing import Dict, List, Union
 from itertools import starmap
 
 from .file_summary import FileSummary
-from ..blame_reporter import Reporter
 
 
 # Summarizes blame reports for an entire folder
 class FolderSummary:
-    def __init__(self, git_url: str, folder_name: str):
+    def __init__(
+        self,
+        folder_name: str,
+        blame_reports: Dict[str, List[Dict[str, Union[str, Dict[str, str]]]]],
+    ):
         self._folder_name = folder_name
-        self._blame_reports: Dict[
-            str, List[Dict[str, Union[str, Dict[str, str]]]]
-        ] = Reporter(git_url).folder_report(folder_name)
+        self._blame_reports = blame_reports
 
     @property
     def folder_name(self) -> str:
