@@ -75,3 +75,40 @@ class TestGettingDatabaseEntities:
     def test_find_sad_repo_from_db(self):
         response = client.get(f"{API_VER}/repo/{USERNAME}/SAD_REPO_NAME")
         assert response.status_code == 404
+
+
+@pytest.mark.usefixtures("preload_github_correct_repo")
+class TestGettingBlameSummaryPages:
+
+    # HAPPY: should get blame summary for root of loaded repo
+    def test_get_blame_summary_for_entire_repo(self):
+        response = client.get(f"{API_VER}/summary/{USERNAME}/{REPO_NAME}")
+        assert response.status_code == 200
+        summary = response.json()
+        assert len(summary["base_files"]) == 2
+        assert len(summary["subfolders"]) == 6
+
+    # HAPPY should get blame summary for any folder of loaded repo
+    def test_get_blame_summary_for_specific_folder(self):
+        response = client.get(f"{API_VER}/summary/{USERNAME}/{REPO_NAME}/application")
+        assert response.status_code == 200
+        summary = response.json()
+        assert sorted(summary.keys()) == ["base_files", "folder_name", "subfolders"]
+        assert sorted(summary["base_files"].keys()) == ["init.rb"]
+        assert sorted(summary["subfolders"].keys()) == [
+            "",
+            "controllers",
+            "representers",
+            "services",
+            "views",
+        ]
+
+    # SAD should report error for repos not loaded
+    def test_get_blame_summary_with_sad_repo(self):
+        response = client.get(f"{API_VER}/summary/{USERNAME}/bad_repo")
+        assert response.status_code == 404
+
+    # SAD should report error for subfolders if repos not loaded
+    def test_get_blame_summary_with_sad_repo_for_specific_folder(self):
+        response = client.get(f"{API_VER}/summary/{USERNAME}/bad_repo/bad_folder")
+        assert response.status_code == 404
