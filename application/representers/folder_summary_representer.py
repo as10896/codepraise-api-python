@@ -1,15 +1,7 @@
 from pydantic import BaseModel
-from typing import TypedDict, TypeVar, Dict
+from typing import Dict
 
-
-ContributorEmail = TypeVar("ContributorEmail", bound=str)
-SubfolderName = TypeVar("SubfolderName", bound=str)
-Filename = TypeVar("Filename", bound=str)
-
-
-class Contribution(TypedDict):
-    name: str
-    count: int
+from typing_helpers import Filename, SubfolderName, ContributorEmail, Contribution
 
 
 # Represents folder summary about repo's folder

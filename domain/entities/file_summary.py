@@ -1,11 +1,11 @@
-from typing import Dict, List, Union
+from typing import Dict, List
+
+from typing_helpers import PorcelainLineReport, Contribution, ContributorEmail
 
 
 # Summarizes a single file's blame report
 class FileSummary:
-    def __init__(
-        self, filename: str, line_reports: List[Dict[str, Union[str, Dict[str, str]]]]
-    ):
+    def __init__(self, filename: str, line_reports: List[PorcelainLineReport]):
         self._filename = filename
         self._line_reports = line_reports
 
@@ -14,14 +14,14 @@ class FileSummary:
         return self._filename
 
     @property
-    def contributions(self) -> Dict[str, Dict[str, Union[int, str]]]:
+    def contributions(self) -> Dict[ContributorEmail, Contribution]:
         if not hasattr(self, "_contributions"):
             self._contributions = self._summarize_line_reports(self._line_reports)
         return self._contributions
 
     def _summarize_line_reports(
-        self, line_reports: List[Dict[str, Union[str, Dict[str, str]]]]
-    ) -> Dict[str, Dict[str, Union[int, str]]]:
+        self, line_reports: List[PorcelainLineReport]
+    ) -> Dict[ContributorEmail, Contribution]:
         contributions = {}
         for report in line_reports:
             if report["author-mail"] not in contributions:

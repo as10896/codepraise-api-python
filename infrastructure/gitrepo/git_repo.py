@@ -8,6 +8,8 @@ import subprocess
 from contextlib import contextmanager
 from typing import List, Dict, Generator
 
+from typing_helpers import Filename, SubfolderName
+
 
 class Errors:
     class InvalidLocalRepo(Exception):
@@ -54,7 +56,7 @@ class LocalRepo:
         return self._repo_path
 
     @property
-    def folder_structure(self) -> Dict[str, List[str]]:
+    def folder_structure(self) -> Dict[SubfolderName, List[Filename]]:
         self._raise_unless_setup()
         if hasattr(self, "_folder_structure"):
             return self._folder_structure
@@ -73,7 +75,7 @@ class LocalRepo:
         return self._folder_structure
 
     @property
-    def files(self) -> List[str]:
+    def files(self) -> List[Filename]:
         self._raise_unless_setup()
         if hasattr(self, "_files"):
             return self._files

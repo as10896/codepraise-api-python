@@ -1,7 +1,8 @@
-from typing import Dict, List, Union
+from typing import Dict, List
 
 from .blame_report import Reporter
 from ..entities import Repo, FolderSummary
+from typing_helpers import Filename, PorcelainLineReport
 
 
 class Summary:
@@ -23,8 +24,8 @@ class Summary:
         if self.too_large:
             raise self.Errors.TooLargeToSummarize
 
-        blame_reports: Dict[
-            str, List[Dict[str, Union[str, Dict[str, str]]]]
-        ] = Reporter(self._repo).folder_report(folder_name)
+        blame_reports: Dict[Filename, List[PorcelainLineReport]] = Reporter(
+            self._repo
+        ).folder_report(folder_name)
 
         return FolderSummary(folder_name, blame_reports)

@@ -1,16 +1,22 @@
 import re
-from typing import Dict, List, Union
+from typing import Dict, List
 from itertools import starmap
 
 from .file_summary import FileSummary
-
+from typing_helpers import (
+    Filename,
+    SubfolderName,
+    PorcelainLineReport,
+    ContributorEmail,
+    Contribution,
+)
 
 # Summarizes blame reports for an entire folder
 class FolderSummary:
     def __init__(
         self,
         folder_name: str,
-        blame_reports: Dict[str, List[Dict[str, Union[str, Dict[str, str]]]]],
+        blame_reports: Dict[Filename, List[PorcelainLineReport]],
     ):
         self._folder_name = folder_name
         self._blame_reports = blame_reports
@@ -20,8 +26,8 @@ class FolderSummary:
         return self._folder_name
 
     @property
-    def subfolders(self) -> Dict[str, Dict[str, Dict[str, Union[int, str]]]]:
-        structured: Dict[str, List[FileSummary]] = {}
+    def subfolders(self) -> Dict[SubfolderName, Dict[ContributorEmail, Contribution]]:
+        structured: Dict[SubfolderName, List[FileSummary]] = {}
         for filename, file_summary in self.file_summaries.items():
             subfolder: str = self._rel_path(filename)
             structured.setdefault(subfolder, []).append(file_summary)
@@ -37,7 +43,7 @@ class FolderSummary:
         )
 
     @property
-    def base_files(self) -> Dict[str, Dict[str, Dict[str, Union[int, str]]]]:
+    def base_files(self) -> Dict[Filename, Dict[ContributorEmail, Contribution]]:
         return dict(
             starmap(
                 lambda filename, summary: [
@@ -56,7 +62,7 @@ class FolderSummary:
 
     def _add_contributions(
         self, summaries: List[FileSummary]
-    ) -> Dict[str, Dict[str, Union[int, str]]]:
+    ) -> Dict[ContributorEmail, Contribution]:
         contributions = {}
         for summary in summaries:
             for email, contribution in summary.contributions.items():
@@ -70,7 +76,7 @@ class FolderSummary:
         return contributions
 
     @property
-    def file_summaries(self) -> Dict[str, FileSummary]:
+    def file_summaries(self) -> Dict[Filename, FileSummary]:
         if not hasattr(self, "_file_summaries"):
             self._file_summaries = starmap(
                 lambda filename, line_reports: FileSummary(filename, line_reports),

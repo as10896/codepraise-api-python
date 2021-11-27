@@ -1,5 +1,7 @@
 import re
-from typing import List, Dict, Optional, Union
+from typing import List, Optional
+
+from typing_helpers import PorcelainLineReport, PorcelainLineReportLineNum
 
 
 # Parses git blame porcelain: https://git-scm.com/docs/git-blame
@@ -9,9 +11,7 @@ class Porcelain:
     NEWLINE = "\n"
 
     @classmethod
-    def parse_file_blame(
-        cls, output: str
-    ) -> List[Dict[str, Union[str, Dict[str, str]]]]:
+    def parse_file_blame(cls, output: str) -> List[PorcelainLineReport]:
         return list(
             map(
                 lambda line: cls.parse_porcelain_line(line),
@@ -31,9 +31,7 @@ class Porcelain:
             raise Exception("blame line parsing failed")
 
     @classmethod
-    def parse_porcelain_line(
-        cls, porcelain: str
-    ) -> Dict[str, Union[str, Dict[str, str]]]:
+    def parse_porcelain_line(cls, porcelain: str) -> PorcelainLineReport:
         line_block: List[str] = porcelain.split(cls.NEWLINE)[:-1]
         line_report = {
             "line_num": cls.parse_first_porcelain_line(line_block[0]),
@@ -48,7 +46,7 @@ class Porcelain:
         return line_report
 
     @classmethod
-    def parse_first_porcelain_line(cls, first_line: str) -> Dict[str, str]:
+    def parse_first_porcelain_line(cls, first_line: str) -> PorcelainLineReportLineNum:
         elements: List[str] = re.split(r"\s", first_line)
         element_names = ["sha", "linenum_original", "linenum_final", "group_count"]
         return dict(zip(element_names, elements))
