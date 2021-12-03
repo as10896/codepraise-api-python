@@ -1,4 +1,5 @@
 from invoke import task
+from config import get_settings
 
 
 @task(
@@ -15,7 +16,8 @@ def run(c, mode="development", reload=False, port=8000):
     """
     if reload:
         c.run(
-            f"ENV={mode} uvicorn application.app:app --reload --port {port}", pty=True
+            f"ENV={mode} uvicorn application.app:app --reload --reload-exclude {get_settings().REPOSTORE_PATH} --port {port}",
+            pty=True,
         )
     else:
         c.run(f"ENV={mode} uvicorn application.app:app --port {port}", pty=True)
@@ -27,7 +29,8 @@ def dev(c, port=8000):
     rerun fastapi server in development environment
     """
     c.run(
-        f"ENV=development uvicorn application.app:app --reload --port {port}", pty=True
+        f"ENV=development uvicorn application.app:app --reload --reload-exclude {get_settings().REPOSTORE_PATH} --port {port}",
+        pty=True,
     )
 
 
