@@ -8,6 +8,6 @@ from invoke import task
 )
 def console(c, mode="test"):
     """
-    run console
+    run application console (ipython)
     """
     c.run(f"ENV={mode} ipython -i spec/test_load_all.py", pty=True)

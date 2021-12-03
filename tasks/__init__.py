@@ -6,6 +6,7 @@ from . import quality
 from . import api
 from . import console
 from . import db
+from . import repostore
 
 
-ns = Collection(spec.spec, quality, vcr.rmvcr, api, console.console, db)
+ns = Collection(spec.spec, quality, vcr.rmvcr, api, console.console, db, repostore)

@@ -61,7 +61,7 @@ class _DataMapper:
 
     @property
     def git_url(self) -> str:
-        return self._data["git_url"]
+        return self._data["clone_url"]
 
     @property
     def contributors(self) -> List[entities.Collaborator]:

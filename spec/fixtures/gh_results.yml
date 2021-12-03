@@ -38,7 +38,7 @@ contributors:
   type: User
   url: https://api.github.com/users/kenlyx
 contributors_url: https://api.github.com/repos/ThxSeafood/thxseafood-app/contributors
-git_url: git://github.com/ThxSeafood/thxseafood-app.git
+git_url: https://github.com/ThxSeafood/thxseafood-app.git
 owner:
   avatar_url: https://avatars.githubusercontent.com/u/32433743?v=4
   events_url: https://api.github.com/users/ThxSeafood/events{/privacy}

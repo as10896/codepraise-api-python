@@ -3,6 +3,7 @@ import re
 import glob
 import base64
 import hashlib
+import shlex
 import shutil
 import subprocess
 from contextlib import contextmanager
@@ -21,9 +22,21 @@ class RemoteRepo:
     def __init__(self, git_url: str):
         self._git_url = git_url
 
-    def local_clone(self, path: str) -> None:
+    def local_clone(self, path: str) -> str:
+        # Cloning into 'infrastructure/gitrepo/repostore/Now-T9kpggGS8Xd4IB_aU0b0zcM1VdYTPq_NRaMv2Bs='...
+        # remote: Enumerating objects: 228, done.
+        # remote: Total 228 (delta 0), reused 0 (delta 0), pack-reused 228
+        # Receiving objects: 100% (228/228), 40.55 KiB | 703.00 KiB/s, done.
+        # Resolving deltas: 100% (109/109), done.
+
         cmd = f"git clone {self._git_url} {path}"
-        subprocess.run(cmd.split(), check=True)
+        process = subprocess.run(
+            shlex.split(cmd),
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+        )
+        return process.stdout.decode()
 
     @property
     def unique_id(self) -> str:
