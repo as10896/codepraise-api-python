@@ -1,4 +1,4 @@
-import subprocess
+import asyncio
 
 
 class RepoFile:
@@ -12,10 +12,13 @@ class RepoFile:
         return self._filename
 
     @property
-    def blame(self) -> str:
+    async def blame(self) -> str:
         if not hasattr(self, "_blame_output"):
             cmd = f"{self.BLAME_CMD} {self._filename}"
-            process = subprocess.run(cmd.split(), capture_output=True, check=True)
-            self._blame_output = process.stdout.decode()
+            process = await asyncio.create_subprocess_shell(
+                cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+            )
+            stdout, stderr = await process.communicate()
+            self._blame_output = stdout.decode()
 
         return self._blame_output

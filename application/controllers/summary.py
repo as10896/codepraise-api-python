@@ -30,8 +30,8 @@ def find_repo(
     response_model=FolderSummaryRepresenter,
     status_code=200,
 )
-def summary_for_entire_repo(repo: entities.Repo = Depends(find_repo)):
-    folder_summary: entities.FolderSummary = Summary(repo).for_folder("")
+async def summary_for_entire_repo(repo: entities.Repo = Depends(find_repo)):
+    folder_summary: entities.FolderSummary = await Summary(repo).for_folder("")
     return {
         "folder_name": folder_summary.folder_name,
         "subfolders": folder_summary.subfolders,
@@ -44,8 +44,10 @@ def summary_for_entire_repo(repo: entities.Repo = Depends(find_repo)):
     response_model=FolderSummaryRepresenter,
     status_code=200,
 )
-def summary_for_specific_folder(folder: str, repo: entities.Repo = Depends(find_repo)):
-    folder_summary: entities.FolderSummary = Summary(repo).for_folder(folder)
+async def summary_for_specific_folder(
+    folder: str, repo: entities.Repo = Depends(find_repo)
+):
+    folder_summary: entities.FolderSummary = await Summary(repo).for_folder(folder)
     return {
         "folder_name": folder_summary.folder_name,
         "subfolders": folder_summary.subfolders,

@@ -20,11 +20,11 @@ class Summary:
     def too_large(self) -> bool:
         self._repo.size > self._MAX_SIZE
 
-    def for_folder(self, folder_name: str) -> FolderSummary:
+    async def for_folder(self, folder_name: str) -> FolderSummary:
         if self.too_large:
             raise self.Errors.TooLargeToSummarize
 
-        blame_reports: Dict[Filename, List[PorcelainLineReport]] = Reporter(
+        blame_reports: Dict[Filename, List[PorcelainLineReport]] = await Reporter(
             self._repo
         ).folder_report(folder_name)
 
