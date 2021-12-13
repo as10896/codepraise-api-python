@@ -1,6 +1,5 @@
+import time
 from fastapi.testclient import TestClient
-
-from config.environment import SessionLocal
 
 from .spec_helper import *
 from application.app import app
@@ -9,26 +8,49 @@ from application.app import app
 client = TestClient(app)
 
 
-@pytest.fixture(autouse=True)
-def db_reset():
-    db = SessionLocal()
+@pytest.fixture
+def db_reset(db):
     db.query(database.orm.CollaboratorORM).delete()
     db.query(database.orm.RepoORM).delete()
     db.query(database.orm.repos_contributors).delete()
     db.commit()
-    db.close()
 
 
 @pytest.fixture
 @vcr.use_cassette("codepraise_api/preload_github_correct_repo.yml")
-def preload_github_correct_repo():
-    from application.services import LoadFromGithub
-
-    db = SessionLocal()
+def preload_github_correct_repo(db):
     LoadFromGithub()(db=db, config=CONFIG, ownername=USERNAME, reponame=REPO_NAME)
-    db.close()
 
 
+@pytest.fixture
+def delete_all_cloned_repo(db):
+    repositories.RepoStore.delete_all(db=db)
+    yield
+    repositories.CRUDRepo.clone_all(db=db)
+
+
+@pytest.fixture
+def clone_all_repos(db):
+    repositories.CRUDRepo.clone_all(db=db)
+
+
+@pytest.mark.usefixtures("preload_github_correct_repo", "delete_all_cloned_repo")
+class TestCloningRepos:
+
+    # HAPPY: it should begin processing uncloned repo
+    def test_processing_uncloned_repo(self):
+        response = client.get(f"{API_VER}/summary/{USERNAME}/{REPO_NAME}")
+        assert response.status_code == 202
+
+        for _ in range(5):
+            time.sleep(1)
+            print(".", end="", flush=True)
+
+        response = client.get(f"{API_VER}/summary/{USERNAME}/{REPO_NAME}")
+        assert response.status_code == 200
+
+
+@pytest.mark.usefixtures("db_reset")
 class TestPostingToCreateEntitiesFromGithub:
 
     # HAPPY: should retrieve and store repo and collaborators
@@ -77,7 +99,7 @@ class TestGettingDatabaseEntities:
         assert response.status_code == 404
 
 
-@pytest.mark.usefixtures("preload_github_correct_repo")
+@pytest.mark.usefixtures("preload_github_correct_repo", "clone_all_repos")
 class TestGettingBlameSummaryPages:
 
     # HAPPY: should get blame summary for root of loaded repo

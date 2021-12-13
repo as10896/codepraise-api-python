@@ -25,6 +25,7 @@ vcr = VCR(
     record_mode="once",
     path_transformer=VCR.ensure_suffix(".yml"),
     cassette_library_dir=os.path.join(WORKDIR, CASSETTES_FOLDER),
+    ignore_hosts=[f"sqs.{CONFIG.AWS_REGION}.amazonaws.com"],
     filter_headers=[("authorization", "<GITHUB_TOKEN>")],
     match_on=["method", "uri", "headers"],
 )

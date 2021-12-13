@@ -17,6 +17,9 @@ ipython = "*"  # to run console in production
 returns = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
+celery = {extras = ["sqs"], version = "*"}
+boto3 = "*"  # to connect to Amazon SQS
+pycurl = "*"  # to connect to Amazon SQS
 
 [dev-packages]
 pytest = "*"

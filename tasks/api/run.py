@@ -12,7 +12,7 @@ from config import get_settings
 )
 def run(c, mode="development", reload=False, port=8000):
     """
-    run fastapi server with specified settings
+    Run fastapi server with specified settings
     """
     if reload:
         c.run(
@@ -26,8 +26,9 @@ def run(c, mode="development", reload=False, port=8000):
 @task(help={"port": "Bind socket to this port.  [default: 8000]"})
 def dev(c, port=8000):
     """
-    rerun fastapi server in development environment
+    Rerun fastapi server in development environment
     """
+    print("REMEMBER: need to run `inv worker.run.dev` in another process")
     c.run(
         f"ENV=development uvicorn application.app:app --reload --reload-exclude {get_settings().REPOSTORE_PATH} --port {port}",
         pty=True,
@@ -37,6 +38,7 @@ def dev(c, port=8000):
 @task(help={"port": "Bind socket to this port.  [default: 8080]"})
 def test(c, port=8080):
     """
-    run fastapi server in test environment
+    Run fastapi server in test environment
     """
+    print("REMEMBER: need to run `inv worker.run.test` in another process")
     c.run(f"ENV=test uvicorn application.app:app --port {port}", pty=True)

@@ -4,15 +4,15 @@ import sys
 WORKDIR = os.path.dirname(os.path.dirname(__file__))
 sys.path.append(WORKDIR)
 
+from application.services import LoadFromGithub
+
 from config import get_settings
+from config.environment import SessionLocal
 
-from domain import entities
-from domain import blame_reporter
-from domain import github_mappers
-from domain import database_repositories as repository
+from domain import entities, repositories
+from domain.mappers import github_mappers, git_mappers, blame_mappers
 
-from infrastructure import github
-from infrastructure import gitrepo
+from infrastructure import github, gitrepo
 from infrastructure import (
     database,
 )  # necessary for SQLAlchemy to initialize relationships properly

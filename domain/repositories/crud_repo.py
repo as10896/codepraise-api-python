@@ -1,8 +1,9 @@
 from typing import Optional, List
 from sqlalchemy.orm import Session
 
-from .crud_collaborator import CRUDCollaborator
 
+from .crud_collaborator import CRUDCollaborator
+from ..mappers.git_mappers.git_repos import GitRepo
 from .. import entities
 from infrastructure import database
 
@@ -12,6 +13,13 @@ class CRUDRepo:
     def all(cls, db: Session) -> List[entities.Repo]:
         db_record = db.query(database.orm.RepoORM).all()
         return list(map(lambda db_repo: cls.rebuild_entity(db_repo), db_record))
+
+    @classmethod
+    def clone_all(cls, db: Session) -> None:
+        for repo in cls.all(db=db):
+            gitrepo = GitRepo(repo)
+            if not gitrepo.exists_locally:
+                gitrepo.clone()
 
     @classmethod
     def find_full_name(

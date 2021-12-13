@@ -1,7 +1,7 @@
 from typing import List, Type
 
 from .collaborator_mapper import CollaboratorMapper
-from .. import entities
+from ... import entities
 from config import Settings
 from infrastructure import github
 

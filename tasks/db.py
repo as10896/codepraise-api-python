@@ -5,7 +5,7 @@ from config import get_settings
 @task(help={"message": "Revision message of this migration."})
 def revision(c, message):
     """
-    automatically generate migration script based on SQLAlchemy ORM models (manual review is necessary)
+    Automatically generate migration script based on SQLAlchemy ORM models (manual review is necessary)
     """
     c.run(f"alembic revision --autogenerate -m {message}", pty=True)
 
@@ -17,7 +17,7 @@ def revision(c, message):
 )
 def migrate(c, env="development"):
     """
-    run migrations
+    Run migrations
     """
     import os
 
@@ -43,7 +43,7 @@ def migrate(c, env="development"):
 )
 def drop(c, env="development"):
     """
-    drop all tables
+    Drop all tables
     """
     import os
 
@@ -69,7 +69,7 @@ def drop(c, env="development"):
 )
 def reset(c, env="development"):
     """
-    reset all database tables
+    Reset all database tables
     """
     drop(c, env)
     migrate(c, env)
@@ -77,12 +77,12 @@ def reset(c, env="development"):
 
 @task(
     help={
-        "env": "Environment of the database to delete. ['test'|'development'|'production'] [default: 'test']"
+        "env": "Environment of the database to delete. ['test'|'development'|'production'] [default: 'development']"
     }
 )
-def wipe(c, env="test"):
+def wipe(c, env="development"):
     """
-    delete dev or test database file
+    Delete dev or test database file
     """
     import os
 

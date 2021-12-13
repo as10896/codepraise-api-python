@@ -3,8 +3,8 @@ from returns.result import Result, Success, Failure
 from returns.pipeline import flow
 from returns.pointfree import bind
 
-from domain import github_mappers
-from domain import database_repositories as repository
+from domain import repositories
+from domain.mappers import github_mappers
 from domain.values import ServiceResult
 
 
@@ -34,7 +34,7 @@ class LoadFromGithub:
     def check_if_repo_already_loaded(
         self, input: Dict[str, Any]
     ) -> Result[Dict[str, Any], ServiceResult]:
-        if repository.For[type(input["repo"])].find(input["db"], input["repo"]):
+        if repositories.For[type(input["repo"])].find(input["db"], input["repo"]):
             return Failure(ServiceResult("conflict", "Repo already loaded"))
         else:
             return Success(input)
@@ -43,7 +43,7 @@ class LoadFromGithub:
         self, input: Dict[str, Any]
     ) -> Result[ServiceResult, ServiceResult]:
         try:
-            stored_repo = repository.For[type(input["repo"])].create(
+            stored_repo = repositories.For[type(input["repo"])].create(
                 input["db"], input["repo"]
             )
             return Success(ServiceResult("created", stored_repo))

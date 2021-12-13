@@ -1,18 +1,16 @@
 import asyncio
 from typing import List, Dict
 
-from infrastructure import gitrepo
-from config import Settings, get_settings
 from .porcelain_parser import Porcelain
-from ..entities import Repo
+from ..git_mappers import GitRepo
+from infrastructure.gitrepo import RepoFile
 from typing_helpers import Filename, SubfolderName, PorcelainLineReport
 
 
 # Git blame parsing and reporting services
 class Reporter:
-    def __init__(self, repo: Repo, config: Settings = get_settings()):
-        origin = gitrepo.RemoteRepo(repo.git_url)
-        self._local = gitrepo.LocalRepo(origin, config.REPOSTORE_PATH)
+    def __init__(self, gitrepo: GitRepo):
+        self._local = gitrepo.local
 
     async def folder_report(
         self, folder_name: str
@@ -46,5 +44,5 @@ class Reporter:
 
     @classmethod
     async def file_report(cls, filename: str) -> List[PorcelainLineReport]:
-        blame_output: str = await gitrepo.RepoFile(filename).blame
+        blame_output: str = await RepoFile(filename).blame
         return Porcelain.parse_file_blame(blame_output)

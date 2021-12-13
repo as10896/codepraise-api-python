@@ -1,5 +1,5 @@
 import re
-from typing import Dict, List
+from typing import Dict, Generator, List
 from itertools import starmap
 
 from .file_summary import FileSummary
@@ -10,6 +10,7 @@ from typing_helpers import (
     ContributorEmail,
     Contribution,
 )
+
 
 # Summarizes blame reports for an entire folder
 class FolderSummary:
@@ -104,3 +105,9 @@ class FolderSummary:
         rel_filename = filename[self.folder_prefix_length :]
         match = re.match(r"(?P<subfolder>.*/)?(?P<file>.*)", rel_filename)
         return match["file"]
+
+    def __iter__(self) -> Generator:
+        # To make a FolderSummary object able to convert into a dictionary with `dict(obj)`
+        # So later we could pass it into `BaseModel.parse_obj()`, turning into a Representer object
+        for key in ["folder_name", "subfolders", "base_files"]:
+            yield key, getattr(self, key)

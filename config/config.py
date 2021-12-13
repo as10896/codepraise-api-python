@@ -6,6 +6,11 @@ from pydantic import BaseSettings
 class Settings(BaseSettings):
     GH_TOKEN: str
     REPOSTORE_PATH: str
+    AWS_ACCESS_KEY_ID: str
+    AWS_SECRET_ACCESS_KEY: str
+    AWS_REGION: str
+    CLONE_QUEUE: str
+    CLONE_QUEUE_URL: str
 
 
 class Test(Settings):

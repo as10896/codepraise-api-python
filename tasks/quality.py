@@ -8,7 +8,7 @@ from invoke import task
 )
 def metric(c, code="."):
     """
-    measure code metric with radon
+    Measure code metric with radon
     """
     print("Code metrics:\n")
     c.run(f"radon cc {code}", pty=True)
@@ -22,7 +22,7 @@ def metric(c, code="."):
 )
 def style(c, code="."):
     """
-    examine coding style with flake8
+    Examine coding style with flake8
     """
     print("Coding style check:\n")
     c.run(f"flake8 {code} --exit-zero", pty=True)
@@ -37,7 +37,7 @@ def style(c, code="."):
 )
 def all(c, code="."):
     """
-    run all quality tasks (style + metric)
+    Run all quality tasks (style + metric)
     """
     print("Run all quality tests...\n")
     style(c, code)
@@ -47,7 +47,7 @@ def all(c, code="."):
 @task(help={"code": "Name of the python script or pacakge to reformat. Default: '.'"})
 def reformat(c, code="."):
     """
-    reformat your code using the black code style
+    Reformat your code using the black coding style
     """
     c.run(f"black {code}", pty=True)
 
@@ -59,6 +59,6 @@ def reformat(c, code="."):
 )
 def typecheck(c, code="."):
     """
-    type checking with mypy
+    Type checking with mypy
     """
     c.run(f"mypy {code} --config-file mypy.ini", pty=True)

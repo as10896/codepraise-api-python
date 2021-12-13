@@ -1,12 +1,13 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, Request, HTTPException
 from sqlalchemy.orm import Session
 from returns.result import Result
 from returns.pipeline import is_successful
+from datetime import datetime
 
 from config.environment import get_db
 from domain import entities
-from domain.blame_reporter import Summary
-from ..services import FindDatabaseRepo
+from .route_helpers import represent_response
+from ..services import FindDatabaseRepo, SummarizeFolder
 from ..representers import FolderSummaryRepresenter
 
 
@@ -28,28 +29,32 @@ def find_repo(
 @router.get(
     "/summary/{ownername}/{reponame}",
     response_model=FolderSummaryRepresenter,
-    status_code=200,
 )
-async def summary_for_entire_repo(repo: entities.Repo = Depends(find_repo)):
-    folder_summary: entities.FolderSummary = await Summary(repo).for_folder("")
-    return {
-        "folder_name": folder_summary.folder_name,
-        "subfolders": folder_summary.subfolders,
-        "base_files": folder_summary.base_files,
-    }
+async def summary_for_entire_repo(
+    request: Request, repo: entities.Repo = Depends(find_repo)
+):
+    request_unique = [dict(request), request.url.path, datetime.now()]
+    request_id: int = hash("".join(map(str, request_unique)))
+
+    summarize_result: Result = await SummarizeFolder()(
+        repo=repo, folder="", unique_id=request_id
+    )
+
+    return represent_response(summarize_result, FolderSummaryRepresenter)
 
 
 @router.get(
     "/summary/{ownername}/{reponame}/{folder:path}",
     response_model=FolderSummaryRepresenter,
-    status_code=200,
 )
 async def summary_for_specific_folder(
-    folder: str, repo: entities.Repo = Depends(find_repo)
+    folder: str, request: Request, repo: entities.Repo = Depends(find_repo)
 ):
-    folder_summary: entities.FolderSummary = await Summary(repo).for_folder(folder)
-    return {
-        "folder_name": folder_summary.folder_name,
-        "subfolders": folder_summary.subfolders,
-        "base_files": folder_summary.base_files,
-    }
+    request_unique = [dict(request), request.url.path, datetime.now()]
+    request_id: int = hash("".join(map(str, request_unique)))
+
+    summarize_result: Result = await SummarizeFolder()(
+        repo=repo, folder=folder, unique_id=request_id
+    )
+
+    return represent_response(summarize_result, FolderSummaryRepresenter)

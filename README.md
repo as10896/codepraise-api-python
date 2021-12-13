@@ -19,6 +19,13 @@ pipenv install --dev  # install required dependencies with Pipfile
 1. Generate token [here](https://github.com/settings/tokens)
 2. Create `GH_TOKEN` under `config/secrets/<env>/` with the generated token
 
+### Set up Amazon SQS
+1. Create an AWS account and an IAM user ([Ref](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-setting-up.html)).
+2. Create `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` under `config/secrets/<env>/` with the generated credentials.
+3. Select a region where FIFO Queues is available (e.g. `us-east-1`, see [here](https://aws.amazon.com/about-aws/whats-new/2019/02/amazon-sqs-fifo-qeues-now-available-in-15-aws-regions/) for more info), then creating `AWS_REGION` under `config/secrets/<env>/` with the region name.
+3. Creating a **FIFO** Amazon SQS queue ([Ref](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-create-queue.html)).
+    * Notice that the name of a FIFO queue must end with the `.fifo` suffix.
+4. Create `CLONE_QUEUE`, `CLONE_QUEUE_URL` under `config/secrets/<env>/` with the created queue's name and URL respectively.
 
 ## Usage
 Here we use [invoke](https://docs.pyinvoke.org/) as our task management tool
@@ -27,10 +34,15 @@ Here we use [invoke](https://docs.pyinvoke.org/) as our task management tool
 inv -l  # show all tasks
 inv [task] -h  # show task help message
 inv console  # run application console (ipython)
-inv spec  # run all test scripts
+inv spec  # run all test scripts (need to run `inv worker.run.test` in another process)
 inv api.run -m [mode] -p [port]  # run FastAPI server with specified settings (add `-r` or `--reload` to use auto-reload)
 inv api.run.dev -p [port]  # rerun FastAPI server in development environment
 inv api.run.test -p [port]  # run FastAPI server in test environment
+inv worker.run.dev  # run the background Celery worker in development mode
+inv worker.run.prod  # run the background Celery worker in production mode
+inv worker.run.test  # run the background Celery worker in test mode
+inv queue.create -e [env]  # create SQS queue for Celery
+inv queue.purge -e [env]  # purge messages in SQS queue for Celery
 inv db.drop -e [env]  # drop all db tables
 inv db.migrate -e [env]  # run db schema migrations
 inv db.reset -e [env]  # reset all database tables (drop + migrate)
@@ -42,6 +54,8 @@ inv quality.all  # run all quality tasks (style + metric)
 inv quality.reformat  # reformat your code using the black code style
 inv quality.typecheck  # check type with mypy
 inv quality  # same as `inv quality.all`
-inv rmvcr  # delete cassette fixtures (test stubs generated with vcrpy)
-inv repostore.list  # List cloned repos in repo store
+inv repostore.list  # list cloned repos in repo store
+inv repostore.create  # create the directory of repostore path
+inv repostore.delete  # delete cloned repos in repo store
+inv vcr.delete  # delete cassette fixtures (test stubs generated with vcrpy)
 ```

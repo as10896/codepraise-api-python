@@ -1,6 +1,6 @@
 from typing import List, Type, Optional
 
-from .. import entities
+from ... import entities
 from config import Settings
 from infrastructure import github
 
