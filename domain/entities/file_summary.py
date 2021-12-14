@@ -1,6 +1,6 @@
 from typing import Dict, List
 
-from typing_helpers import PorcelainLineReport, Contribution, ContributorEmail
+from typing_helpers import Contribution, ContributorEmail, PorcelainLineReport
 
 
 # Summarizes a single file's blame report

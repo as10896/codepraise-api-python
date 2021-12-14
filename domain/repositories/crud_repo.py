@@ -1,11 +1,12 @@
-from typing import Optional, List
+from typing import List, Optional
+
 from sqlalchemy.orm import Session
 
-
-from .crud_collaborator import CRUDCollaborator
-from ..mappers.git_mappers.git_repos import GitRepo
-from .. import entities
 from infrastructure import database
+
+from .. import entities
+from ..mappers.git_mappers.git_repos import GitRepo
+from .crud_collaborator import CRUDCollaborator
 
 
 class CRUDRepo:

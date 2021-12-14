@@ -1,8 +1,9 @@
-from typing import List, Type, Optional
+from typing import List, Optional, Type
 
-from ... import entities
 from config import Settings
 from infrastructure import github
+
+from ... import entities
 
 
 # Data Mapper for Github contributors

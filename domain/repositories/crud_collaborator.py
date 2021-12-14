@@ -1,8 +1,10 @@
 from typing import Optional
+
 from sqlalchemy.orm import Session
 
-from .. import entities
 from infrastructure import database
+
+from .. import entities
 
 
 class CRUDCollaborator:

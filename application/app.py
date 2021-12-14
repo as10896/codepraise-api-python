@@ -1,8 +1,8 @@
 from fastapi import FastAPI
+
 from config import get_settings
 
 from .controllers import api_router
-
 
 config = get_settings()
 app = FastAPI()

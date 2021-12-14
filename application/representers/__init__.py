@@ -1,4 +1,4 @@
-from .repo_representer import RepoRepresenter
-from .repos_representer import ReposRepresenter
 from .folder_summary_representer import FolderSummaryRepresenter
 from .http_response_representer import HttpResponseRepresenter
+from .repo_representer import RepoRepresenter
+from .repos_representer import ReposRepresenter

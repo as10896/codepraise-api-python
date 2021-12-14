@@ -1,9 +1,10 @@
 from typing import List
+
 from sqlalchemy.orm import Session
 
-from .crud_repo import CRUDRepo
-from ..mappers.git_mappers import GitRepo
 from .. import entities
+from ..mappers.git_mappers import GitRepo
+from .crud_repo import CRUDRepo
 
 
 class RepoStore:

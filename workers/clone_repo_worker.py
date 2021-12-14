@@ -1,10 +1,9 @@
 from celery import Celery
 from kombu.utils.url import safequote
 
-from config import get_settings
 from application.representers import RepoRepresenter
+from config import get_settings
 from domain.mappers.git_mappers import GitRepo
-
 
 config = get_settings()
 

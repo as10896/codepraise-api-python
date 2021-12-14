@@ -47,8 +47,11 @@ def all(c, code="."):
 @task(help={"code": "Name of the python script or pacakge to reformat. Default: '.'"})
 def reformat(c, code="."):
     """
-    Reformat your code using the black coding style
+    Reformat your code using isort and the black coding style
     """
+    print(f"{'=' * 10} isort {'=' * 10}")
+    c.run(f"isort {code} --profile black", pty=True)
+    print(f"\n{'=' * 10} black {'=' * 10}")
     c.run(f"black {code}", pty=True)
 
 

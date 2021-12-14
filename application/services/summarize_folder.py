@@ -1,16 +1,18 @@
 from typing import Any, Dict
-from returns.result import Result, Success, Failure
-from returns.future import FutureResult, FutureSuccess, FutureFailure
-from returns.io import IOResult
-from returns.unsafe import unsafe_perform_io
-from returns.pointfree import bind_async
-from returns.pipeline import flow
 
-from domain.mappers.git_mappers import GitRepo
-from domain.mappers.blame_mappers import Summary
+from returns.future import FutureFailure, FutureResult, FutureSuccess
+from returns.io import IOResult
+from returns.pipeline import flow
+from returns.pointfree import bind_async
+from returns.result import Failure, Result, Success
+from returns.unsafe import unsafe_perform_io
+
 from domain.entities.folder_summary import FolderSummary
+from domain.mappers.blame_mappers import Summary
+from domain.mappers.git_mappers import GitRepo
 from domain.values import ServiceResult
 from workers import CloneRepoWorker
+
 from ..representers import RepoRepresenter
 
 

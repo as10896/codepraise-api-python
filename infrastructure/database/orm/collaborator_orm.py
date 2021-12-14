@@ -1,10 +1,12 @@
-from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.orm import relationship
 from datetime import datetime
 
+from sqlalchemy import Column, DateTime, Integer, String
+from sqlalchemy.orm import relationship
+
 from config.environment import Base
-from .repos_collaborators_orm import repos_contributors
+
 from .orm_repr_mixin import ORMReprMixin
+from .repos_collaborators_orm import repos_contributors
 
 
 class CollaboratorORM(Base, ORMReprMixin):

@@ -1,6 +1,7 @@
 # Ref: https://stackoverflow.com/questions/55713664/sqlalchemy-best-way-to-define-repr-for-large-tables
 
-from typing import Dict, Any
+from typing import Any, Dict
+
 from sqlalchemy.orm.exc import DetachedInstanceError
 
 

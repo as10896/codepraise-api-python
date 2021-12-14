@@ -1,6 +1,7 @@
-from ...entities import Repo
 from config import Settings, get_settings
-from infrastructure.gitrepo import RemoteRepo, LocalRepo
+from infrastructure.gitrepo import LocalRepo, RemoteRepo
+
+from ...entities import Repo
 
 
 class Errors:

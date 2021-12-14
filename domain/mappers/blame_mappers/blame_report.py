@@ -1,10 +1,11 @@
 import asyncio
-from typing import List, Dict
+from typing import Dict, List
 
-from .porcelain_parser import Porcelain
-from ..git_mappers import GitRepo
 from infrastructure.gitrepo import RepoFile
-from typing_helpers import Filename, SubfolderName, PorcelainLineReport
+from typing_helpers import Filename, PorcelainLineReport, SubfolderName
+
+from ..git_mappers import GitRepo
+from .porcelain_parser import Porcelain
 
 
 # Git blame parsing and reporting services

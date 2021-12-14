@@ -1,7 +1,8 @@
-from pydantic import BaseModel
 from typing import Dict
 
-from typing_helpers import Filename, SubfolderName, ContributorEmail, Contribution
+from pydantic import BaseModel
+
+from typing_helpers import Contribution, ContributorEmail, Filename, SubfolderName
 
 
 # Represents folder summary about repo's folder

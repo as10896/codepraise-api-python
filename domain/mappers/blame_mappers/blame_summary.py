@@ -1,9 +1,10 @@
 from typing import Dict, List
 
-from .blame_report import Reporter
-from ..git_mappers import GitRepo
-from ...entities import FolderSummary
 from typing_helpers import Filename, PorcelainLineReport
+
+from ...entities import FolderSummary
+from ..git_mappers import GitRepo
+from .blame_report import Reporter
 
 
 class Summary:

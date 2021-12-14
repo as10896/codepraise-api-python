@@ -1,9 +1,8 @@
 from logging.config import fileConfig
 
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
-
 from alembic import context
+from sqlalchemy import engine_from_config, pool
+
 from config.db_session import get_db_url, get_sqlalchemy_engine
 
 # this is the Alembic Config object, which provides
@@ -14,15 +13,16 @@ config = context.config
 # This line sets up loggers basically.
 fileConfig(config.config_file_name)
 
+from config.environment import Base
+
 # add your model's MetaData object here
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 # target_metadata = None
 from infrastructure.database import (
-    orm,
-)  # necessary for SQLAlchemy to initialize relationships properly
-from config.environment import Base
+    orm,  # necessary for SQLAlchemy to initialize relationships properly
+)
 
 target_metadata = Base.metadata
 

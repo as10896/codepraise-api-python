@@ -1,4 +1,5 @@
 from typing import List, Optional
+
 from pydantic import BaseModel, StrictInt, StrictStr
 
 from .collaborator import Collaborator

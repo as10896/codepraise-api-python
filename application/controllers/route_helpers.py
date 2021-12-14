@@ -1,13 +1,14 @@
-from fastapi.responses import JSONResponse
+from typing import Any, Dict, Optional, TypeVar
+
 from fastapi.encoders import jsonable_encoder
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-from returns.result import Result
 from returns.pipeline import is_successful
-from typing import Dict, Any, Optional, TypeVar
+from returns.result import Result
 
 from domain.values import ServiceResult
-from ..representers import HttpResponseRepresenter
 
+from ..representers import HttpResponseRepresenter
 
 Representer = TypeVar("Representer", bound=BaseModel)
 

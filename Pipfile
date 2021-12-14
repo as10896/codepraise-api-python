@@ -28,6 +28,7 @@ pytest-cov = "*"
 pytest-asyncio = "*"
 flake8 = "*"
 radon = "*"
+isort = "*"
 black = "*"
 regex = "==2021.09.30"  # to fix the library validation error of `black`
 mypy = "*"

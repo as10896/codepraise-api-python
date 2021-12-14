@@ -1,7 +1,8 @@
 from typing import Any, Dict
-from returns.result import Result, Success, Failure
+
 from returns.pipeline import flow
 from returns.pointfree import bind
+from returns.result import Failure, Result, Success
 
 from domain import repositories
 from domain.mappers import github_mappers

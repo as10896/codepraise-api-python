@@ -2,7 +2,6 @@ from sqlalchemy import Column, ForeignKey, Integer, Table
 
 from config.environment import Base
 
-
 repos_contributors = Table(
     "repos_contributors",
     Base.metadata,

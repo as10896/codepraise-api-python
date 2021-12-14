@@ -1,5 +1,4 @@
-from typing import TypeVar, TypedDict
-
+from typing import TypedDict, TypeVar
 
 Filename = TypeVar("Filename", bound=str)
 SubfolderName = TypeVar("SubfolderName", bound=str)

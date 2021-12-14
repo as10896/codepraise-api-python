@@ -3,12 +3,13 @@ import os
 os.environ["ENV"] = "test"
 
 
-from .test_load_all import *
-
-import yaml
 import pytest
+import yaml
 from vcr import VCR
 
+from application.app import app
+
+from .test_load_all import *
 
 USERNAME = "ThxSeafood"
 REPO_NAME = "thxseafood-app"

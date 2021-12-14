@@ -1,9 +1,10 @@
 from typing import List, Type
 
-from .collaborator_mapper import CollaboratorMapper
-from ... import entities
 from config import Settings
 from infrastructure import github
+
+from ... import entities
+from .collaborator_mapper import CollaboratorMapper
 
 
 # Data Mapper object for Github's git repos

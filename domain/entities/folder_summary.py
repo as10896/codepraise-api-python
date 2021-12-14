@@ -1,15 +1,16 @@
 import re
-from typing import Dict, Generator, List
 from itertools import starmap
+from typing import Dict, Generator, List
+
+from typing_helpers import (
+    Contribution,
+    ContributorEmail,
+    Filename,
+    PorcelainLineReport,
+    SubfolderName,
+)
 
 from .file_summary import FileSummary
-from typing_helpers import (
-    Filename,
-    SubfolderName,
-    PorcelainLineReport,
-    ContributorEmail,
-    Contribution,
-)
 
 
 # Summarizes blame reports for an entire folder

@@ -1,9 +1,8 @@
 import time
+
 from fastapi.testclient import TestClient
 
 from .spec_helper import *
-from application.app import app
-
 
 client = TestClient(app)
 

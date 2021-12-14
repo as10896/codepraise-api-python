@@ -1,11 +1,12 @@
+import glob
 import os
 import re
-import glob
 import shutil
 from contextlib import contextmanager
-from typing import List, Dict, Generator
+from typing import Dict, Generator, List
 
 from typing_helpers import Filename, SubfolderName
+
 from .remote_repo import RemoteRepo
 
 
