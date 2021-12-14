@@ -34,14 +34,13 @@ jobs:
         run: pipenv install --dev
       - name: Run Celery worker for tests
         env:
-          ENV: test
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
           CLONE_QUEUE: ${{ secrets.CLONE_QUEUE }}
           CLONE_QUEUE_URL: ${{ secrets.CLONE_QUEUE_URL }}
-        run: pipenv run celery --app=workers.clone_repo_worker:celery worker --loglevel=INFO --detach
+        run: pipenv run inv worker.run.test &
       - name: Run tests
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
