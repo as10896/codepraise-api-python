@@ -3,7 +3,7 @@ from .spec_helper import *
 
 @pytest.fixture(scope="module")
 @vcr.use_cassette("github_api/correct_repo.yml")
-def repo():
+def repo() -> entities.Repo:
     repo_mapper = github_mappers.RepoMapper(CONFIG)
     return repo_mapper.find(USERNAME, REPO_NAME)
 

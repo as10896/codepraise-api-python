@@ -1,4 +1,4 @@
-from typing import Generator
+from typing import Iterator
 
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -11,7 +11,7 @@ Base = declarative_base()
 
 
 # Dependency
-def get_db() -> Generator:
+def get_db() -> Iterator[SessionLocal]:
     db = SessionLocal()
     try:
         yield db

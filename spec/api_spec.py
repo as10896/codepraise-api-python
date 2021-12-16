@@ -1,4 +1,5 @@
 import time
+from typing import Iterator
 
 from fastapi.testclient import TestClient
 
@@ -8,7 +9,7 @@ client = TestClient(app)
 
 
 @pytest.fixture
-def db_reset(db):
+def db_reset(db) -> None:
     db.query(database.orm.CollaboratorORM).delete()
     db.query(database.orm.RepoORM).delete()
     db.query(database.orm.repos_contributors).delete()
@@ -17,19 +18,19 @@ def db_reset(db):
 
 @pytest.fixture
 @vcr.use_cassette("codepraise_api/preload_github_correct_repo.yml")
-def preload_github_correct_repo(db):
+def preload_github_correct_repo(db) -> None:
     LoadFromGithub()(db=db, config=CONFIG, ownername=USERNAME, reponame=REPO_NAME)
 
 
 @pytest.fixture
-def delete_all_cloned_repo(db):
+def delete_all_cloned_repo(db) -> Iterator[None]:
     repositories.RepoStore.delete_all(db=db)
     yield
     repositories.CRUDRepo.clone_all(db=db)
 
 
 @pytest.fixture
-def clone_all_repos(db):
+def clone_all_repos(db) -> None:
     repositories.CRUDRepo.clone_all(db=db)
 
 

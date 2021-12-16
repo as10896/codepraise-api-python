@@ -3,7 +3,7 @@ import os
 import re
 import shutil
 from contextlib import contextmanager
-from typing import Dict, Generator, List
+from typing import Dict, Iterator, List
 
 from typing_helpers import Filename, SubfolderName
 
@@ -69,7 +69,7 @@ class LocalRepo:
         return self._files
 
     @contextmanager
-    def in_repo(self) -> Generator:
+    def in_repo(self) -> Iterator[None]:
         self._raise_unless_setup()
         old_cwd = os.getcwd()
         os.chdir(self._repo_path)

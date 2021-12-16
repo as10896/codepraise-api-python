@@ -1,6 +1,6 @@
 import re
 from itertools import starmap
-from typing import Dict, Generator, List
+from typing import Any, Dict, Iterator, List, Tuple
 
 from typing_helpers import (
     Contribution,
@@ -107,7 +107,7 @@ class FolderSummary:
         match = re.match(r"(?P<subfolder>.*/)?(?P<file>.*)", rel_filename)
         return match["file"]
 
-    def __iter__(self) -> Generator:
+    def __iter__(self) -> Iterator[Tuple[str, Any]]:
         # To make a FolderSummary object able to convert into a dictionary with `dict(obj)`
         # So later we could pass it into `BaseModel.parse_obj()`, turning into a Representer object
         for key in ["folder_name", "subfolders", "base_files"]:
