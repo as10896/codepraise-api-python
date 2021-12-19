@@ -1,5 +1,6 @@
 from invoke import task
 
+from config import get_settings
 
 @task(
     help={
@@ -50,9 +51,11 @@ def reformat(c, code="."):
     Reformat your code using isort and the black coding style
     """
     print(f"{'=' * 10} isort {'=' * 10}")
-    c.run(f"isort {code} --profile black", pty=True)
+    c.run(
+        f"isort {code} --profile black --skip {get_settings().REPOSTORE_PATH}", pty=True
+    )
     print(f"\n{'=' * 10} black {'=' * 10}")
-    c.run(f"black {code}", pty=True)
+    c.run(f"black {code} --exclude={get_settings().REPOSTORE_PATH}", pty=True)
 
 
 @task(
