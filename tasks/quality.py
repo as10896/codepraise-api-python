@@ -2,6 +2,7 @@ from invoke import task
 
 from config import get_settings
 
+
 @task(
     help={
         "code": "Name of the python script or pacakge to measure code metric. Default: '.'"

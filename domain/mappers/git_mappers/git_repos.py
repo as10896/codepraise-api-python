@@ -1,3 +1,5 @@
+from typing import Iterator, Optional
+
 from config import Settings, get_settings
 from infrastructure.gitrepo import LocalRepo, RemoteRepo
 
@@ -15,14 +17,15 @@ class Errors:
         pass
 
 
+# Maps over local and remote git repo infrastructure
 class GitRepo:
 
     _MAX_SIZE = 1000  # for cloning, analysis, summaries, etc.
 
     def __init__(self, repo: Repo, config: Settings = get_settings()):
         self._repo = repo
-        origin = RemoteRepo(self._repo.git_url)
-        self._local = LocalRepo(origin, config.REPOSTORE_PATH)
+        remote = RemoteRepo(self._repo.git_url)
+        self._local = LocalRepo(remote, config.REPOSTORE_PATH)
 
     @property
     def local(self) -> LocalRepo:
@@ -41,10 +44,14 @@ class GitRepo:
     def exists_locally(self) -> bool:
         return self._local.exists
 
-    def clone(self) -> None:
+    def clone(self, verbose=False) -> Optional[Iterator[str]]:
         if self.too_large:
             raise Errors.TooLargeToClone
         if self.exists_locally:
             raise Errors.CannotOverwriteLocalRepo
 
-        self._local.clone_remote()
+        if not verbose:
+            tuple(self._local.clone_remote())
+            return
+
+        yield from self._local.clone_remote()

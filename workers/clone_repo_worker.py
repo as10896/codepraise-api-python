@@ -1,9 +1,11 @@
 from celery import Celery
 from kombu.utils.url import safequote
 
-from application.representers import RepoRepresenter
 from config import get_settings
 from domain.mappers.git_mappers import GitRepo
+
+from .clone_monitor import CloneMonitor
+from .job_reporter import JobReporter
 
 config = get_settings()
 
@@ -22,13 +24,16 @@ celery.conf.broker_transport_options = {
 class CloneRepoWorker:
     @staticmethod
     @celery.task(acks_late=True)
-    def clone_repo(worker_request: str):
-        request: RepoRepresenter = RepoRepresenter.parse_raw(worker_request)
-        print(f"REQUEST: {request}")
-        gitrepo = GitRepo(request)
-        print(f"EXISTS: {gitrepo.exists_locally}")
+    def clone_repo(request_json: str) -> None:
+        job = JobReporter(request_json, config)
+        gitrepo = GitRepo(job.repo, config)
+
         if gitrepo.exists_locally:
             return
-        gitrepo.clone()
-        print(f"REQUEST: #{request}")
-        print(f"EXISTS: #{gitrepo.exists_locally}")
+
+        job.report(CloneMonitor.starting_percent)
+        for line in gitrepo.clone(verbose=True):
+            job.report(CloneMonitor.progress(line))
+
+        # Keep sending finished status to any latecoming subscribers
+        job.report_each_second(5, CloneMonitor.finished_percent)

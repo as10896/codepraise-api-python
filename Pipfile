@@ -20,6 +20,7 @@ psycopg2-binary = "*"
 celery = {extras = ["sqs"], version = "*"}
 boto3 = "*"  # to connect to Amazon SQS
 pycurl = "*"  # to connect to Amazon SQS
+broadcaster = "==0.2.0"
 
 [dev-packages]
 pytest = "*"
@@ -32,6 +33,7 @@ isort = "*"
 black = "*"
 regex = "==2021.09.30"  # to fix the library validation error of `black`
 mypy = "*"
+requests-mock = "*"
 
 [requires]
 python_version = "3.9"

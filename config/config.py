@@ -5,6 +5,7 @@ from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):
+    API_URL: str
     GH_TOKEN: str
     REPOSTORE_PATH: str
     AWS_ACCESS_KEY_ID: str

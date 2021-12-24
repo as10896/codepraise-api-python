@@ -34,11 +34,12 @@ def find_repo(
 async def summary_for_entire_repo(
     request: Request, repo: entities.Repo = Depends(find_repo)
 ):
-    request_unique = [dict(request), request.url.path, datetime.now()]
-    request_id: int = hash("".join(map(str, request_unique)))
+    request_id = hash(
+        (str(dict(request)), request.url.path, datetime.now().timestamp())
+    )
 
     summarize_result: Result = await SummarizeFolder()(
-        repo=repo, folder="", unique_id=request_id
+        repo=repo, folder="", id=request_id
     )
 
     return represent_response(summarize_result, FolderSummaryRepresenter)
@@ -51,11 +52,12 @@ async def summary_for_entire_repo(
 async def summary_for_specific_folder(
     folder: str, request: Request, repo: entities.Repo = Depends(find_repo)
 ):
-    request_unique = [dict(request), request.url.path, datetime.now()]
-    request_id: int = hash("".join(map(str, request_unique)))
+    request_id = hash(
+        (str(dict(request)), request.url.path, datetime.now().timestamp())
+    )
 
     summarize_result: Result = await SummarizeFolder()(
-        repo=repo, folder=folder, unique_id=request_id
+        repo=repo, folder=folder, id=request_id
     )
 
     return represent_response(summarize_result, FolderSummaryRepresenter)

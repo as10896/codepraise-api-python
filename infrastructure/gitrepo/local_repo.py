@@ -26,8 +26,8 @@ class LocalRepo:
         self._remote = remote
         self._repo_path = "/".join([repostore_path, self._remote.unique_id])
 
-    def clone_remote(self) -> None:
-        self._remote.local_clone(self._repo_path)
+    def clone_remote(self) -> Iterator[str]:
+        yield from self._remote.local_clone(self._repo_path)
 
     @property
     def repo_path(self) -> str:
