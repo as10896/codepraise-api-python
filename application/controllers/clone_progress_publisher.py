@@ -3,12 +3,20 @@
 # https://github.com/encode/broadcaster
 # https://dev.to/sangarshanan/realtime-channels-with-fastapi-broadcaster-47jh
 
-from broadcaster import Broadcast
 from fastapi import APIRouter, WebSocket
 from pydantic import BaseModel
 from websockets.exceptions import ConnectionClosedOK
 
-broadcast = Broadcast("memory://")
+from config import get_settings
+
+from .broadcaster import Broadcast
+
+config = get_settings()
+
+if config.environment == "production":
+    broadcast = Broadcast(config.REDIS_URL)
+else:
+    broadcast = Broadcast("memory://")
 
 router = APIRouter(on_startup=[broadcast.connect], on_shutdown=[broadcast.disconnect])
 

@@ -20,7 +20,7 @@ psycopg2-binary = "*"
 celery = {extras = ["sqs"], version = "*"}
 boto3 = "*"  # to connect to Amazon SQS
 pycurl = "*"  # to connect to Amazon SQS
-broadcaster = "==0.2.0"
+asyncio_redis = "*"  # to connect to Redis for PubSub over WebSocket in production
 
 [dev-packages]
 pytest = "*"

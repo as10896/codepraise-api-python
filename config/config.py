@@ -38,6 +38,7 @@ class Development(Settings):
 class Production(Settings):
     environment = "production"
     DATABASE_URL: str
+    REDIS_URL: str
 
     class Config:
         env_file = "config/env/.env.prod"

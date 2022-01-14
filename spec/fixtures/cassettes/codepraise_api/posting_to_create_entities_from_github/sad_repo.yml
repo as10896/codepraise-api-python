@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.26.0
+      - python-requests/2.27.1
       authorization:
       - <GITHUB_TOKEN>
     method: GET
@@ -25,8 +25,8 @@ interactions:
       Access-Control-Expose-Headers:
       - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
         X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
-        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, Deprecation,
-        Sunset
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
       Content-Encoding:
       - gzip
       Content-Security-Policy:
@@ -34,7 +34,7 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 26 Nov 2021 04:19:02 GMT
+      - Fri, 14 Jan 2022 01:25:33 GMT
       Referrer-Policy:
       - origin-when-cross-origin, strict-origin-when-cross-origin
       Server:
@@ -54,19 +54,19 @@ interactions:
       X-GitHub-Media-Type:
       - github.v3; format=json
       X-GitHub-Request-Id:
-      - CEBB:4B1D:1E81A0:2C9AE7:61A06036
+      - C781:6FB9:A4C55E:B70DA0:61E0D10D
       X-OAuth-Scopes:
       - public_repo, read:user, user:email
       X-RateLimit-Limit:
       - '5000'
       X-RateLimit-Remaining:
-      - '4941'
+      - '4630'
       X-RateLimit-Reset:
-      - '1637902409'
+      - '1642126520'
       X-RateLimit-Resource:
       - core
       X-RateLimit-Used:
-      - '59'
+      - '370'
       X-XSS-Protection:
       - '0'
     status:

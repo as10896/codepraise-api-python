@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.26.0
+      - python-requests/2.27.1
       authorization:
       - <GITHUB_TOKEN>
     method: GET
@@ -47,8 +47,8 @@ interactions:
       Access-Control-Expose-Headers:
       - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
         X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
-        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, Deprecation,
-        Sunset
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Content-Encoding:
@@ -58,9 +58,9 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 26 Nov 2021 04:19:05 GMT
+      - Fri, 14 Jan 2022 01:25:25 GMT
       ETag:
-      - W/"c1afc2623eb63c03e70f9e94e0333e10ca3ae67d41c2ed4b41985c110cee5173"
+      - W/"f017cd7546bf59b1d35334359fab241dd96517f12092980f852f4e410cc2cbb7"
       Last-Modified:
       - Thu, 11 Jan 2018 03:28:47 GMT
       Referrer-Policy:
@@ -83,19 +83,19 @@ interactions:
       X-GitHub-Media-Type:
       - github.v3; format=json
       X-GitHub-Request-Id:
-      - CEC1:7374:719330:8017D7:61A06038
+      - C760:4269:19D57B:24C349:61E0D105
       X-OAuth-Scopes:
       - public_repo, read:user, user:email
       X-RateLimit-Limit:
       - '5000'
       X-RateLimit-Remaining:
-      - '4936'
+      - '4639'
       X-RateLimit-Reset:
-      - '1637902409'
+      - '1642126520'
       X-RateLimit-Resource:
       - core
       X-RateLimit-Used:
-      - '64'
+      - '361'
       X-XSS-Protection:
       - '0'
     status:
@@ -111,7 +111,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.26.0
+      - python-requests/2.27.1
       authorization:
       - <GITHUB_TOKEN>
     method: GET
@@ -133,8 +133,8 @@ interactions:
       Access-Control-Expose-Headers:
       - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
         X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
-        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, Deprecation,
-        Sunset
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO,
+        X-GitHub-Request-Id, Deprecation, Sunset
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Content-Encoding:
@@ -144,7 +144,7 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 26 Nov 2021 04:19:05 GMT
+      - Fri, 14 Jan 2022 01:25:25 GMT
       ETag:
       - W/"209384a984aada19e6bf1fcb80bead0d88585559c8fcdf5722476e1c8edb93e4"
       Last-Modified:
@@ -169,19 +169,19 @@ interactions:
       X-GitHub-Media-Type:
       - github.v3; format=json
       X-GitHub-Request-Id:
-      - CEC2:6C95:6EDC7:14E746:61A06039
+      - C761:25CB:90AC26:A1EA68:61E0D105
       X-OAuth-Scopes:
       - public_repo, read:user, user:email
       X-RateLimit-Limit:
       - '5000'
       X-RateLimit-Remaining:
-      - '4935'
+      - '4638'
       X-RateLimit-Reset:
-      - '1637902409'
+      - '1642126520'
       X-RateLimit-Resource:
       - core
       X-RateLimit-Used:
-      - '65'
+      - '362'
       X-XSS-Protection:
       - '0'
     status:
