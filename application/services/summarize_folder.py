@@ -7,10 +7,12 @@ from returns.pointfree import bind, bind_async
 from returns.result import Failure, Result, Success
 from returns.unsafe import unsafe_perform_io
 
+from config import Settings
 from domain.entities.folder_summary import FolderSummary
 from domain.mappers.blame_mappers import Summary
 from domain.mappers.git_mappers import GitRepo
 from domain.values import CloneRequest, ServiceResult
+from infrastructure import messaging
 from workers import CloneRepoWorker
 
 from ..representers import CloneRequestRepresenter
@@ -41,9 +43,11 @@ class SummarizeFolder:
         if input["gitrepo"].exists_locally:
             return Success(input)
         else:
-            clone_request_json: str = self._clone_request_json(input).json()
+            clone_request_msg: str = self._clone_request_json(input)
             try:
-                CloneRepoWorker.clone_repo.delay(clone_request_json)
+                CloneRepoWorker.clone_repo.delay(clone_request_msg)
+                if input["config"].environment in ["development", "production"]:
+                    self._notify_clone_listeners(clone_request_msg, input["config"])
                 return Failure(ServiceResult("processing", {"id": input["id"]}))
             except Exception as error:
                 print(f"ERROR: SummarizeFolder#clone_repo - {error}")
@@ -62,6 +66,10 @@ class SummarizeFolder:
                 ServiceResult("internal_error", "Could not summarize folder")
             )
 
-    def _clone_request_json(self, input: Dict[str, Any]) -> CloneRequestRepresenter:
+    def _clone_request_json(self, input: Dict[str, Any]) -> str:
         clone_request = CloneRequest(input["repo"], input["id"])
-        return CloneRequestRepresenter.parse_obj(clone_request)
+        return CloneRequestRepresenter.parse_obj(clone_request).json()
+
+    def _notify_clone_listeners(self, message: str, config: Settings) -> None:
+        report_queue = messaging.Queue(config.REPORT_QUEUE, config)
+        report_queue.send(message)

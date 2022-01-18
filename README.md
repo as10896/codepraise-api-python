@@ -23,11 +23,12 @@ pipenv install --dev  # install required dependencies with Pipfile
 1. Create an AWS account and an IAM user ([Ref](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-setting-up.html)).
 2. Create `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` under `config/secrets/<env>/` with the generated credentials.
 3. Select a region where FIFO Queues are available (e.g. `us-east-1`, see [here](https://aws.amazon.com/about-aws/whats-new/2019/02/amazon-sqs-fifo-qeues-now-available-in-15-aws-regions/) for more info), then creating `AWS_REGION` under `config/secrets/<env>/` with the region name.
-3. Creating a **FIFO** Amazon SQS queue ([Ref](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-create-queue.html)).
+3. Create a **FIFO** Amazon SQS queue ([Ref](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-create-queue.html)).
     * Notice that the name of a FIFO queue must end with the `.fifo` suffix.
-4. Create `CLONE_QUEUE`, `CLONE_QUEUE_URL` under `config/secrets/<env>/` with the created queue's name and URL respectively.
+4. Create `CLONE_QUEUE` under `config/secrets/<env>/` with the created queue's name.
+5. Create another FIFO Amazon SQS queue, and then create `REPORT_QUEUE` under `config/secrets/<env>/` with the created queue's name (not needed for test environment).
 
-## Usage
+## CLI usage
 Here we use [invoke](https://docs.pyinvoke.org/) as our task management tool
 
 ```bash
@@ -41,8 +42,8 @@ inv api.run.test -p [port]  # run FastAPI server in test environment
 inv worker.run.dev  # run the background Celery worker in development mode
 inv worker.run.prod  # run the background Celery worker in production mode
 inv worker.run.test  # run the background Celery worker in test mode
-inv queue.create -e [env]  # create SQS queue for Celery
-inv queue.purge -e [env]  # purge messages in SQS queue for Celery
+inv queues.create -e [env]  # create SQS queue for Celery
+inv queues.purge -e [env]  # purge messages in SQS queue for Celery
 inv db.drop -e [env]  # drop all db tables
 inv db.migrate -e [env]  # run db schema migrations
 inv db.reset -e [env]  # reset all database tables (drop + migrate)

@@ -12,7 +12,6 @@ class Settings(BaseSettings):
     AWS_SECRET_ACCESS_KEY: str
     AWS_REGION: str
     CLONE_QUEUE: str
-    CLONE_QUEUE_URL: str
 
 
 class Test(Settings):
@@ -28,6 +27,7 @@ class Test(Settings):
 class Development(Settings):
     environment = "development"
     DB_FILENAME: str
+    REPORT_QUEUE: str
 
     class Config:
         env_file = "config/env/.env.dev"
@@ -39,6 +39,7 @@ class Production(Settings):
     environment = "production"
     DATABASE_URL: str
     REDIS_URL: str
+    REPORT_QUEUE: str
 
     class Config:
         env_file = "config/env/.env.prod"

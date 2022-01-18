@@ -39,7 +39,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
           CLONE_QUEUE: ${{ secrets.CLONE_QUEUE }}
-          CLONE_QUEUE_URL: ${{ secrets.CLONE_QUEUE_URL }}
         run: pipenv run inv worker.run.test &
       - name: Run tests
         env:
@@ -48,7 +47,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
           CLONE_QUEUE: ${{ secrets.CLONE_QUEUE }}
-          CLONE_QUEUE_URL: ${{ secrets.CLONE_QUEUE_URL }}
         run: pipenv run inv spec
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2

@@ -5,6 +5,7 @@ from returns.pipeline import is_successful
 from returns.result import Result
 from sqlalchemy.orm import Session
 
+from config import get_settings
 from config.environment import get_db
 from domain import entities
 
@@ -39,7 +40,7 @@ async def summary_for_entire_repo(
     )
 
     summarize_result: Result = await SummarizeFolder()(
-        repo=repo, folder="", id=request_id
+        config=get_settings(), repo=repo, folder="", id=request_id
     )
 
     return represent_response(summarize_result, FolderSummaryRepresenter)
@@ -57,7 +58,7 @@ async def summary_for_specific_folder(
     )
 
     summarize_result: Result = await SummarizeFolder()(
-        repo=repo, folder=folder, id=request_id
+        config=get_settings(), repo=repo, folder=folder, id=request_id
     )
 
     return represent_response(summarize_result, FolderSummaryRepresenter)
