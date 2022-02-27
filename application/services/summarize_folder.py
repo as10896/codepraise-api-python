@@ -42,6 +42,8 @@ class SummarizeFolder:
     ) -> Result[Dict[str, Any], ServiceResult]:
         if input["gitrepo"].exists_locally:
             return Success(input)
+        elif input["gitrepo"].too_large:
+            return Failure(ServiceResult("bad_request", "Repo too large to analyze (only repos smaller than 1MB are allowed)"))
         else:
             clone_request_msg: str = self._clone_request_json(input)
             try:
