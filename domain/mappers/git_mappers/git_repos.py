@@ -20,7 +20,7 @@ class Errors:
 # Maps over local and remote git repo infrastructure
 class GitRepo:
 
-    _MAX_SIZE = 1000  # for cloning, analysis, summaries, etc.
+    _MAX_SIZE = 1000  # for cloning, analysis, summaries, etc. (unit: KB)
 
     def __init__(self, repo: Repo, config: Settings = get_settings()):
         self._repo = repo
@@ -38,7 +38,7 @@ class GitRepo:
 
     @property
     def too_large(self) -> bool:
-        self._repo.size > self._MAX_SIZE
+        return self._repo.size > self._MAX_SIZE
 
     @property
     def exists_locally(self) -> bool:
