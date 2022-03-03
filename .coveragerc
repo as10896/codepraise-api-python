@@ -2,4 +2,4 @@
 omit =
     spec/*
     tasks/*
-    app/application/controllers/broadcaster/*
+    app/infrastructure/broadcaster/*

@@ -9,7 +9,7 @@ from websockets.exceptions import ConnectionClosedOK
 
 from config import get_settings
 
-from .broadcaster import Broadcast
+from ...infrastructure.broadcaster import Broadcast
 
 config = get_settings()
 
