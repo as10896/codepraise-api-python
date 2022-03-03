@@ -19,7 +19,7 @@ class Test(Settings):
     DB_FILENAME: str
 
     class Config:
-        env_file = "config/env/.env"
+        env_file = "config/env/test.env"
         env_file_encoding = "utf-8"
         secrets_dir = "config/secrets/test"
 
@@ -30,7 +30,7 @@ class Development(Settings):
     REPORT_QUEUE: str
 
     class Config:
-        env_file = "config/env/.env.dev"
+        env_file = "config/env/dev.env"
         env_file_encoding = "utf-8"
         secrets_dir = "config/secrets/dev"
 
@@ -42,7 +42,7 @@ class Production(Settings):
     REPORT_QUEUE: str
 
     class Config:
-        env_file = "config/env/.env.prod"
+        env_file = "config/env/prod.env"
         env_file_encoding = "utf-8"
         secrets_dir = "config/secrets/prod"
 
