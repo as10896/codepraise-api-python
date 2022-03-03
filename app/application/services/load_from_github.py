@@ -6,7 +6,7 @@ from returns.result import Failure, Result, Success
 
 from ...domain import repositories
 from ...domain.mappers import github_mappers
-from ...domain.values import ServiceResult
+from ...presentation.values import ServiceResult
 
 
 # Transaction to load repo from Github and save to database

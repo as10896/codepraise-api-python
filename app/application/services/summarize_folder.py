@@ -13,9 +13,9 @@ from workers import CloneRepoWorker
 from ...domain.entities.folder_summary import FolderSummary
 from ...domain.mappers.blame_mappers import Summary
 from ...domain.mappers.git_mappers import GitRepo
-from ...domain.values import CloneRequest, ServiceResult
 from ...infrastructure import messaging
-from ..representers import CloneRequestRepresenter
+from ...presentation.representers import CloneRequestRepresenter
+from ...presentation.values import CloneRequest, ServiceResult
 
 
 class SummarizeFolder:

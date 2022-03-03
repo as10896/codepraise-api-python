@@ -1,6 +1,6 @@
 from typing import Any, Iterator, NamedTuple, Tuple
 
-from ..entities import Repo
+from ...domain.entities import Repo
 
 
 class CloneRequest(NamedTuple):

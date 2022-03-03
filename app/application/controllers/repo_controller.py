@@ -9,9 +9,13 @@ from config import get_settings
 from config.environment import get_db
 
 from ...domain import entities, repositories
-from ...domain.values import ServiceResult
 from ...infrastructure import database
-from ..representers import HttpResponseRepresenter, RepoRepresenter, ReposRepresenter
+from ...presentation.representers import (
+    HttpResponseRepresenter,
+    RepoRepresenter,
+    ReposRepresenter,
+)
+from ...presentation.values import ServiceResult
 from ..services import FindDatabaseRepo, LoadFromGithub
 from .route_helpers import represent_response
 

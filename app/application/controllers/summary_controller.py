@@ -9,7 +9,7 @@ from config import get_settings
 from config.environment import get_db
 
 from ...domain import entities
-from ..representers import FolderSummaryRepresenter
+from ...presentation.representers import FolderSummaryRepresenter
 from ..services import FindDatabaseRepo, SummarizeFolder
 from .route_helpers import represent_response
 

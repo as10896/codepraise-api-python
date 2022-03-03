@@ -1,6 +1,6 @@
 import time
 
-from app.application.representers import CloneRequestRepresenter
+from app.presentation.representers import CloneRequestRepresenter
 from config import Settings
 
 from .progress_publisher import ProgressPublisher

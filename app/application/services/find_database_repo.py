@@ -3,7 +3,7 @@ from typing import Any
 from returns.result import Failure, Result, Success
 
 from ...domain import entities, repositories
-from ...domain.values import ServiceResult
+from ...presentation.values import ServiceResult
 
 
 # Service to find a repo from our database
