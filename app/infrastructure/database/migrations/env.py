@@ -13,14 +13,15 @@ config = context.config
 # This line sets up loggers basically.
 fileConfig(config.config_file_name)
 
-from config.environment import Base
-
 # add your model's MetaData object here
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 # target_metadata = None
-from .. import orm  # necessary for SQLAlchemy to initialize relationships properly
+from app.infrastructure.database import (
+    orm,  # necessary for SQLAlchemy to initialize relationships properly
+)
+from config.environment import Base
 
 target_metadata = Base.metadata
 
