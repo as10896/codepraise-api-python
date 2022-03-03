@@ -24,14 +24,14 @@ def preload_github_correct_repo(db) -> None:
 
 @pytest.fixture
 def delete_all_cloned_repo(db) -> Iterator[None]:
-    repositories.RepoStore.delete_all(db=db)
+    summary_repositories.RepoStore.delete_all(db=db)
     yield
-    repositories.CRUDRepo.clone_all(db=db)
+    summary_repositories.RepoStore.clone_all(db=db)
 
 
 @pytest.fixture
 def clone_all_repos(db) -> None:
-    repositories.CRUDRepo.clone_all(db=db)
+    summary_repositories.RepoStore.clone_all(db=db)
 
 
 @pytest.mark.usefixtures("preload_github_correct_repo", "delete_all_cloned_repo")

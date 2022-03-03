@@ -17,11 +17,11 @@ def run(c, mode="development", reload=False, port=8000):
     """
     if reload:
         c.run(
-            f"ENV={mode} uvicorn application.app:app --reload --reload-exclude {get_settings().REPOSTORE_PATH} --port {port}",
+            f"ENV={mode} uvicorn app.application.app:app --reload --reload-exclude {get_settings().REPOSTORE_PATH} --port {port}",
             pty=True,
         )
     else:
-        c.run(f"ENV={mode} uvicorn application.app:app --port {port}", pty=True)
+        c.run(f"ENV={mode} uvicorn app.application.app:app --port {port}", pty=True)
 
 
 @task(help={"port": "Bind socket to this port.  [default: 8000]"})
@@ -31,7 +31,7 @@ def dev(c, port=8000):
     """
     print("REMEMBER: need to run `inv worker.run.dev` in another process")
     c.run(
-        f"ENV=development uvicorn application.app:app --reload --reload-exclude {get_settings().REPOSTORE_PATH} --port {port}",
+        f"ENV=development uvicorn app.application.app:app --reload --reload-exclude {get_settings().REPOSTORE_PATH} --port {port}",
         pty=True,
     )
 
@@ -42,4 +42,4 @@ def test(c, port=8080):
     Run fastapi server in test environment
     """
     print("REMEMBER: need to run `inv worker.run.test` in another process")
-    c.run(f"ENV=test uvicorn application.app:app --port {port}", pty=True)
+    c.run(f"ENV=test uvicorn app.application.app:app --port {port}", pty=True)

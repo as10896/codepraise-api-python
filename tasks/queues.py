@@ -15,9 +15,12 @@ def create(c, env="development"):
     """
     Create SQS queue for Celery
     """
+
     def _create_queue(sqs, queue_name, config):
         try:
-            queue = sqs.create_queue(QueueName=queue_name, Attributes={"FifoQueue": "true"})
+            queue = sqs.create_queue(
+                QueueName=queue_name, Attributes={"FifoQueue": "true"}
+            )
             print("Queue created:")
             print(f"Name: {queue_name}")
             print(f"Region: {config.AWS_REGION}")
@@ -33,7 +36,7 @@ def create(c, env="development"):
         "sqs",
         region_name=config.AWS_REGION,
         aws_access_key_id=config.AWS_ACCESS_KEY_ID,
-        aws_secret_access_key=config.AWS_SECRET_ACCESS_KEY
+        aws_secret_access_key=config.AWS_SECRET_ACCESS_KEY,
     )
 
     if config.environment == "test":
@@ -53,6 +56,7 @@ def purge(c, env="development"):
     """
     Purge messages in SQS queue for Celery
     """
+
     def _purge_queue(sqs, queue_name):
         try:
             queue = sqs.get_queue_by_name(QueueName=queue_name)
@@ -68,9 +72,9 @@ def purge(c, env="development"):
         "sqs",
         region_name=config.AWS_REGION,
         aws_access_key_id=config.AWS_ACCESS_KEY_ID,
-        aws_secret_access_key=config.AWS_SECRET_ACCESS_KEY
+        aws_secret_access_key=config.AWS_SECRET_ACCESS_KEY,
     )
-    
+
     if config.environment == "test":
         _purge_queue(sqs, config.CLONE_QUEUE)
 
