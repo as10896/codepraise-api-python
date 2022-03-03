@@ -7,7 +7,7 @@ from returns.pipeline import is_successful
 from returns.result import Result
 
 from ...presentation.representers import HttpResponseRepresenter
-from ...presentation.values import ServiceResult
+from ...presentation.responses import ApiResult
 
 Representer = TypeVar("Representer", bound=BaseModel)
 
@@ -18,7 +18,7 @@ def represent_response(
     headers: Optional[Dict[str, str]] = None,
 ) -> JSONResponse:
     if is_successful(result):
-        find_result: ServiceResult = result.unwrap()
+        find_result: ApiResult = result.unwrap()
 
         http_response: HttpResponseRepresenter = HttpResponseRepresenter.parse_obj(
             find_result.dict()
@@ -38,7 +38,7 @@ def represent_response(
         )
 
     else:
-        find_result: ServiceResult = result.failure()
+        find_result: ApiResult = result.failure()
         http_response: HttpResponseRepresenter = HttpResponseRepresenter.parse_obj(
             find_result.dict()
         )

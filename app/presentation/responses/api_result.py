@@ -1,7 +1,7 @@
 from typing import Any, Dict, NamedTuple
 
 
-class ServiceResult(NamedTuple):
+class ApiResult(NamedTuple):
     code: str
     message: Any
 

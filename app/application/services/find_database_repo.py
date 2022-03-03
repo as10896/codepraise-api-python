@@ -3,18 +3,18 @@ from typing import Any
 from returns.result import Failure, Result, Success
 
 from ...domain import entities, repositories
-from ...presentation.values import ServiceResult
+from ...presentation.responses import ApiResult
 
 
 # Service to find a repo from our database
 class FindDatabaseRepo:
-    def __call__(self, **input: Any) -> Result[ServiceResult, ServiceResult]:
+    def __call__(self, **input: Any) -> Result[ApiResult, ApiResult]:
         repo = repositories.For[entities.Repo].find_full_name(
             input["db"], input["ownername"], input["reponame"]
         )
         if repo:
-            return Success(ServiceResult("ok", repo))
+            return Success(ApiResult("ok", repo))
         else:
             return Failure(
-                ServiceResult("not_found", "Could not find stored git repository")
+                ApiResult("not_found", "Could not find stored git repository")
             )

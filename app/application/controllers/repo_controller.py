@@ -15,7 +15,7 @@ from ...presentation.representers import (
     RepoRepresenter,
     ReposRepresenter,
 )
-from ...presentation.values import ServiceResult
+from ...presentation.responses import ApiResult
 from ..services import FindDatabaseRepo, LoadFromGithub
 from .route_helpers import represent_response
 
@@ -38,7 +38,7 @@ if config.environment in ["test", "development"]:
         db.query(database.orm.repos_contributors).delete()
         db.commit()
 
-        result = ServiceResult("ok", "deleted tables")
+        result = ApiResult("ok", "deleted tables")
 
         http_response: HttpResponseRepresenter = HttpResponseRepresenter.parse_obj(
             result.dict()
