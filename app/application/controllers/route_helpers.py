@@ -6,8 +6,7 @@ from pydantic import BaseModel
 from returns.pipeline import is_successful
 from returns.result import Result
 
-from domain.values import ServiceResult
-
+from ...domain.values import ServiceResult
 from ..representers import HttpResponseRepresenter
 
 Representer = TypeVar("Representer", bound=BaseModel)

@@ -27,10 +27,10 @@ def migrate(c, env="development"):
     print(f"Migrating {get_settings().environment} database to latest")
 
     if env == "test":
-        from config.environment import Base, engine
-        from infrastructure.database import (
+        from app.infrastructure.database import (
             orm,  # necessary for SQLAlchemy to initialize relationships properly
         )
+        from config.environment import Base, engine
 
         Base.metadata.create_all(bind=engine)
     else:
@@ -53,10 +53,10 @@ def drop(c, env="development"):
     print(f"Dropping all tables of {get_settings().environment} database")
 
     if env == "test":
-        from config.environment import Base, engine
-        from infrastructure.database import (
+        from app.infrastructure.database import (
             orm,  # necessary for SQLAlchemy to initialize relationships properly
         )
+        from config.environment import Base, engine
 
         Base.metadata.drop_all(bind=engine)
     else:

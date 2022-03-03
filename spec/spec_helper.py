@@ -7,7 +7,7 @@ import pytest
 import yaml
 from vcr import VCR
 
-from application.app import app
+from app.application.app import app
 
 from .test_load_all import *
 

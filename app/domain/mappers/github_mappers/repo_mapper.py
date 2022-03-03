@@ -1,8 +1,8 @@
 from typing import List, Type
 
 from config import Settings
-from infrastructure import github
 
+from ....infrastructure import github
 from ... import entities
 from .collaborator_mapper import CollaboratorMapper
 

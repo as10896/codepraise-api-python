@@ -20,9 +20,7 @@ from config.environment import Base
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 # target_metadata = None
-from infrastructure.database import (
-    orm,  # necessary for SQLAlchemy to initialize relationships properly
-)
+from .. import orm  # necessary for SQLAlchemy to initialize relationships properly
 
 target_metadata = Base.metadata
 

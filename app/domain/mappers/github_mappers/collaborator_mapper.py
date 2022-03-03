@@ -1,8 +1,8 @@
 from typing import List, Optional, Type
 
 from config import Settings
-from infrastructure import github
 
+from ....infrastructure import github
 from ... import entities
 
 

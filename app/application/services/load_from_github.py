@@ -4,9 +4,9 @@ from returns.pipeline import flow
 from returns.pointfree import bind
 from returns.result import Failure, Result, Success
 
-from domain import repositories
-from domain.mappers import github_mappers
-from domain.values import ServiceResult
+from ...domain import repositories
+from ...domain.mappers import github_mappers
+from ...domain.values import ServiceResult
 
 
 # Transaction to load repo from Github and save to database

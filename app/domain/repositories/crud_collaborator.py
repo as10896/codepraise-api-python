@@ -2,8 +2,7 @@ from typing import Optional
 
 from sqlalchemy.orm import Session
 
-from infrastructure import database
-
+from ...infrastructure import database
 from .. import entities
 
 

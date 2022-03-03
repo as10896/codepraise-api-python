@@ -1,9 +1,9 @@
 import asyncio
 from typing import Dict, List
 
-from infrastructure.gitrepo import RepoFile
 from typing_helpers import Filename, PorcelainLineReport, SubfolderName
 
+from ....infrastructure.gitrepo import RepoFile
 from ..git_mappers import GitRepo
 from .porcelain_parser import Porcelain
 

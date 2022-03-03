@@ -8,13 +8,13 @@ from returns.result import Failure, Result, Success
 from returns.unsafe import unsafe_perform_io
 
 from config import Settings
-from domain.entities.folder_summary import FolderSummary
-from domain.mappers.blame_mappers import Summary
-from domain.mappers.git_mappers import GitRepo
-from domain.values import CloneRequest, ServiceResult
-from infrastructure import messaging
 from workers import CloneRepoWorker
 
+from ...domain.entities.folder_summary import FolderSummary
+from ...domain.mappers.blame_mappers import Summary
+from ...domain.mappers.git_mappers import GitRepo
+from ...domain.values import CloneRequest, ServiceResult
+from ...infrastructure import messaging
 from ..representers import CloneRequestRepresenter
 
 
@@ -43,7 +43,12 @@ class SummarizeFolder:
         if input["gitrepo"].exists_locally:
             return Success(input)
         elif input["gitrepo"].too_large:
-            return Failure(ServiceResult("bad_request", "Repo too large to analyze (only repos smaller than 1MB are allowed)"))
+            return Failure(
+                ServiceResult(
+                    "bad_request",
+                    "Repo too large to analyze (only repos smaller than 1MB are allowed)",
+                )
+            )
         else:
             clone_request_msg: str = self._clone_request_json(input)
             try:

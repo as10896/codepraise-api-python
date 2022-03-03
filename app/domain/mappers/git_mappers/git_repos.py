@@ -1,8 +1,8 @@
 from typing import Iterator, Optional
 
 from config import Settings, get_settings
-from infrastructure.gitrepo import LocalRepo, RemoteRepo
 
+from ....infrastructure.gitrepo import LocalRepo, RemoteRepo
 from ...entities import Repo
 
 
