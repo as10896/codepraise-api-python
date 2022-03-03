@@ -4,7 +4,7 @@ from typing import Dict, List
 from typing_helpers import Filename, PorcelainLineReport, SubfolderName
 
 from ....infrastructure.gitrepo import RepoFile
-from ..git_mappers import GitRepo
+from ..repositories import GitRepo
 from .porcelain_parser import Porcelain
 
 

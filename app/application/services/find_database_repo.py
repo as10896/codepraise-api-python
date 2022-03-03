@@ -2,7 +2,7 @@ from typing import Any
 
 from returns.result import Failure, Result, Success
 
-from ...domain import entities, repositories
+from ...domain.repos import entities, repositories
 from ...presentation.responses import ApiResult
 
 

@@ -10,9 +10,9 @@ from returns.unsafe import unsafe_perform_io
 from config import Settings
 from workers import CloneRepoWorker
 
-from ...domain.entities.folder_summary import FolderSummary
-from ...domain.mappers.blame_mappers import Summary
-from ...domain.mappers.git_mappers import GitRepo
+from ...domain.summary.entities.folder_summary import FolderSummary
+from ...domain.summary.mappers import Summary
+from ...domain.summary.repositories import GitRepo
 from ...infrastructure import messaging
 from ...presentation.representers import CloneRequestRepresenter
 from ...presentation.responses import ApiResult, CloneRequest

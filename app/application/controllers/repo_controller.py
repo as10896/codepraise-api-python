@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 from config import get_settings
 from config.environment import get_db
 
-from ...domain import entities, repositories
+from ...domain.repos import entities, repositories
 from ...infrastructure import database
 from ...presentation.representers import (
     HttpResponseRepresenter,

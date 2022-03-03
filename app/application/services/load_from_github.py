@@ -4,8 +4,8 @@ from returns.pipeline import flow
 from returns.pointfree import bind
 from returns.result import Failure, Result, Success
 
-from ...domain import repositories
-from ...domain.mappers import github_mappers
+from ...domain.repos import repositories
+from ...domain.repos.mappers import RepoMapper
 from ...presentation.responses import ApiResult
 
 
@@ -23,7 +23,7 @@ class LoadFromGithub:
         self, input: Dict[str, Any]
     ) -> Result[Dict[str, Any], ApiResult]:
         try:
-            repo = github_mappers.RepoMapper(input["config"]).find(
+            repo = RepoMapper(input["config"]).find(
                 input["ownername"], input["reponame"]
             )
             return Success({"db": input["db"], "repo": repo})

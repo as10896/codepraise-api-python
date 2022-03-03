@@ -3,8 +3,8 @@ from .spec_helper import *
 
 @pytest.fixture(scope="module")
 @vcr.use_cassette("github_api/correct_repo.yml")
-def repo() -> entities.Repo:
-    repo_mapper = github_mappers.RepoMapper(CONFIG)
+def repo() -> repo_entities.Repo:
+    repo_mapper = repo_mappers.RepoMapper(CONFIG)
     return repo_mapper.find(USERNAME, REPO_NAME)
 
 
@@ -18,7 +18,7 @@ class TestRepo:
     # SAD: should raise exception on incorrect repo
     @vcr.use_cassette("github_api/incorrect_repo.yml")
     def test_incorrect_repo(self):
-        repo_mapper = github_mappers.RepoMapper(CONFIG)
+        repo_mapper = repo_mappers.RepoMapper(CONFIG)
         with pytest.raises(github.API.Errors.NotFound):
             repo = repo_mapper.find(USERNAME, "SAD_REPO_NAME")
 
@@ -26,7 +26,7 @@ class TestRepo:
     @vcr.use_cassette("github_api/invalid_token.yml")
     def test_invalid_token(self):
         SAD_CONFIG = get_settings(GH_TOKEN="sad_token")
-        repo_mapper = github_mappers.RepoMapper(SAD_CONFIG)
+        repo_mapper = repo_mappers.RepoMapper(SAD_CONFIG)
         with pytest.raises(github.API.Errors.Unauthorized):
             repo = repo_mapper.find(USERNAME, REPO_NAME)
 
@@ -35,7 +35,7 @@ class TestContributor:
 
     # HAPPY: should recognize owner
     def test_owner_class(self, repo):
-        assert isinstance(repo.owner, entities.Collaborator)
+        assert isinstance(repo.owner, repo_entities.Collaborator)
 
     # HAPPY: should identify owner
     def test_owner_info(self, repo):

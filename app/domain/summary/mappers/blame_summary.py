@@ -2,8 +2,8 @@ from typing import Dict, List
 
 from typing_helpers import Filename, PorcelainLineReport
 
-from ...entities import FolderSummary
-from ..git_mappers import GitRepo
+from ..entities import FolderSummary
+from ..repositories import GitRepo
 from .blame_report import Reporter
 
 

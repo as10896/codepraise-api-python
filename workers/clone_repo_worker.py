@@ -1,7 +1,7 @@
 from celery import Celery
 from kombu.utils.url import safequote
 
-from app.domain.mappers.git_mappers import GitRepo
+from app.domain.summary.repositories import GitRepo
 from config import get_settings
 
 from .clone_monitor import CloneMonitor

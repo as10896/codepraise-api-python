@@ -3,7 +3,7 @@ from typing import List, Optional, Type
 from config import Settings
 
 from ....infrastructure import github
-from ... import entities
+from .. import entities
 
 
 # Data Mapper for Github contributors

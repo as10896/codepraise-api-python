@@ -2,15 +2,15 @@ from typing import List
 
 from sqlalchemy.orm import Session
 
-from .. import entities
-from ..mappers.git_mappers import GitRepo
-from .crud_repo import CRUDRepo
+from ...repos.entities import Repo
+from ...repos.repositories.crud_repo import CRUDRepo
+from ..repositories import GitRepo
 
 
 class RepoStore:
     @classmethod
     def all(cls, db: Session) -> List[GitRepo]:
-        repos: List[entities.Repo] = CRUDRepo.all(db=db)
+        repos: List[Repo] = CRUDRepo.all(db=db)
         return list(
             filter(
                 lambda gitrepo: gitrepo.exists_locally,
@@ -23,3 +23,11 @@ class RepoStore:
         gitrepos: List[GitRepo] = cls.all(db=db)
         for gitrepo in gitrepos:
             gitrepo.delete()
+
+    @classmethod
+    def clone_all(cls, db: Session):
+        repos: List[Repo] = CRUDRepo.all(db=db)
+        for repo in repos:
+            gitrepo = GitRepo(repo)
+            if not gitrepo.exists_locally:
+                gitrepo.clone()

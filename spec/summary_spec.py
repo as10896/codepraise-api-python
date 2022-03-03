@@ -3,7 +3,7 @@ from .spec_helper import *
 
 @pytest.fixture
 @vcr.use_cassette("codepraise_api/preload_github_correct_repo.yml")
-def gitrepo(db) -> git_mappers.GitRepo:
+def gitrepo(db) -> summary_repositories.GitRepo:
 
     db.query(database.orm.CollaboratorORM).delete()
     db.query(database.orm.RepoORM).delete()
@@ -11,9 +11,11 @@ def gitrepo(db) -> git_mappers.GitRepo:
     db.commit()
 
     LoadFromGithub()(db=db, config=CONFIG, ownername=USERNAME, reponame=REPO_NAME)
-    repo: entities.Repo = repositories.CRUDRepo.find_full_name(db, USERNAME, REPO_NAME)
+    repo: repo_entities.Repo = repo_repositories.CRUDRepo.find_full_name(
+        db, USERNAME, REPO_NAME
+    )
 
-    _gitrepo = git_mappers.GitRepo(repo)
+    _gitrepo = summary_repositories.GitRepo(repo)
     if not _gitrepo.exists_locally:
         _gitrepo.clone()
 
@@ -24,8 +26,10 @@ class TestBlameSummary:
 
     # HAPPY: should get blame summary for entire repo
     @pytest.mark.asyncio
-    async def test_blame_summary_for_entire_repo(self, gitrepo: git_mappers.GitRepo):
-        summary = await blame_mappers.Summary(gitrepo).for_folder("")
+    async def test_blame_summary_for_entire_repo(
+        self, gitrepo: summary_repositories.GitRepo
+    ):
+        summary = await summary_mappers.Summary(gitrepo).for_folder("")
 
         assert len(summary.subfolders) == 6
         assert len(summary.base_files) == 2
@@ -35,9 +39,9 @@ class TestBlameSummary:
     # HAPPY: should get accurate blame summary for specific folder
     @pytest.mark.asyncio
     async def test_blame_summary_for_specific_folder(
-        self, gitrepo: git_mappers.GitRepo
+        self, gitrepo: summary_repositories.GitRepo
     ):
-        summary = await blame_mappers.Summary(gitrepo).for_folder("application")
+        summary = await summary_mappers.Summary(gitrepo).for_folder("application")
 
         assert len(summary.subfolders) == 5
         assert summary.subfolders["views"]["<as10896@gmail.com>"] == {

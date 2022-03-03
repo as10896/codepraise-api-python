@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 from config import get_settings
 from config.environment import get_db
 
-from ...domain import entities
+from ...domain.repos.entities import Repo
 from ...presentation.representers import FolderSummaryRepresenter
 from ..services import FindDatabaseRepo, SummarizeFolder
 from .route_helpers import represent_response
@@ -16,9 +16,7 @@ from .route_helpers import represent_response
 router = APIRouter()
 
 
-def find_repo(
-    ownername: str, reponame: str, db: Session = Depends(get_db)
-) -> entities.Repo:
+def find_repo(ownername: str, reponame: str, db: Session = Depends(get_db)) -> Repo:
     find_result: Result = FindDatabaseRepo()(
         db=db, ownername=ownername, reponame=reponame
     )
@@ -32,9 +30,7 @@ def find_repo(
     "/summary/{ownername}/{reponame}",
     response_model=FolderSummaryRepresenter,
 )
-async def summary_for_entire_repo(
-    request: Request, repo: entities.Repo = Depends(find_repo)
-):
+async def summary_for_entire_repo(request: Request, repo: Repo = Depends(find_repo)):
     request_id = hash(
         (str(dict(request)), request.url.path, datetime.now().timestamp())
     )
@@ -51,7 +47,7 @@ async def summary_for_entire_repo(
     response_model=FolderSummaryRepresenter,
 )
 async def summary_for_specific_folder(
-    folder: str, request: Request, repo: entities.Repo = Depends(find_repo)
+    folder: str, request: Request, repo: Repo = Depends(find_repo)
 ):
     request_id = hash(
         (str(dict(request)), request.url.path, datetime.now().timestamp())
