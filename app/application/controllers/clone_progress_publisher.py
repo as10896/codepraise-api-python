@@ -8,15 +8,9 @@ from pydantic import BaseModel
 from websockets.exceptions import ConnectionClosedOK
 
 from config import get_settings
-
-from ...infrastructure.broadcaster import Broadcast
+from config.environment import broadcast
 
 config = get_settings()
-
-if config.environment == "production":
-    broadcast = Broadcast(config.REDIS_URL)
-else:
-    broadcast = Broadcast("memory://")
 
 router = APIRouter(on_startup=[broadcast.connect], on_shutdown=[broadcast.disconnect])
 
