@@ -1,6 +1,7 @@
 from typing import Iterator
 
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import Session
 
 from .db_session import get_session_maker, get_sqlalchemy_engine
 from .pubsub import get_pubsub
@@ -13,7 +14,7 @@ SessionLocal = get_session_maker(engine)
 Base = declarative_base()
 
 # Dependency
-def get_db() -> Iterator[SessionLocal]:
+def get_db() -> Iterator[Session]:
     db = SessionLocal()
     try:
         yield db
