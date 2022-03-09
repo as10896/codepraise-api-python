@@ -39,6 +39,7 @@ inv spec  # run all test scripts (need to run `inv worker.run.test` in another p
 inv api.run -m [mode] -p [port]  # run FastAPI server with specified settings (add `-r` or `--reload` to use auto-reload)
 inv api.run.dev -p [port]  # rerun FastAPI server in development environment
 inv api.run.test -p [port]  # run FastAPI server in test environment
+inv api.run.prod -p [port] -h [host] -w [workers]  # run FastAPI server in production environment (with gunicorn)
 inv worker.run.dev  # run the background Celery worker in development mode
 inv worker.run.prod  # run the background Celery worker in production mode
 inv worker.run.test  # run the background Celery worker in test mode
