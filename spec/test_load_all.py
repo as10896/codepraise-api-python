@@ -27,6 +27,4 @@ if os.getenv("ENV") == "test":
 # The following lines will be executed in console mode (`$ inv console`)
 if __name__ == "__main__":
 
-    from config.environment import SessionLocal
-
     db = SessionLocal()

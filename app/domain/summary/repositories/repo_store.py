@@ -3,7 +3,7 @@ from typing import List
 from sqlalchemy.orm import Session
 
 from ...repos.entities import Repo
-from ...repos.repositories.crud_repo import CRUDRepo
+from ...repos.repositories import CRUDRepo
 from ..repositories import GitRepo
 
 
