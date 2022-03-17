@@ -4,10 +4,8 @@ from .spec_helper import *
 @pytest.fixture
 @vcr.use_cassette("codepraise_api/preload_github_correct_repo.yml")
 def gitrepo(db) -> summary_repositories.GitRepo:
-
-    db.query(database.orm.CollaboratorORM).delete()
-    db.query(database.orm.RepoORM).delete()
-    db.query(database.orm.repos_contributors).delete()
+    for table in Base.metadata.sorted_tables:
+        db.query(table).delete()
     db.commit()
 
     LoadFromGithub()(db=db, config=CONFIG, ownername=USERNAME, reponame=REPO_NAME)

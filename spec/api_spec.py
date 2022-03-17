@@ -10,9 +10,8 @@ client = TestClient(app)
 
 @pytest.fixture
 def db_reset(db) -> None:
-    db.query(database.orm.CollaboratorORM).delete()
-    db.query(database.orm.RepoORM).delete()
-    db.query(database.orm.repos_contributors).delete()
+    for table in Base.metadata.sorted_tables:
+        db.query(table).delete()
     db.commit()
 
 

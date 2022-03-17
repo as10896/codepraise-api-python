@@ -2,7 +2,7 @@ import os
 import sys
 
 WORKDIR = os.path.dirname(os.path.dirname(__file__))
-sys.path.append(WORKDIR)
+
 
 from app.application.services import LoadFromGithub
 from app.domain.repos import entities as repo_entities
@@ -16,10 +16,10 @@ from app.infrastructure import (
 )
 from app.infrastructure import github, gitrepo
 from config import get_settings
-from config.environment import SessionLocal
+from config.environment import Base, SessionLocal
 
 if os.getenv("ENV") == "test":
-    from config.environment import Base, engine
+    from config.environment import engine
 
     Base.metadata.create_all(bind=engine)
 
