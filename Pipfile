@@ -10,13 +10,13 @@ pydantic = "*"
 fastapi = "*"
 uvicorn = {extras = ["standard"], version = "*"}
 python-dotenv = "*"
-invoke = "*"  # to run migrations in production
+invoke = "*"
 sqlalchemy = "*"
 alembic = "*"
 ipython = "*"  # to run console in production
 returns = "*"
 gunicorn = "*"
-psycopg2-binary = "*"
+psycopg2 = "*"
 celery = {extras = ["sqs"], version = "*"}
 boto3 = "*"  # to connect to Amazon SQS
 pycurl = "*"  # to connect to Amazon SQS
@@ -31,7 +31,7 @@ flake8 = "*"
 radon = "*"
 isort = "*"
 black = "*"
-regex = "==2021.09.30"  # to fix the library validation error of `black`
+regex = "==2021.10.21"  # to fix the library validation error of `black` when using Apple M1 devices
 mypy = "*"
 requests-mock = "*"
 
