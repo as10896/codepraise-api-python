@@ -34,9 +34,9 @@ Here we use [invoke](https://docs.pyinvoke.org/) as our task management tool
 ```bash
 inv -l  # show all tasks
 inv [task] -h  # show task help message
-inv console  # run application console (ipython)
+inv console -e [env]  # run application console (ipython)
 inv test  # run all test scripts (need to run `inv worker.run.test` in another process)
-inv api.run -m [mode] -p [port]  # run FastAPI server with specified settings (add `-r` or `--reload` to use auto-reload)
+inv api.run -e [env] -p [port]  # run FastAPI server with specified settings (add `-r` or `--reload` to use auto-reload)
 inv api.run.dev -p [port]  # rerun FastAPI server in development environment
 inv api.run.test -p [port]  # run FastAPI server in test environment
 inv api.run.prod -p [port] -h [host] -w [workers]  # run FastAPI server in production environment (with gunicorn)

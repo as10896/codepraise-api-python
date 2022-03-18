@@ -4,11 +4,11 @@ from invoke import task
 @task(
     default=True,
     help={
-        "mode": "Environment of the console mode to run. ['test'|'development'|'production'] [default: 'test']"
+        "env": "Environment of the console to run. ['test'|'development'|'production'] [default: 'development']"
     },
 )
-def console(c, mode="test"):
+def console(c, env="development"):
     """
     Run application console (ipython)
     """
-    c.run(f"ENV={mode} ipython -i tests/load_all.py", pty=True)
+    c.run(f"ENV={env} ipython -i tests/load_all.py", pty=True)
