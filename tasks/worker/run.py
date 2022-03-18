@@ -3,10 +3,10 @@ from invoke import task
 
 @task(
     help={
-        "processes": "Number of child processes processing the queue. If not specified, the number of CPUs available on your system will be used."
+        "processes": "Number of child processes processing the queue. If 0 is specified, the number of CPUs available on your system will be used. [default: 1]"
     }
 )
-def dev(c, processes=None):
+def dev(c, processes=1):
     """
     Run the background celery worker in development mode
     """
@@ -20,10 +20,10 @@ def dev(c, processes=None):
 
 @task(
     help={
-        "processes": "Number of child processes processing the queue. If not specified, the number of CPUs available on your system will be used."
+        "processes": "Number of child processes processing the queue. If 0 is specified, the number of CPUs available on your system will be used. [default: 1]"
     }
 )
-def test(c, processes=None):
+def test(c, processes=1):
     """
     Run the background celery worker in test mode
     """
@@ -37,10 +37,10 @@ def test(c, processes=None):
 
 @task(
     help={
-        "processes": "Number of child processes processing the queue. If not specified, the number of CPUs available on your system will be used."
+        "processes": "Number of child processes processing the queue. If 0 is specified, the number of CPUs available on your system will be used. [default: 0]"
     }
 )
-def prod(c, processes=None):
+def prod(c, processes=0):
     """
     Run the background celery worker in production mode
     """
