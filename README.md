@@ -35,7 +35,7 @@ Here we use [invoke](https://docs.pyinvoke.org/) as our task management tool
 inv -l  # show all tasks
 inv [task] -h  # show task help message
 inv console  # run application console (ipython)
-inv spec  # run all test scripts (need to run `inv worker.run.test` in another process)
+inv test  # run all test scripts (need to run `inv worker.run.test` in another process)
 inv api.run -m [mode] -p [port]  # run FastAPI server with specified settings (add `-r` or `--reload` to use auto-reload)
 inv api.run.dev -p [port]  # rerun FastAPI server in development environment
 inv api.run.test -p [port]  # run FastAPI server in test environment

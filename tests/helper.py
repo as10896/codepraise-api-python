@@ -9,7 +9,7 @@ from vcr import VCR
 
 from app.application.app import app
 
-from .test_load_all import *
+from .load_all import *
 
 USERNAME = "ThxSeafood"
 REPO_NAME = "thxseafood-app"
@@ -17,10 +17,10 @@ API_VER = "/api/v0.1"
 
 CONFIG = get_settings()
 
-with open(os.path.join(WORKDIR, "spec/fixtures/gh_results.yml")) as f:
+with open(os.path.join(WORKDIR, "tests/fixtures/gh_results.yml")) as f:
     CORRECT = yaml.safe_load(f)
 
-CASSETTES_FOLDER = "spec/fixtures/cassettes/"
+CASSETTES_FOLDER = "tests/fixtures/cassettes/"
 
 vcr = VCR(
     record_mode="once",

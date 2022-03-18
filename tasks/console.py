@@ -11,4 +11,4 @@ def console(c, mode="test"):
     """
     Run application console (ipython)
     """
-    c.run(f"ENV={mode} ipython -i spec/test_load_all.py", pty=True)
+    c.run(f"ENV={mode} ipython -i tests/load_all.py", pty=True)

@@ -3,7 +3,7 @@ from typing import Iterator
 
 from fastapi.testclient import TestClient
 
-from .spec_helper import *
+from .helper import *
 
 client = TestClient(app)
 

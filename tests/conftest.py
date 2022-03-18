@@ -2,7 +2,7 @@ from typing import Iterator
 
 from sqlalchemy.orm import Session
 
-from .spec_helper import *
+from .helper import *
 
 
 @pytest.fixture(scope="session")

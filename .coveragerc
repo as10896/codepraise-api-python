@@ -1,5 +1,5 @@
 [run]
 omit =
-    spec/*
+    tests/*
     tasks/*
     app/infrastructure/broadcaster/*
