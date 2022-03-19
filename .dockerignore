@@ -3,13 +3,11 @@ __pycache__/
 .pytest_cache/
 .mypy_cache
 .vscode/
+coverage/
 .coverage
-coverage.xml
 *.db
 .git/
 .gitignore
-Procfile
-runtime.txt
 
 config/secrets/*/*
 app/infrastructure/gitrepo/repostore/*
