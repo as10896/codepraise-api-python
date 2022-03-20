@@ -1,0 +1,28 @@
+x-dev-app: &dev-app
+  volumes:
+    - ./app/infrastructure/database:/app/app/infrastructure/database
+  environment:
+    - DB_FILENAME
+
+services:
+  # `$ docker compose up`
+  api:
+    <<: *dev-app
+    command: inv api.run.dev -h 0.0.0.0
+
+  worker:
+    <<: *dev-app
+    command: inv worker.run.dev
+
+  db-migrations:
+    <<: *dev-app
+    command: inv db.migrate -e development
+
+  # `$ docker compose run --rm console`
+  console:
+    <<: *dev-app
+    command: inv console -e development
+
+  # `$ docker compose run --rm bash`
+  bash:
+    <<: *dev-app

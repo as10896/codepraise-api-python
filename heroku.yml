@@ -1,0 +1,20 @@
+setup:
+  addons:
+    - plan: heroku-postgresql
+      as: DATABASE
+    - plan: heroku-redis
+      as: REDIS
+build:
+  docker:
+    web: Dockerfile
+  config:
+    HEROKU_DEPLOY: true
+release:
+  image: web
+  command:
+    - inv db.migrate -e production
+run:
+  # Due to Heroku's ephemeral filesystem, here we run the API and the worker in the same container.
+  # In doing so, the API will know whether the worker has finished cloning the github repo or not, and can then analyze the cloned repo with git blame.
+  # Also, we use only 2 processes for API/worker respectively to avoid Heroku's memory quota exceeded error as much as possible.
+  web: inv worker.run.prod -p 2 & inv api.run.prod -p ${PORT:-8000} -w 2

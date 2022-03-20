@@ -1,0 +1,48 @@
+x-app: &default-app
+  build:
+    args:
+      - INSTALL_DEV=${INSTALL_DEV:-false}
+  image: codepraise-api-python
+  volumes:
+    - ./config/secrets:/app/config/secrets
+    - ./app/infrastructure/gitrepo/repostore:/app/app/infrastructure/gitrepo/repostore
+  environment:
+    - API_URL=http://api:8000
+    - AWS_ACCESS_KEY_ID
+    - AWS_SECRET_ACCESS_KEY
+    - AWS_REGION
+    - CLONE_QUEUE
+    - REPORT_QUEUE
+    - GH_TOKEN
+
+services:
+  db-migrations:
+    <<: *default-app
+
+  api:
+    <<: *default-app
+    depends_on:
+      - db-migrations
+    ports:
+      - ${PORT:-8000}:8000
+
+  worker:
+    <<: *default-app
+
+  console:
+    <<: *default-app
+    depends_on:
+      - db-migrations
+    profiles:
+      - debug
+
+  bash:
+    <<: *default-app
+    build:
+      args:
+        - INSTALL_DEV=true
+    image: codepraise-api-python:debug
+    tty: true
+    profiles:
+      - debug
+    command: bash

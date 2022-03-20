@@ -1,0 +1,46 @@
+x-prod-app: &prod-app
+  environment:
+    - DATABASE_URL=postgresql://postgres:postgres@db:5432/codepraise
+    - REDIS_URL=redis://redis:6379/0
+
+services:
+  # `$ docker compose -f docker-compose.yml -f docker-compose.prod.yml up`
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=codepraise
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  redis:
+    image: redis:alpine
+    volumes:
+      - redis:/data
+
+  db-migrations:
+    <<: *prod-app
+    depends_on:
+      - db
+    command: inv db.migrate -e production
+
+  api:
+    <<: *prod-app
+    depends_on:
+      - db-migrations
+      - redis
+    command: inv api.run.prod
+
+  worker:
+    <<: *prod-app
+    command: inv worker.run.prod
+
+  # `$ docker compose -f docker-compose.yml -f docker-compose.prod.yml run --rm console`
+  console:
+    <<: *prod-app
+    command: inv console -e production
+
+volumes:
+  postgres:
+  redis:

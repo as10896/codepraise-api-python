@@ -41,13 +41,21 @@ def dev(c, port=8000, host="127.0.0.1"):
     )
 
 
-@task(help={"port": "Bind socket to this port. [default: 8080]"})
-def test(c, port=8080):
+@task(
+    help={
+        "port": "Bind socket to this port. [default: 8080]",
+        "host": "Bind socket to this host. [default: 127.0.0.1]",
+    }
+)
+def test(c, port=8080, host="127.0.0.1"):
     """
     Run fastapi server in test environment
     """
     print("REMEMBER: need to run `inv worker.run.test` in another process")
-    c.run(f"ENV=test uvicorn app.application.app:app --port {port}", pty=True)
+    c.run(
+        f"ENV=test uvicorn app.application.app:app --host {host} --port {port}",
+        pty=True,
+    )
 
 
 @task(
