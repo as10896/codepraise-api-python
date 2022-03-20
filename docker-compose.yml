@@ -35,3 +35,14 @@ services:
       - db-migrations
     profiles:
       - debug
+
+  bash:
+    <<: *default-app
+    build:
+      args:
+        - INSTALL_DEV=true
+    image: codepraise-api-python:debug
+    tty: true
+    profiles:
+      - debug
+    command: bash

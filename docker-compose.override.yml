@@ -22,3 +22,7 @@ services:
   console:
     <<: *dev-app
     command: inv console -e development
+
+  # `$ docker compose run --rm bash`
+  bash:
+    <<: *dev-app
