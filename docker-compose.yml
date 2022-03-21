@@ -14,6 +14,7 @@ x-app: &default-app
     - CLONE_QUEUE
     - REPORT_QUEUE
     - GH_TOKEN
+    - MAX_CLONE_SIZE
 
 services:
   db-migrations:

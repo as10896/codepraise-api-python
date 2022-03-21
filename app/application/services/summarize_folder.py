@@ -42,7 +42,7 @@ class SummarizeFolder:
             return Failure(
                 ApiResult(
                     "bad_request",
-                    "Repo too large to analyze (only repos smaller than 1MB are allowed)",
+                    f"Repo too large to analyze (only repos smaller than {input['config'].MAX_CLONE_SIZE // 1000}MB are allowed)",
                 )
             )
         else:

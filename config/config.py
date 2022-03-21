@@ -13,6 +13,10 @@ class Settings(BaseSettings):
     AWS_REGION: str
     CLONE_QUEUE: str
 
+    # The maximum repo size for cloning and analysis (unit: KB).
+    # A value of zero means there's no such limit.
+    MAX_CLONE_SIZE: int = 0
+
 
 class Test(Settings):
     environment = "test"
