@@ -9,7 +9,7 @@ on:
 
 jobs:
   integration:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - name: Build image
@@ -30,7 +30,7 @@ jobs:
           fail_ci_if_error: true
   deploy:
     needs: integration
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - name: Deploy to Heroku
