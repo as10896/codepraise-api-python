@@ -4,6 +4,10 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 
+This is a Python reproduction of [ISS-SOA/codepraise-api](https://github.com/ISS-SOA/codepraise-api), a demo project for NTHU Service-Oriented Architecture course (for practice only).
+
+For Web client / Notifier, please visit [codepraise-app-python](https://github.com/as10896/codepraise-app-python) / [codepraise-clone-notifier-python](https://github.com/as10896/codepraise-clone-notifier-python).
+
 ## Prerequisite
 ### Install Docker
 Make sure you have the latest version of [Docker 🐳](https://www.docker.com/get-started) installed on your local machine.
