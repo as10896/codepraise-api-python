@@ -4,6 +4,17 @@ setup:
       as: DATABASE
     - plan: heroku-redis
       as: REDIS
+      # By default, Heroku Redis will `timeout` connections idle for 5 minutes.
+      # This might be problematic when using Redis as Pub/Sub, since in Pub/Sub mode a Redis subscriber can
+      # only subscribe/unsubscribe to channels and cannot do any other operation, including `timeout`.
+      # Chances are you might see errors like "Cannot run command inside pubsub subscription" and some resulting application failures.
+      # Here we disable the default timeout operation of Heroku Redis to prevent unexpected errors.
+      # You can use `heroku redis:timeout --seconds 0` if you have Heroku CLI installed.
+
+      # Refs:
+      # https://devcenter.heroku.com/articles/heroku-redis#timeout
+      # https://redis.io/topics/pubsub
+      # https://stackoverflow.com/questions/23961770/why-doesnt-redis-pub-sub-allow-access-to-redis-within-the-callback
 build:
   docker:
     web: Dockerfile
