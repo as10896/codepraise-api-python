@@ -1,0 +1,18 @@
+site_name: CodePraise Python API
+repo_name: codepraise-api-python
+repo_url: https://github.com/as10896/codepraise-api-python
+theme:
+  name: material
+  palette:
+    primary: teal
+  features:
+    - search.suggest
+    - search.highlight
+markdown_extensions:
+  - toc:
+      permalink: true
+nav:
+  - Introduction: index.md
+  - prerequisite.md
+  - docker.md
+  - invoke.md

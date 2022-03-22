@@ -1,16 +1,24 @@
-# codepraise-api-python
+# CodePraise Python API
 [![CI](https://github.com/as10896/codepraise-api-python/actions/workflows/ci.yml/badge.svg)](https://github.com/as10896/codepraise-api-python/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/as10896/codepraise-api-python/branch/main/graph/badge.svg?token=ZFX6A4M0XX)](https://codecov.io/gh/as10896/codepraise-api-python)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 
-This is a Python reproduction of [ISS-SOA/codepraise-api](https://github.com/ISS-SOA/codepraise-api), a demo project for NTHU Service-Oriented Architecture course (for practice only).
+---
 
-For Web client / Notifier, please visit [codepraise-app-python](https://github.com/as10896/codepraise-app-python) / [codepraise-clone-notifier-python](https://github.com/as10896/codepraise-clone-notifier-python).
+**Documentation**: <a href="https://as10896.github.io/codepraise-api-python" target="_blank">https://as10896.github.io/codepraise-api-python</a>
+
+**Source Code**: <a href="https://github.com/as10896/codepraise-api-python" target="_blank">https://github.com/as10896/codepraise-api-python</a>
+
+---
+
+This is a Python reproduction of <a href="https://github.com/ISS-SOA/codepraise-api" target="_blank">ISS-SOA/codepraise-api</a>, a demo project for NTHU Service-Oriented Architecture course (for self practice only).
+
+For Web client / Notifier, please visit <a href="https://as10896.github.io/codepraise-app-python/" target="_blank">codepraise-app-python</a> / <a href="https://as10896.github.io/codepraise-clone-notifier-python/" target="_blank">codepraise-clone-notifier-python</a>.
 
 ## Prerequisite
 ### Install Docker
-Make sure you have the latest version of [Docker 🐳](https://www.docker.com/get-started) installed on your local machine.
+Make sure you have the latest version of <a href="https://www.docker.com/get-started" target="_blank">Docker 🐳</a> installed on your local machine.
 
 ### Secrets setup
 Placing secret values in files is a common pattern to provide sensitive configuration to an application. A secret file follows the same principal as a `.env` file except it only contains a single value and the file name is used as the key.
@@ -25,28 +33,28 @@ super_secret_database_password
 
 Here we create secret files under the secret directories (`config/secrets/<env>/`) and place secret values into the files.
 
-You can also set up environment variables directly.\
+You can also set up environment variables directly.<br>
 The variables you set in this way would take precedence over those loaded from a secret file.
 
-For more info, check the [pydantic official document](https://pydantic-docs.helpmanual.io/usage/settings/#secret-support).
+For more info, check the <a href="https://pydantic-docs.helpmanual.io/usage/settings/#secret-support" target="_blank">pydantic official document</a>.
 
 #### Create GitHub API personal access token
-1. Generate token [here](https://github.com/settings/tokens).
+1. Generate token <a href="https://github.com/settings/tokens" target="_blank">here</a>.
 2. Create `GH_TOKEN` under `config/secrets/<env>/` with the generated token (or just setting the environment variable `GH_TOKEN`).
 
 #### Set up Amazon SQS
-1. Create an AWS account and an IAM user ([Ref](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-setting-up.html)).
+1. Create an AWS account and an IAM user (<a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-setting-up.html" target="_blank">Ref</a>).
 2. Create `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` under `config/secrets/<env>/` with the generated credentials (or just setting environment variables `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`).
-3. Select a region where FIFO Queues are available (e.g. `us-east-1`, see [here](https://aws.amazon.com/about-aws/whats-new/2019/02/amazon-sqs-fifo-qeues-now-available-in-15-aws-regions/) for more info), then creating `AWS_REGION` under `config/secrets/<env>/` with the region name (or just setting the environment variable `AWS_REGION`).
-4. Create a **FIFO** Amazon SQS queue ([Ref](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-create-queue.html)).
+3. Select a region where FIFO Queues are available (e.g. `us-east-1`, see <a href="https://aws.amazon.com/about-aws/whats-new/2019/02/amazon-sqs-fifo-qeues-now-available-in-15-aws-regions/" target="_blank">here</a> for more info), then creating `AWS_REGION` under `config/secrets/<env>/` with the region name (or just setting the environment variable `AWS_REGION`).
+4. Create a **FIFO** Amazon SQS queue (<a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-configure-create-queue.html" target="_blank">Ref</a>).
     * Notice that the name of a FIFO queue must end with the `.fifo` suffix.
 5. Create `CLONE_QUEUE` under `config/secrets/<env>/` with the created queue's name (or just setting the environment variable `CLONE_QUEUE`).
 6. Create another FIFO Amazon SQS queue, and then create `REPORT_QUEUE` under `config/secrets/<env>/` with the created queue's name  (or just setting the environment variable `REPORT_QUEUE`).
     * Not needed for test environment.
 
 ## Run with Docker
-You can start all the services easily with Docker Compose.\
-Before starting, make sure you have all the configurations set up as mentioned above.
+You can start all the services easily with Docker Compose.<br>
+Before starting, make sure you have all the configurations set up as mentioned before.
 
 For convenience, you can use a `.env` file with all the necessary variables configured as follows:
 
@@ -65,7 +73,7 @@ Then `source` the configuration file:
 source .env
 ```
 
-Notice that it is not recommended to `export` all these credentials directly in the shell since these will be logged into shell history if not inserted through secure input.\
+Notice that it is not recommended to `export` all these credentials directly in the shell since these will be logged into shell history if not inserted through secure input.<br>
 Don't do that especially when you're using a shared device that might be accessed by multiple users.
 
 ### Development
@@ -75,7 +83,7 @@ docker compose up -d  # run services in the background
 docker compose run --rm console  # run application console with database connected
 docker compose down  # shut down all the services
 ```
-After starting, you can visit http://localhost:8000/docs to see the interactive API documentation.
+After starting, you can visit <a href="http://localhost:8000/docs" target="_blank">http://localhost:8000/docs</a> to see the interactive API documentation.
 
 ### Production
 Gunicorn + Uvicorn + Celery + PostgreSQL + Redis Pub/Sub
@@ -85,7 +93,7 @@ docker compose -f docker-compose.yml -f docker-compose.prod.yml run --rm console
 docker compose -f docker-compose.yml -f docker-compose.prod.yml down  # shut down all the services
 docker compose -f docker-compose.yml -f docker-compose.prod.yml down -v  # shut down all the services and remove all the volumes
 ```
-After starting, you can visit http://localhost:8000/docs to see the interactive API documentation.
+After starting, you can visit <a href="http://localhost:8000/docs" target="_blank">http://localhost:8000/docs</a> to see the interactive API documentation.
 
 ### Testing
 ```shell
@@ -96,7 +104,7 @@ docker compose -f docker-compose.test.yml --profile bdd down  # shut down all th
 
 
 ## Invoke tasks
-Here we use [invoke](https://docs.pyinvoke.org/) as our task management tool.
+Here we use <a href="https://docs.pyinvoke.org/" target="_blank">Invoke</a> as our task management tool.
 
 You can use the container's bash to test these commands.
 ```shell
