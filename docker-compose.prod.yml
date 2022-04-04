@@ -41,6 +41,10 @@ services:
     <<: *prod-app
     command: inv console -e production
 
+  # `$ docker compose -f docker-compose.yml -f docker-compose.prod.yml run --rm bash`
+  bash:
+    <<: *prod-app
+
 volumes:
   postgres:
   redis:

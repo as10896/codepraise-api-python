@@ -109,6 +109,7 @@ Here we use <a href="https://docs.pyinvoke.org/" target="_blank">Invoke</a> as o
 You can use the container's bash to test these commands.
 ```shell
 docker compose run --rm bash
+docker compose -f docker-compose.yml -f docker-compose.prod.yml run --rm bash  # for production environment
 ```
 
 ### Commands
