@@ -1,8 +1,7 @@
 x-test-app: &test-app
   build:
-    args:
-      - INSTALL_DEV=true
-  image: codepraise-api-python:debug
+    target: test
+  image: codepraise-api-python:test
   volumes:
     - ./config/secrets:/app/config/secrets
     - ./app/infrastructure/gitrepo/repostore:/app/app/infrastructure/gitrepo/repostore
@@ -17,9 +16,8 @@ x-test-app: &test-app
 
 x-test-ci: &test-ci
   build:
-    args:
-      - INSTALL_DEV=true
-  image: codepraise-api-python:debug
+    target: test
+  image: codepraise-api-python:test
   volumes:
     - ./app/infrastructure/gitrepo/repostore:/app/app/infrastructure/gitrepo/repostore
     - ./coverage:/app/coverage

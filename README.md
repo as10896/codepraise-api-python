@@ -54,7 +54,7 @@ For more info, check the <a href="https://pydantic-docs.helpmanual.io/usage/sett
 
 ## Run with Docker
 You can start all the services easily with Docker Compose.<br>
-Before starting, make sure you have all the configurations set up as mentioned before.
+Before startup, make sure you have all the configurations set up as mentioned before.
 
 For convenience, you can use a `.env` file with all the necessary variables configured as follows:
 
@@ -83,7 +83,7 @@ docker compose up -d  # run services in the background
 docker compose run --rm console  # run application console with database connected
 docker compose down  # shut down all the services
 ```
-After starting, you can visit <a href="http://localhost:8000/docs" target="_blank">http://localhost:8000/docs</a> to see the interactive API documentation.
+After startup, you can visit <a href="http://localhost:8000/docs" target="_blank">http://localhost:8000/docs</a> to see the interactive API documentation.
 
 ### Production
 Gunicorn + Uvicorn + Celery + PostgreSQL + Redis Pub/Sub
@@ -93,7 +93,7 @@ docker compose -f docker-compose.yml -f docker-compose.prod.yml run --rm console
 docker compose -f docker-compose.yml -f docker-compose.prod.yml down  # shut down all the services
 docker compose -f docker-compose.yml -f docker-compose.prod.yml down -v  # shut down all the services and remove all the volumes
 ```
-After starting, you can visit <a href="http://localhost:8000/docs" target="_blank">http://localhost:8000/docs</a> to see the interactive API documentation.
+After startup, you can visit <a href="http://localhost:8000/docs" target="_blank">http://localhost:8000/docs</a> to see the interactive API documentation.
 
 ### Testing
 ```shell

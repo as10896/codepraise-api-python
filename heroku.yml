@@ -17,9 +17,9 @@ setup:
       # https://stackoverflow.com/questions/23961770/why-doesnt-redis-pub-sub-allow-access-to-redis-within-the-callback
 build:
   docker:
-    web: Dockerfile
-  config:
-    HEROKU_DEPLOY: true
+    web: 
+      dockerfile: Dockerfile
+      target: production
 release:
   image: web
   command:

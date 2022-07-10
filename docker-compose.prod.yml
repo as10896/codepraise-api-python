@@ -1,4 +1,7 @@
 x-prod-app: &prod-app
+  build:
+    target: production
+  image: codepraise-api-python:prod
   environment:
     - DATABASE_URL=postgresql://postgres:postgres@db:5432/codepraise
     - REDIS_URL=redis://redis:6379/0

@@ -1,6 +1,9 @@
 x-dev-app: &dev-app
+  build:
+    target: debug
+  image: codepraise-api-python:debug
   volumes:
-    - ./app/infrastructure/database:/app/app/infrastructure/database
+    - .:/app
   environment:
     - DB_FILENAME
 

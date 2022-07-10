@@ -1,8 +1,7 @@
 x-app: &default-app
   build:
-    args:
-      - INSTALL_DEV=${INSTALL_DEV:-false}
-  image: codepraise-api-python
+    target: base
+  image: codepraise-api-python:base
   volumes:
     - ./config/secrets:/app/config/secrets
     - ./app/infrastructure/gitrepo/repostore:/app/app/infrastructure/gitrepo/repostore
@@ -39,10 +38,6 @@ services:
 
   bash:
     <<: *default-app
-    build:
-      args:
-        - INSTALL_DEV=true
-    image: codepraise-api-python:debug
     tty: true
     profiles:
       - debug

@@ -1,35 +1,58 @@
 # syntax=docker/dockerfile:1
 
-FROM python:3.9-slim
+FROM python:3.9-slim AS base
 
 WORKDIR /app
 
-# Install dependencies necessary for pyurl installation (for Amazon SQS conncection), PostgreSQL connection, and git (for cloning and blaming repos)
+# To install poetry, pyurl (for Amazon SQS conncection), and git (for cloning and blaming repos)
 RUN apt-get update && \
-    apt-get install -y libcurl4-openssl-dev libssl-dev libpq-dev gcc git
-
-# To see release phase streaming logs of Heroku
-ARG HEROKU_DEPLOY=false
-RUN if [ ${HEROKU_DEPLOY} = "true" ] ; then apt-get install -y curl ; fi
+    apt-get install -y curl gcc libcurl4-openssl-dev libssl-dev git
 
 # To print directly to stdout instead of buffering output
 ENV PYTHONUNBUFFERED=true
 
-# Install pipenv
+# Upgrade pip and install Poetry
 RUN python -m pip install --upgrade pip && \
-    pip install pipenv
+    curl -sSL https://install.python-poetry.org | POETRY_HOME=/opt/poetry POETRY_PREVIEW=1 python && \
+    cd /usr/local/bin && \
+    ln -s /opt/poetry/bin/poetry && \
+    poetry config virtualenvs.create false
 
-COPY Pipfile Pipfile.lock ./
+# Copy poetry.lock* in case it doesn't exist in the repo
+COPY pyproject.toml poetry.lock* ./
 
-ARG INSTALL_DEV=false
-RUN if [ ${INSTALL_DEV} = "true" ] ; then \
-        pipenv install --dev --system --deploy --ignore-pipfile ; \
-    else \
-        pipenv install --system --deploy --ignore-pipfile ; \
-    fi
+RUN poetry install --no-root
 
 COPY . .
+
+# ==================== production ====================
+
+FROM base AS production
+
+# To install psycopg2 (for PostgreSQL connection)
+RUN apt-get install -y libpq-dev
+
+RUN poetry install --no-root --with prod
+
+EXPOSE 8000
+
+CMD ["inv", "api.run.prod"]
+
+# ==================== debug ====================
+
+FROM base AS debug
+
+RUN poetry install --no-root --with dev
 
 EXPOSE 8000
 
 CMD ["inv", "api.run.dev", "-h", "0.0.0.0"]
+
+
+# ==================== test ====================
+
+FROM base AS test
+
+RUN poetry install --no-root --with test
+
+CMD ["inv", "test"]
