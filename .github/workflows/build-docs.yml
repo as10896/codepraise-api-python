@@ -21,6 +21,6 @@ jobs:
         key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('**/Pipfile.lock') }}-docs
     - name: Install Material for MkDocs
       if: steps.cache.outputs.cache-hit != 'true'
-      run: pip install mkdocs-material 
+      run: pip install mkdocs-material
     - name: Build Docs
       run: mkdocs gh-deploy --force
