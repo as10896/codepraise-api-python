@@ -1,7 +1,7 @@
 from typing import List
 
 from fastapi import APIRouter, Depends
-from fastapi.responses import JSONResponse
+from fastapi.responses import ORJSONResponse
 from returns.result import Result
 from sqlalchemy.orm import Session
 
@@ -23,7 +23,7 @@ config = get_settings()
 router = APIRouter()
 
 
-@router.get("/repo/", response_model=ReposRepresenter)
+@router.get("/repo/", response_model=ReposRepresenter, response_class=ORJSONResponse)
 def find_all_database_repos(db: Session = Depends(get_db)):
     repos: List[entities.Repo] = repositories.For[entities.Repo].all(db)
     return {"repos": repos}
@@ -43,7 +43,7 @@ if config.environment in ["test", "development"]:
         http_response: HttpResponseRepresenter = HttpResponseRepresenter.parse_obj(
             result.dict()
         )
-        return JSONResponse(
+        return ORJSONResponse(
             status_code=http_response.http_code, content=http_response.http_message
         )
 

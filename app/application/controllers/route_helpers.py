@@ -1,7 +1,7 @@
 from typing import Any, Dict, Optional, TypeVar
 
 from fastapi.encoders import jsonable_encoder
-from fastapi.responses import JSONResponse
+from fastapi.responses import ORJSONResponse
 from pydantic import BaseModel
 from returns.pipeline import is_successful
 from returns.result import Result
@@ -16,7 +16,7 @@ def represent_response(
     result: Result,
     representer_class: Representer,
     headers: Optional[Dict[str, str]] = None,
-) -> JSONResponse:
+) -> ORJSONResponse:
     if is_successful(result):
         find_result: ApiResult = result.unwrap()
 
@@ -31,7 +31,7 @@ def represent_response(
         response_content: Representer = representer_class.parse_obj(find_result.message)
         response_content: Dict[str, Any] = jsonable_encoder(response_content)
 
-        return JSONResponse(
+        return ORJSONResponse(
             status_code=http_response.http_code,
             content=response_content,
             headers=headers,
@@ -42,6 +42,6 @@ def represent_response(
         http_response: HttpResponseRepresenter = HttpResponseRepresenter.parse_obj(
             find_result.dict()
         )
-        return JSONResponse(
+        return ORJSONResponse(
             status_code=http_response.http_code, content=http_response.http_message
         )
