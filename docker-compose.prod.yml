@@ -26,7 +26,7 @@ services:
     <<: *prod-app
     depends_on:
       - db
-    command: inv db.migrate -e production
+    command: ./bin/wait-for-it.sh db:5432 -- inv db.migrate -e production
 
   api:
     <<: *prod-app
