@@ -1,6 +1,7 @@
 site_name: CodePraise Python API
 repo_name: codepraise-api-python
 repo_url: https://github.com/as10896/codepraise-api-python
+edit_uri: edit/main/docs/
 theme:
   name: material
   palette:
