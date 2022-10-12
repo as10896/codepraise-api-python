@@ -28,7 +28,8 @@ RUN poetry install --no-root
 FROM base AS production
 
 # To install psycopg2 (for PostgreSQL connection)
-RUN apt-get install -y libpq-dev
+RUN apt-get update && \
+    apt-get install -y libpq-dev
 
 RUN poetry install --no-root --with prod
 
