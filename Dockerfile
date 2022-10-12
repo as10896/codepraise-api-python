@@ -13,7 +13,7 @@ ENV PYTHONUNBUFFERED=true
 
 # Upgrade pip and install Poetry
 RUN python -m pip install --upgrade pip && \
-    curl -sSL https://install.python-poetry.org | POETRY_HOME=/opt/poetry POETRY_PREVIEW=1 python && \
+    curl -sSL https://install.python-poetry.org | POETRY_HOME=/opt/poetry python && \
     cd /usr/local/bin && \
     ln -s /opt/poetry/bin/poetry && \
     poetry config virtualenvs.create false
