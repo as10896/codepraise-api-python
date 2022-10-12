@@ -23,8 +23,6 @@ COPY pyproject.toml poetry.lock* ./
 
 RUN poetry install --no-root
 
-COPY . .
-
 # ==================== production ====================
 
 FROM base AS production
@@ -33,6 +31,8 @@ FROM base AS production
 RUN apt-get install -y libpq-dev
 
 RUN poetry install --no-root --with prod
+
+COPY . .
 
 EXPOSE 8000
 
@@ -44,6 +44,8 @@ FROM base AS debug
 
 RUN poetry install --no-root --with dev
 
+COPY . .
+
 EXPOSE 8000
 
 CMD ["inv", "api.run.dev", "-h", "0.0.0.0"]
@@ -54,5 +56,7 @@ CMD ["inv", "api.run.dev", "-h", "0.0.0.0"]
 FROM base AS test
 
 RUN poetry install --no-root --with test
+
+COPY . .
 
 CMD ["inv", "test"]
