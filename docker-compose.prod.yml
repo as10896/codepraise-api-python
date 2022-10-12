@@ -33,6 +33,7 @@ services:
     depends_on:
       - db-migrations
       - redis
+    restart: always
     command: inv api.run.prod
 
   worker:
